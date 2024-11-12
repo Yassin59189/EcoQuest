@@ -87,7 +87,7 @@ $res = mysqli_query($conn, $req);
             </a>
             <a href="tabs.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-tablet-alt mr-3"></i>
-                Tabbed Content
+                Manage Products
             </a>
             <a href="calendar.html"
                 class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
@@ -151,7 +151,7 @@ $res = mysqli_query($conn, $req);
                 <a href="tabs.html"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-tablet-alt mr-3"></i>
-                    Tabbed Content
+                    Manage Products
                 </a>
                 <a href="calendar.html"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
