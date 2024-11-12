@@ -1,3 +1,13 @@
+<?php
+include "conn.php";
+$req = "select * from evenements";
+$res = mysqli_query($conn, $req);
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,14 +61,14 @@
 
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
         <div class="p-6">
-            <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
+            <a href="index.php" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
             <button
                 class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
                 <i class="fas fa-plus mr-3"></i> New Report
             </button>
         </div>
         <nav class="text-white text-base font-semibold pt-3">
-            <a href="index.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="index.php" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-tachometer-alt mr-3"></i>
                 Dashboard
             </a>
@@ -110,7 +120,7 @@
         <!-- Mobile Header & Nav -->
         <header x-data="{ isOpen: false }" class="w-full bg-sidebar py-5 px-6 sm:hidden">
             <div class="flex items-center justify-between">
-                <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
+                <a href="index.php" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
                 <button @click="isOpen = !isOpen" class="text-white text-3xl focus:outline-none">
                     <i x-show="!isOpen" class="fas fa-bars"></i>
                     <i x-show="isOpen" class="fas fa-times"></i>
@@ -119,7 +129,7 @@
 
             <!-- Dropdown Nav -->
             <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
-                <a href="index.html"
+                <a href="index.php"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-tachometer-alt mr-3"></i>
                     Dashboard
@@ -178,7 +188,7 @@
                     <!-- Modal -->
                     <div class="bg-white rounded-lg shadow-lg w-1/3 p-6">
                         <h2 class="text-lg font-semibold mb-4">Add New Event</h2>
-                        <form id="eventForm">
+                        <form id="eventForm" action="addEvent.php" method="post">
                             <!-- Event Name -->
                             <div class="mb-4">
                                 <label for="eventName" class="block text-sm font-medium text-gray-700">Event
@@ -295,43 +305,30 @@
                             </thead>
                             <tbody>
 
+                                
                                 <tr class="hover:bg-grey-lighter">
-                                    <td class="py-4 px-6 border-b border-grey-light">lorem</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">11/13/2024</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">teams</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">Tunis</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">In Progress</td>
-                                    <td class="py-4 px-6 border-b border-grey-light flex items-center justify-evenly">
-                                        <a href="#">
-                                            <i class="fas fa-pen-square text-2xl"
-                                                style="color: rgb(255, 136, 0);"></i></a>
-                                        <a href="#">
-                                            <i class="fas fa-trash-alt text-xl text-red-600" aria-hidden="true"></i></a>
-                                        <a href="participants.html">
-                                            <i class="fas fa-list-alt text-2xl text-blue-500" aria-hidden="true"></i>
+                                    <?php
+                                    if(mysqli_num_rows($res)) {
+                                        while($row = mysqli_fetch_assoc($res)) {
+                                            echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['Nom'] ."</td>";
+                                            echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['Date'] ."</td>";
+                                            echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['Nom'] ."</td>";
+                                            echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['Location'] ."</td>";
+                                            echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['Status'] ."</td>";
+                                            echo "<td class='py-4 px-6 border-b border-grey-light flex items-center justify-evenly'>
+                                            <i class='fas fa-pen-square text-2xl'
+                                                style='color: rgb(255, 136, 0);'></i></a>
+                                        <a href='#'>
+                                            <i class='fas fa-trash-alt text-xl text-red-600' aria-hidden='true'></i></a>
+                                        <a href='participants.html'>
+                                            <i class='fas fa-list-alt text-2xl text-blue-500' aria-hidden='true'></i>
                                         </a>
 
                                     </td>
-                                </tr>
-                                <tr class="hover:bg-grey-lighter">
-                                    <td class="py-4 px-6 border-b border-grey-light">lorem</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">11/13/2024</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">teams</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">Tunis</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">In Progress</td>
-                                    <td class="py-4 px-6 border-b border-grey-light flex items-center justify-evenly">
-                                        <a href="#">
-                                            <i class="fas fa-pen-square text-2xl"
-                                                style="color: rgb(255, 136, 0);"></i></a>
-                                        <a href="#">
-                                            <i class="fas fa-trash-alt text-xl text-red-600" aria-hidden="true"></i></a>
-                                        <a href="participants.html">
-                                            <i class="fas fa-list-alt text-2xl text-blue-500" aria-hidden="true"></i>
-                                        </a>
-
-                                    </td>
-                                </tr>
-
+                                </tr>";
+                                        }
+                                    }
+                                    ?>
                             </tbody>
                         </table>
                     </div>
