@@ -1,4 +1,5 @@
 <?php
+
 include "conn.php";
 $eventName=$_POST['eventName'];
 $eventDate=$_POST['eventDate'];
@@ -15,7 +16,8 @@ $req = "insert into evenements('Nom', 'Description', 'Location', 'Date', 'startT
 values('$eventName', '$eventDescription', '$eventPlace', '$eventDate', '$startTime', '$endTime', '$eventType', 'upcomming')";
 
 $res = mysqli_query($conn, $req);
-if(!$res) {
-    mysqli_error($conn);
+echo("test");
+if($res) {
+    echo("test");
 }
 ?>
