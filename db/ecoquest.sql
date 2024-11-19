@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2024 at 08:14 PM
+-- Generation Time: Nov 19, 2024 at 11:35 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -59,7 +59,33 @@ CREATE TABLE `evenements` (
 --
 
 INSERT INTO `evenements` (`IDevent`, `Nom`, `Description`, `Location`, `Date`, `startTime`, `endTime`, `eventType`, `Status`, `eventImage`) VALUES
-(2, 'test3', 'yassin ben mosbeh :)', 'fouchena', '2024-11-12', '05:42:00', '17:42:00', 'Solo', 'upcomming', '');
+(2, 'test3', 'yassin ben mosbeh :(', 'ariana', '2024-11-12', '05:42:00', '17:42:00', 'Solo', 'upcomming', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `partenaires`
+--
+
+CREATE TABLE `partenaires` (
+  `IDpartenaire` int(11) NOT NULL,
+  `role` varchar(30) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `typepartenaire` varchar(30) NOT NULL,
+  `location` varchar(30) NOT NULL,
+  `tel` varchar(30) NOT NULL,
+  `statue` tinyint(1) NOT NULL,
+  `dateapplication` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `partenaires`
+--
+
+INSERT INTO `partenaires` (`IDpartenaire`, `role`, `email`, `password`, `username`, `typepartenaire`, `location`, `tel`, `statue`, `dateapplication`) VALUES
+(2, 'partenaire', 'partenaire@test.com', 'test', 'partner', 'ONG', 'kef', '9991779', 0, '2024-11-19 22:32:17');
 
 -- --------------------------------------------------------
 
@@ -100,6 +126,12 @@ ALTER TABLE `evenements`
   ADD PRIMARY KEY (`IDevent`);
 
 --
+-- Indexes for table `partenaires`
+--
+ALTER TABLE `partenaires`
+  ADD PRIMARY KEY (`IDpartenaire`);
+
+--
 -- Indexes for table `utilisateur`
 --
 ALTER TABLE `utilisateur`
@@ -120,6 +152,12 @@ ALTER TABLE `citoyen`
 --
 ALTER TABLE `evenements`
   MODIFY `IDevent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `partenaires`
+--
+ALTER TABLE `partenaires`
+  MODIFY `IDpartenaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `utilisateur`
