@@ -70,8 +70,7 @@
                 <i class="fas fa-sticky-note mr-3"></i>
                 Manage Events
             </a>
-            <a href="partners.html"
-                class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="partners.php" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-table mr-3"></i>
                 Manage Partners
             </a>
@@ -132,7 +131,7 @@
                     <i class="fas fa-sticky-note mr-3"></i>
                     Manage Events
                 </a>
-                <a href="partners.html"
+                <a href="partners.php"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-table mr-3"></i>
                     Manage Partners
@@ -336,11 +335,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="py-6 text-gray-500">
-                        Source: <a
-                            href="https://tailwindcomponents.com/component/calendar-ui-with-tailwindcss-and-alpinejs"
-                            class="underline">https://tailwindcomponents.com/component/calendar-ui-with-tailwindcss-and-alpinejs</a>
-                    </p>
+
                 </div>
             </main>
 
@@ -359,6 +354,7 @@
         const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+
         function app() {
             return {
                 month: '',
@@ -375,7 +371,7 @@
                     },
 
                     {
-                        event_date: new Date(2020, 3, 10),
+                        event_date: new Date(2024, 11, 10),
                         event_title: "Birthday",
                         event_theme: 'red'
                     },
@@ -383,6 +379,11 @@
                     {
                         event_date: new Date(2020, 3, 16),
                         event_title: "Upcoming Event",
+                        event_theme: 'green'
+                    },
+                    {
+                        event_date: new Date(2024, 10, 9),
+                        event_title: "test",
                         event_theme: 'green'
                     }
                 ],

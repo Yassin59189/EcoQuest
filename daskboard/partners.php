@@ -1,3 +1,10 @@
+<?php
+include "conn.php";
+$req = "select * from partenaires where statue = 0";
+$res = mysqli_query($conn, $req);
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,7 +73,7 @@
                 <i class="fas fa-sticky-note mr-3"></i>
                 Manage Events
             </a>
-            <a href="partners.html" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
+            <a href="partners.php" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
                 <i class="fas fa-table mr-3"></i>
                 Manage Partners
             </a>
@@ -128,7 +135,7 @@
                     <i class="fas fa-sticky-note mr-3"></i>
                     Manage Events
                 </a>
-                <a href="partners.html" class="flex items-center active-nav-link text-white py-2 pl-4 nav-item">
+                <a href="partners.php" class="flex items-center active-nav-link text-white py-2 pl-4 nav-item">
                     <i class="fas fa-table mr-3"></i>
                     Manage Partners
                 </a>
@@ -190,43 +197,30 @@
                                 </tr>
                             </thead>
                             <tbody class="text-gray-700">
-
-                                <tr class="hover:bg-grey-lighter">
-                                    <td class="py-4 px-6 border-b border-grey-light">lorem</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">97157487</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">ONG@gmail.com</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">ONG</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">kef</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">11/13/2024 5:00 PM</td>
-                                    <td class="py-4 px-6 border-b border-grey-light flex items-center ">
-                                        <a href="#">
-                                            <i class="fas fa-check-square text-2xl"
-                                                style="color: rgb(4, 160, 25);"></i></a>
-                                        <a href="#">
-                                            <i class="fas fa-trash-alt text-xl text-red-600 ml-2"
-                                                aria-hidden="true"></i></a>
-
-
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-grey-lighter">
-                                    <td class="py-4 px-6 border-b border-grey-light">lorem</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">97154487</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">Aziz@gmail.com</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">Partner</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">tunis</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">11/13/2024 4:00 PM</td>
-                                    <td class="py-4 px-6 border-b border-grey-light flex items-center ">
-                                        <a href="#">
-                                            <i class="fas fa-check-square text-2xl"
-                                                style="color: rgb(4, 160, 25);"></i></a>
-                                        <a href="#">
-                                            <i class="fas fa-trash-alt text-xl text-red-600 ml-2"
-                                                aria-hidden="true"></i></a>
-
+                            <tr>
+                            <?php
+                                    if(mysqli_num_rows($res)) {
+                                        while($row = mysqli_fetch_assoc($res)) {
+                                            echo "<td name='hiddenEventID' class='py-4 px-6 border-b border-grey-light hidden'>" .$row['IDpartenaire'] ."</td>";
+                                            echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['username'] ."</td>";
+                                            echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['tel'] ."</td>";
+                                            echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['email'] ."</td>";
+                                            echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['typepartenaire'] ."</td>";
+                                            echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['location'] ."</td>";
+                                            echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['dateapplication'] ."</td>";
+                                            echo "<td class='py-4 px-6 border-b border-grey-light flex items-center '>
+                                      <a href='partnersAccept.php?IDpartenaire=".$row['IDpartenaire']."'>
+                                            <i class='fas fa-check-square text-2xl'
+                                                style='color: rgb(4, 160, 25);'></i></a>
+                                        <a href='partnersReject.php?IDpartenaire=".$row['IDpartenaire']."'>
+                                            <i class='fas fa-trash-alt text-xl text-red-600 ml-2'
+                                                aria-hidden='true'></i></a>
 
                                     </td>
-                                </tr>
+                                </tr>";
+                                        }
+                                    }
+                                    ?>
                             </tbody>
                         </table>
                     </div>
