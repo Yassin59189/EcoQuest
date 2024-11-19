@@ -8,19 +8,18 @@ $endTime=$_POST['endTime'];
 $eventDescription=$_POST['eventDescription'];
 $eventPlace=$_POST['eventPlace'];
 
-echo $eventName;
-/*
+
+
 if(isset($_POST['eventType'])) {
     $eventType=$_POST['eventType'];
 }
 
-$req = "insert into evenements('Nom', 'Description', 'Location', 'Date', 'startTime', 'endTime', 'eventType', 'Status') 
+$req = "insert into evenements(Nom, Description, Location, Date, startTime, endTime, eventType, Status) 
 values('$eventName', '$eventDescription', '$eventPlace', '$eventDate', '$startTime', '$endTime', '$eventType', 'upcomming')";
 
 $res = mysqli_query($conn, $req);
-echo("test");
 if($res) {
-    echo("test");
-}*/
+    header ("location : index.php");
+}
 
 ?>

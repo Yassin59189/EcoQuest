@@ -273,6 +273,98 @@ $res = mysqli_query($conn, $req);
                         </form>
                     </div>
                 </div>
+
+                <!-- Edit modal -->
+                <div id="editModalBackdrop"
+                    class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <!-- Modal -->
+                    <div class="bg-white rounded-lg shadow-lg w-1/3 p-6">
+                        <h2 class="text-lg font-semibold mb-4">Edit Event</h2>
+                        <form id="eventForm" action="" method="post">  
+                            <!-- Event Name -->
+                            <div class="mb-4">
+                                <label for="eventName" class="block text-sm font-medium text-gray-700">Event
+                                    Name</label>
+                                <input type="text" id="editEventName" name="eventName"
+                                    class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                    required>
+                            </div>
+
+                            <!-- Event Date -->
+                            <div class="mb-4">
+                                <label for="eventDate" class="block text-sm font-medium text-gray-700">Event
+                                    Date</label>
+                                <input type="date" id="editEventDate" name="eventDate"
+                                    class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                    required>
+                            </div>
+                            <!-- Start and End Time -->
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Event Time</label>
+                                <div class="flex gap-4 mt-2">
+                                    <div class="w-1/2">
+                                        <label for="startTime" class="sr-only">Starting Time</label>
+                                        <input type="time" id="editStartTime" name="startTime"
+                                            class="p-2 border border-gray-300 rounded-md w-full focus:ring-blue-500 focus:border-blue-500"
+                                            required>
+                                    </div>
+                                    <div class="w-1/2">
+                                        <label for="endTime" class="sr-only">Ending Time</label>
+                                        <input type="time" id="editEndTime" name="endTime"
+                                            class="p-2 border border-gray-300 rounded-md w-full focus:ring-blue-500 focus:border-blue-500"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Event Description -->
+                            <div class="mb-4">
+                                <label for="eventDescription" class="block text-sm font-medium text-gray-700">Event
+                                    Description</label>
+                                <textarea id="editEventDescription" name="eventDescription" rows="4"
+                                    class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                    required></textarea>
+                            </div>
+
+                            <!-- Event Place -->
+                            <div class="mb-4">
+                                <label for="eventPlace" class="block text-sm font-medium text-gray-700">Event
+                                    Location</label>
+                                <input type="text" id="editEventPlace" name="eventPlace"
+                                    class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                    required>
+                            </div>
+                            <!-- Event Type -->
+                            <div class="mb-4 flex justify-between">
+                                <label for="eventPlace" class="block text-sm font-medium text-gray-700">Event
+                                    Type</label>
+                                <label class="text-sm font-medium text-gray-700"><input type="radio" class="mr-2"
+                                        name="eventType" id="type" value="Teams">By teams</label>
+                                <label class=" text-sm font-medium text-gray-700" for=""><input type="radio"
+                                        class="mr-2" name="eventType" id="type" value="Solo">Individuel</label>
+                            </div>
+
+                            <!-- Event Image Upload -->
+                            <div class="mb-4">
+                                <label for="eventImage" class="block text-sm font-medium text-gray-700">Upload Event
+                                    Cover</label>
+                                <input type="file" id="eventImage" name="eventImage" accept="image/*"
+                                    class="mt-1 block w-full text-sm text-gray-600 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+
+                            <!-- Modal Buttons -->
+                            <div class="flex justify-end">
+                                <button type="button" id="closeEditModalButton"
+                                    class="px-4 py-2 mr-2 bg-gray-300 rounded-md hover:bg-gray-400 focus:outline-none">
+                                    Cancel
+                                </button>
+                                <button type="submit"
+                                    class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none">
+                                    Save
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <!-- Content goes here! 😁 -->
                 <div class="w-full mt-12">
                     <p class="text-xl pb-3 flex items-center">
@@ -310,15 +402,17 @@ $res = mysqli_query($conn, $req);
                                     <?php
                                     if(mysqli_num_rows($res)) {
                                         while($row = mysqli_fetch_assoc($res)) {
+                                            echo "<td name='hiddenEventID' class='py-4 px-6 border-b border-grey-light hidden'>" .$row['IDevent'] ."</td>";
                                             echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['Nom'] ."</td>";
                                             echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['Date'] ."</td>";
-                                            echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['Nom'] ."</td>";
+                                            echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['eventType'] ."</td>";
                                             echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['Location'] ."</td>";
                                             echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['Status'] ."</td>";
                                             echo "<td class='py-4 px-6 border-b border-grey-light flex items-center justify-evenly'>
+                                            <a href='editEvent.php?eventID=".$row['IDevent']."'>
                                             <i class='fas fa-pen-square text-2xl'
                                                 style='color: rgb(255, 136, 0);'></i></a>
-                                        <a href='#'>
+                                        <a href='deteleEvent.php?eventID=".$row['IDevent']."'>
                                             <i class='fas fa-trash-alt text-xl text-red-600' aria-hidden='true'></i></a>
                                         <a href='participants.html'>
                                             <i class='fas fa-list-alt text-2xl text-blue-500' aria-hidden='true'></i>
@@ -342,16 +436,33 @@ $res = mysqli_query($conn, $req);
     <script>
 
         const openModalButton = document.getElementById('openModalButton');
+        const openEditModalButton = document.getElementById('openEditModalButton');
         const closeModalButton = document.getElementById('closeModalButton');
+        const closeEditModalButton = document.getElementById('closeEditModalButton');
         const modalBackdrop = document.getElementById('modalBackdrop');
+        const editModalBackdrop = document.getElementById('editModalBackdrop');
 
+        
+        openEditModalButton.addEventListener('click', (event) => {
+    editModalBackdrop.classList.remove('hidden');
+    let trElement = event.target.closest('tr');
 
+    let data = Array.from(trElement.children).map(td => td.textContent);
+    console.log(data)
+
+});
+
+        
         openModalButton.addEventListener('click', () => {
             modalBackdrop.classList.remove('hidden');
         });
 
         closeModalButton.addEventListener('click', () => {
             modalBackdrop.classList.add('hidden');
+        });
+
+        closeEditModalButton.addEventListener('click', () => {
+            editModalBackdrop.classList.add('hidden');
         });
 
 
@@ -361,12 +472,9 @@ $res = mysqli_query($conn, $req);
             }
         });
 
-        document.getElementById('eventForm').addEventListener('submit', (e) => {
-            e.preventDefault();
 
-            modalBackdrop.classList.add('hidden');
-        });
     </script>
+    <script src="../jquery/jquery.js"></script>
     <!-- AlpineJS -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
