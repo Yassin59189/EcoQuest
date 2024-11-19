@@ -85,7 +85,7 @@ $res = mysqli_query($conn, $req);
                 <i class="fas fa-tablet-alt mr-3"></i>
                 Manage Products
             </a>
-            <a href="calendar.html"
+            <a href="calendar.php"
                 class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-calendar mr-3"></i>
                 Calendar
@@ -149,7 +149,7 @@ $res = mysqli_query($conn, $req);
                     <i class="fas fa-tablet-alt mr-3"></i>
                     Manage Products
                 </a>
-                <a href="calendar.html"
+                <a href="calendar.php"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-calendar mr-3"></i>
                     Calendar
