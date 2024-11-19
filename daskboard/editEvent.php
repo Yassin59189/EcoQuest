@@ -4,7 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
+        .font-family-karla { font-family: karla; }
+        .bg-sidebar { background: #3d68ff; }
+        .cta-btn { color: #3d68ff; }
+        .upgrade-btn { background: #1947ee; }
+        .upgrade-btn:hover { background: #0038fd; }
+        .active-nav-link { background: #1947ee; }
+        .nav-item:hover { background: #1947ee; }
+        .account-link:hover { background: #3d68ff; }
+    </style>
 
 </head>
 <body>
@@ -24,7 +35,7 @@
     ?>
     <!-- Edit modal -->
     <div id="editModalBackdrop"
-                    class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    class=" my-8 w-100 fixed inset-0 flex items-center justify-center">
                     <!-- Modal -->
                     <div class="bg-white rounded-lg shadow-lg w-1/3 p-6">
                         <h2 class="text-lg font-semibold mb-4">Edit Event</h2>
