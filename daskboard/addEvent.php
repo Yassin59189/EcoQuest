@@ -8,6 +8,8 @@ $endTime=$_POST['endTime'];
 $eventDescription=$_POST['eventDescription'];
 $eventPlace=$_POST['eventPlace'];
 
+echo $eventName;
+/*
 if(isset($_POST['eventType'])) {
     $eventType=$_POST['eventType'];
 }
@@ -19,5 +21,6 @@ $res = mysqli_query($conn, $req);
 echo("test");
 if($res) {
     echo("test");
-}
+}*/
+
 ?>
