@@ -1,6 +1,6 @@
 <?php
 include "conn.php";
-$req = "select * from partenaires where statue = 'P' ";
+$req = "select * from partenaires ";
 $res = mysqli_query($conn, $req);
 
 
@@ -176,11 +176,11 @@ $res = mysqli_query($conn, $req);
 
         <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
             <main class="w-full flex-grow p-6">
-                <h1 class="text-3xl text-black pb-6">Manage Partners</h1>
-               <a href="partnerLog.php">
+                <h1 class="text-3xl text-black pb-6">Partners Log</h1>
+             <a href="partners.php">   
                 <button type="button"
                     class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none">
-                     Logs
+                    Go back 
                 </button>
             </a>
 
@@ -217,19 +217,22 @@ $res = mysqli_query($conn, $req);
                                             if($row['statue'] =="P") {
                                                 echo "<td class='py-4 px-4 border-b border-grey-light text-yellow-500'>Pending</td>";
                                             }
-                                            /* else if($row['statue'] =="A") {
+                                            if($row['statue'] =="A") {
                                                 echo "<td class='py-4 px-4 border-b border-grey-light text-green-600'>Accepted</td>";
                                             }
-                                            else if($row['statue'] =="D") {
+                                           if($row['statue'] =="D") {
                                                 echo "<td class='py-4 px-4 border-b border-grey-light text-red-600'>Declined</td>";
-                                            } */
+                                            } 
                                             echo "<td class='py-4 px-4 border-b border-grey-light flex items-center '>
                                       <a href='partnersAccept.php?IDpartenaire=".$row['IDpartenaire']."'>
                                             <i class='fas fa-check-square text-2xl'
                                                 style='color: rgb(4, 160, 25);'></i></a>
-                                        <a href='partnersPending.php?IDpartenaire=".$row['IDpartenaire']."'>
+                                        <a href='partnersReject.php?IDpartenaire=".$row['IDpartenaire']."'>
                                             <i class='fas fa-trash-alt text-xl text-red-600 ml-2'
                                                 aria-hidden='true'></i></a>
+                                                 <a href='partnersPending.php?IDpartenaire=".$row['IDpartenaire']."'>
+                                            <i class='fas fa-pen-square text-2xl ml-2'
+                                                style='color: rgb(255, 136, 0);'></i></a>
 
                                     </td>
                                 </tr>";
