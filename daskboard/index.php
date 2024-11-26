@@ -4,7 +4,7 @@
     $req1 = "select * from utilisateur where role = 'admin'";
     $res1 = mysqli_query($conn, $req1);
 
-    $req2 = "select * from partenaires where statue = 1";
+    $req2 = "select * from partenaires where statue = 'A' ";
     $res2 = mysqli_query($conn, $req2);
 
     if(isset($_SESSION['Nom']) && isset($_SESSION['id'])){
@@ -92,7 +92,7 @@
                 <i class="fas fa-align-left mr-3"></i>
                 Forms
             </a>
-            <a href="tabs.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="tabs.php" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-tablet-alt mr-3"></i>
                 Tabbed Content
             </a>
@@ -153,7 +153,7 @@
                     <i class="fas fa-align-left mr-3"></i>
                     Forms
                 </a>
-                <a href="tabs.html"
+                <a href="tabs.php"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-tablet-alt mr-3"></i>
                     Tabbed Content

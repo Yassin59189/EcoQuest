@@ -92,9 +92,9 @@ while($row = mysqli_fetch_assoc($res)) {
                 <i class="fas fa-align-left mr-3"></i>
                 Forms
             </a>
-            <a href="tabs.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="tabs.php" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-tablet-alt mr-3"></i>
-                Manage Products
+                Manage Content
             </a>
             <a href="calendar.php" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
                 <i class="fas fa-calendar mr-3"></i>
@@ -155,7 +155,7 @@ while($row = mysqli_fetch_assoc($res)) {
                     <i class="fas fa-align-left mr-3"></i>
                     Forms
                 </a>
-                <a href="tabs.html"
+                <a href="tabs.php"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-tablet-alt mr-3"></i>
 
@@ -186,13 +186,13 @@ while($row = mysqli_fetch_assoc($res)) {
 
         <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
             <main class="w-full flex-grow p-6">
-                <h1 class="text-3xl text-black pb-6">Calendar</h1>
+               
 
                 <div class="w-full">
                     <!-- source: https://tailwindcomponents.com/component/calendar-ui-with-tailwindcss-and-alpinejs -->
                     <div class="antialiased sans-serif bg-gray-100">
                         <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
-                            <div class="container py-2">
+                            <div class="container ">
                                 <div class="bg-white rounded-lg shadow overflow-hidden">
                                     <div class="flex items-center justify-between py-2 px-6">
                                         <div>
@@ -349,11 +349,7 @@ while($row = mysqli_fetch_assoc($res)) {
                             </div>
                         </div>
                     </div>
-                    <p class="py-6 text-gray-500">
-                        Source: <a
-                            href="https://tailwindcomponents.com/component/calendar-ui-with-tailwindcss-and-alpinejs"
-                            class="underline">https://tailwindcomponents.com/component/calendar-ui-with-tailwindcss-and-alpinejs</a>
-                    </p>
+                 
                 </div>
             </main>
 
