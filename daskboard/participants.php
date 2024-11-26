@@ -1,8 +1,5 @@
 <?php
 include "conn.php";
-$req = "select u.Nom, u.Email, p.team, u.adresse, u.tel, p.dateparticipation from participants p, utilisateur u where u.ID=p.idutilsateur";
-$res = mysqli_query($conn, $req);
-
 ?>
 
 <!DOCTYPE html>
@@ -258,50 +255,38 @@ $res = mysqli_query($conn, $req);
                     </div>
                 </div>
                 <!-- Content goes here! 😁 -->
+                <form action="" method="GET">
                 <div class="m-2 max-w-screen-md flex items-center justify-center    ">
                     <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-lg">
                         <h2 class="text-stone-700 text-xl font-bold">Apply filters</h2>
                         <p class="mt-1 text-sm">Use filters to refine search</p>
-                        <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                             <div class="flex flex-col">
                                 <label for="name" class="text-stone-600 text-sm font-medium">Phone</label>
-                                <input type="tel" id="name" placeholder="Phone number"
+                                <input name="tel" type="tel" id="name" placeholder="Phone number" 
                                     class="mt-2 block w-full rounded-md border border-gray-200 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
                             </div>
 
                             <div class="flex flex-col">
                                 <label for="manufacturer" class="text-stone-600 text-sm font-medium">Email</label>
-                                <input type="manufacturer" id="manufacturer" placeholder="cadbery"
+                                <input name="email" type="manufacturer" id="manufacturer" placeholder="cadbery"
                                     class="mt-2 block w-full rounded-md border border-gray-200 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
                             </div>
 
                             <div class="flex flex-col">
                                 <label for="date" class="text-stone-600 text-sm font-medium">Participation date</label>
-                                <input type="date" id="date"
+                                <input name="date" type="date" id="date"
                                     class="mt-2 block w-full rounded-md border border-gray-200 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
                             </div>
-
-                            <div class="flex flex-col">
-                                <label for="status" class="text-stone-600 text-sm font-medium">Team</label>
-
-                                <select id="status"
-                                    class="mt-2 block w-full rounded-md border border-gray-200 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                                    <option>none</option>
-                                    <option>A</option>
-                                    <option>B</option>
-
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="mt-6 grid w-full grid-cols-2 justify-end space-x-4 md:flex">
+                        </div>   
+                        <div class="mt-6 grid w-full grid-cols-2 space-x-4 md:flex">
                             <button
-                                class="active:scale-95 rounded-lg bg-gray-200 px-8 py-2 font-medium text-gray-600 outline-none focus:ring hover:opacity-90">Reset</button>
-                            <button
-                                class="active:scale-95 rounded-lg bg-blue-600 px-8 py-2 font-medium text-white outline-none focus:ring hover:opacity-90">Search</button>
+                                class="active:scale-95 rounded-lg bg-gray-200 px-8 py-2 font-medium text-gray-600 outline-none focus:ring hover:opacity-90" >Reset</button>
+                                <button type="submit" class="active:scale-95 rounded-lg bg-blue-600 px-8 py-2 font-medium text-white outline-none focus:ring hover:opacity-90">Search</button>
                         </div>
                     </div>
                 </div>
+                </form>
 
 
                 <div class="w-full mt-12">
@@ -338,7 +323,20 @@ $res = mysqli_query($conn, $req);
                             </thead>
                             <tbody>
                                 <?php
-                                if($row = mysqli_fetch_assoc($res)) {
+
+                                if(isset($_GET['tel']) && $_GET['tel'] != '') {
+                                    $tel=$_GET['tel'];
+                                    $req = "select u.Nom, u.Email, p.team, u.adresse, u.tel, p.dateparticipation from participants p, utilisateur u where u.ID=p.idutilsateur and u.tel ='$tel'";
+                                    $res = mysqli_query($conn, $req);
+                                } else if(isset($_GET['email']) && $_GET['email'] != '') {
+                                    $email=$_GET['email'];
+                                    $req = "select u.Nom, u.Email, p.team, u.adresse, u.tel, p.dateparticipation from participants p, utilisateur u where u.ID=p.idutilsateur and u.Email ='$email'";
+                                    $res = mysqli_query($conn, $req);
+                                } else {
+                                    $req = "select u.Nom, u.Email, p.team, u.adresse, u.tel, p.dateparticipation from participants p, utilisateur u where u.ID=p.idutilsateur";
+                                    $res = mysqli_query($conn, $req);
+                                }
+                                while($row = mysqli_fetch_assoc($res)) {
                                     echo ('<tr class="hover:bg-grey-lighter">
                                     <td class="py-4 px-6 border-b border-grey-light">'.$row['Nom'].'</td>
                                     <td class="py-4 px-6 border-b border-grey-light">'.$row['Email'].'</td>
