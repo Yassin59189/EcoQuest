@@ -1,3 +1,10 @@
+<?php
+include "conn.php";
+$req = "select u.Nom, u.Email, p.team, u.adresse, u.tel, p.dateparticipation from participants p, utilisateur u where u.ID=p.idutilsateur";
+$res = mysqli_query($conn, $req);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -330,13 +337,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="hover:bg-grey-lighter">
-                                    <td class="py-4 px-6 border-b border-grey-light">Aziz</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">Aziz@gmail.com</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">A</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">Tunis</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">97157487</td>
-                                    <td class="py-4 px-6 border-b border-grey-light">11/13/2024 5:00 PM</td>
+                                <?php
+                                if($row = mysqli_fetch_assoc($res)) {
+                                    echo ('<tr class="hover:bg-grey-lighter">
+                                    <td class="py-4 px-6 border-b border-grey-light">'.$row['Nom'].'</td>
+                                    <td class="py-4 px-6 border-b border-grey-light">'.$row['Email'].'</td>
+                                    <td class="py-4 px-6 border-b border-grey-light">'.$row['team'].'</td>
+                                    <td class="py-4 px-6 border-b border-grey-light">'.$row['adresse'].'</td>
+                                    <td class="py-4 px-6 border-b border-grey-light">'.$row['tel'].'</td>
+                                    <td class="py-4 px-6 border-b border-grey-light">'.$row['dateparticipation'].'</td>
                                     <td class="py-4 px-6 border-b border-grey-light flex items-center">
                                         <a href="#">
                                             <i class="fas fa-pen-square text-2xl"
@@ -344,10 +353,11 @@
                                         <a href="#">
                                             <i class="fas fa-trash-alt text-xl ml-2 text-red-600"
                                                 aria-hidden="true"></i></a>
-
-
                                     </td>
-                                </tr>
+                                </tr>');
+                                }
+                                ?>
+                                
 
 
                             </tbody>

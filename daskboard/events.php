@@ -312,7 +312,6 @@ $res = mysqli_query($conn, $req);
                                     <?php
                                     if(mysqli_num_rows($res)) {
                                         while($row = mysqli_fetch_assoc($res)) {
-                                            echo "<td name='hiddenEventID' class='py-4 px-6 border-b border-grey-light hidden'>" .$row['IDevent'] ."</td>";
                                             echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['Nom'] ."</td>";
                                             echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['Date'] ."</td>";
                                             echo "<td class='py-4 px-6 border-b border-grey-light'>" .$row['eventType'] ."</td>";
@@ -324,7 +323,7 @@ $res = mysqli_query($conn, $req);
                                                 style='color: rgb(255, 136, 0);'></i></a>
                                         <a href='deteleEvent.php?eventID=".$row['IDevent']."'>
                                             <i class='fas fa-trash-alt text-xl text-red-600' aria-hidden='true'></i></a>
-                                        <a href='participants.html'>
+                                        <a href='participants.php?eventID=".$row['IDevent']."'>
                                             <i class='fas fa-list-alt text-2xl text-blue-500' aria-hidden='true'></i>
                                         </a>
 

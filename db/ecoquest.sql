@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2024 at 11:35 PM
+-- Generation Time: Nov 26, 2024 at 07:41 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -59,7 +59,7 @@ CREATE TABLE `evenements` (
 --
 
 INSERT INTO `evenements` (`IDevent`, `Nom`, `Description`, `Location`, `Date`, `startTime`, `endTime`, `eventType`, `Status`, `eventImage`) VALUES
-(2, 'test3', 'yassin ben mosbeh :(', 'ariana', '2024-11-12', '05:42:00', '17:42:00', 'Solo', 'upcomming', '');
+(9, 'test 1', 'gfdgfd', 'gdffd', '2024-11-01', '07:31:00', '19:31:00', 'Teams', 'upcomming', '');
 
 -- --------------------------------------------------------
 
@@ -85,7 +85,27 @@ CREATE TABLE `partenaires` (
 --
 
 INSERT INTO `partenaires` (`IDpartenaire`, `role`, `email`, `password`, `username`, `typepartenaire`, `location`, `tel`, `statue`, `dateapplication`) VALUES
-(2, 'partenaire', 'partenaire@test.com', 'test', 'partner', 'ONG', 'kef', '9991779', 0, '2024-11-19 22:32:17');
+(2, 'partenaire', 'partenaire@test.com', 'test', 'partner', 'ONG', 'kef', '9991779', 1, '2024-11-26 15:54:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `participants`
+--
+
+CREATE TABLE `participants` (
+  `idevent` int(11) NOT NULL,
+  `idutilsateur` int(11) NOT NULL,
+  `dateparticipation` timestamp NOT NULL DEFAULT current_timestamp(),
+  `team` enum('A','B') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `participants`
+--
+
+INSERT INTO `participants` (`idevent`, `idutilsateur`, `dateparticipation`, `team`) VALUES
+(9, 1, '2024-11-26 18:32:09', 'A');
 
 -- --------------------------------------------------------
 
@@ -98,16 +118,18 @@ CREATE TABLE `utilisateur` (
   `role` varchar(20) NOT NULL,
   `Nom` varchar(20) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `Email` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL
+  `Email` varchar(100) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `adresse` varchar(50) NOT NULL,
+  `tel` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`ID`, `role`, `Nom`, `username`, `Email`, `password`) VALUES
-(1, 'admin', 'yassin', 'yassin59189', 'yassin.59189@gmail.c', '59189');
+INSERT INTO `utilisateur` (`ID`, `role`, `Nom`, `username`, `Email`, `password`, `adresse`, `tel`) VALUES
+(1, 'admin', 'yassin', 'yassin59189', 'yassin.59189@gmail.com', '59189', 'tunis', '56650772');
 
 --
 -- Indexes for dumped tables
@@ -151,7 +173,7 @@ ALTER TABLE `citoyen`
 -- AUTO_INCREMENT for table `evenements`
 --
 ALTER TABLE `evenements`
-  MODIFY `IDevent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IDevent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `partenaires`
@@ -164,6 +186,17 @@ ALTER TABLE `partenaires`
 --
 ALTER TABLE `utilisateur`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `participants`
+--
+ALTER TABLE `participants`
+  ADD CONSTRAINT `participants_ibfk_1` FOREIGN KEY (`idevent`) REFERENCES `evenements` (`IDevent`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `participants_ibfk_2` FOREIGN KEY (`idutilsateur`) REFERENCES `utilisateur` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
