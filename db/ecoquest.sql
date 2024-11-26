@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2024 at 11:56 PM
+-- Generation Time: Nov 27, 2024 at 12:02 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -76,7 +76,7 @@ CREATE TABLE `partenaires` (
   `typepartenaire` varchar(30) NOT NULL,
   `location` varchar(30) NOT NULL,
   `tel` varchar(30) NOT NULL,
-  `statue` tinyint(1) NOT NULL,
+  `statue` enum('P','A','D') NOT NULL,
   `dateapplication` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -85,7 +85,7 @@ CREATE TABLE `partenaires` (
 --
 
 INSERT INTO `partenaires` (`IDpartenaire`, `role`, `email`, `password`, `username`, `typepartenaire`, `location`, `tel`, `statue`, `dateapplication`) VALUES
-(2, 'partenaire', 'partenaire@test.com', 'test', 'partner', 'ONG', 'kef', '9991779', 1, '2024-11-26 15:54:45');
+(2, 'partenaire', 'partenaire@test.com', 'test', 'partner', 'ONG', 'kef', '9991779', 'P', '2024-11-26 15:54:45');
 
 -- --------------------------------------------------------
 
