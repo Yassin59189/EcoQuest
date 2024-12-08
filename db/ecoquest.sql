@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2024 at 12:02 AM
+-- Generation Time: Dec 08, 2024 at 08:41 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -121,7 +121,7 @@ CREATE TABLE `utilisateur` (
   `Nom` varchar(20) NOT NULL,
   `username` varchar(20) NOT NULL,
   `Email` varchar(100) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(250) NOT NULL,
   `adresse` varchar(50) NOT NULL,
   `tel` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -132,7 +132,8 @@ CREATE TABLE `utilisateur` (
 
 INSERT INTO `utilisateur` (`ID`, `role`, `Nom`, `username`, `Email`, `password`, `adresse`, `tel`) VALUES
 (1, 'admin', 'yassin', 'yassin59189', 'yassin.59189@gmail.com', '59189', 'tunis', '56650772'),
-(2, 'citoyen', 'isamil', 'ismail59189', 'yassine.msbs@gmail.com', '59189', 'ariena', '56650772');
+(2, 'citoyen', 'isamil', 'ismail59189', 'yassine.msbs@gmail.com', '59189', 'ariena', '56650772'),
+(4, 'citoyen', 'yassin ben mosbeh', 'yassin59189', 'msbs59189@gmail.com', '$2y$10$MLB/fw6dWs3a/hC9YfYBhefYitu0v4unGUswSwgNllLob7H/CNseC', 'tunis', '56650772');
 
 --
 -- Indexes for dumped tables
@@ -188,7 +189,7 @@ ALTER TABLE `partenaires`
 -- AUTO_INCREMENT for table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -198,8 +199,7 @@ ALTER TABLE `utilisateur`
 -- Constraints for table `participants`
 --
 ALTER TABLE `participants`
-  ADD CONSTRAINT `participants_ibfk_1` FOREIGN KEY (`idevent`) REFERENCES `evenements` (`IDevent`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `participants_ibfk_2` FOREIGN KEY (`idutilsateur`) REFERENCES `utilisateur` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `participants_ibfk_1` FOREIGN KEY (`idevent`) REFERENCES `evenements` (`IDevent`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
