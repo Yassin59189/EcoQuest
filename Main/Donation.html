@@ -74,42 +74,46 @@
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-10 mt-20 ">
-        <div class="bg-white shadow-md rounded-lg p-6 md:p-8 max-w-lg mx-auto">
+        <form action="Actions/donationSend.php" method="post" onsubmit="return validateForm()"
+            class="bg-white shadow-md rounded-lg p-6 md:p-8 max-w-lg mx-auto">
             <h1 class="text-2xl font-semibold mb-6 text-center">Make a Donation, Make a Difference</h1>
-
 
             <div class="mb-4 flex">
                 <!-- First Name -->
                 <div class="mr-5 w-1/2">
-                    <label for="donation-amount" class="block text-sm font-medium text-gray-700">
+                    <label for="first-name" class="block text-sm font-medium text-gray-700">
                         First Name
                     </label>
-                    <input type="text" id="donation-amount"
+                    <input type="text" id="first-name" name="name"
                         class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                         placeholder="First Name">
+                    <span id="error-name" class="text-red-500 text-sm"></span>
                 </div>
                 <!-- Last Name -->
                 <div class="w-1/2">
-                    <label for="donation-amount" class="block text-sm font-medium text-gray-700 ">Last Name</label>
-                    <input type="text" id="donation-amount"
+                    <label for="last-name" class="block text-sm font-medium text-gray-700 ">Last Name</label>
+                    <input type="text" id="last-name" name="lastName"
                         class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                         placeholder="Last Name">
+                    <span id="error-lastName" class="text-red-500 text-sm"></span>
                 </div>
             </div>
             <!-- Email -->
             <div class="mb-4">
-                <label for="donation-amount" class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="text" id="donation-amount"
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="text" id="email" name="email"
                     class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                     placeholder="example@test.com">
+                <span id="error-email" class="text-red-500 text-sm"></span>
             </div>
             <!-- Donation Amount -->
             <div class="mb-4">
                 <label for="donation-amount" class="block text-sm font-medium text-gray-700">How much would you like to
                     donate?</label>
-                <input type="text" id="donation-amount"
+                <input type="text" id="donation-amount" name="amount"
                     class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Enter the amount">
+                <span id="error-amount" class="text-red-500 text-sm"></span>
             </div>
 
             <!-- Credit Card Information -->
@@ -137,11 +141,11 @@
             </div>
 
             <!-- Donate Button -->
-            <button
+            <button type="submit"
                 class="w-full bg-[#328E4E] text-white py-2 px-4 rounded-md hover:bg-green-800 duration-300 transition">
                 Donate
             </button>
-        </div>
+        </form>
     </main>
 
     <!-- Footer -->
@@ -175,14 +179,7 @@
             </div>
         </div>
     </footer>
-    <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const navbarSticky = document.getElementById('navbar-sticky');
-
-        menuToggle.addEventListener('click', () => {
-            navbarSticky.classList.toggle('hidden');
-        });
-    </script>
+    <script src="donation.js"></script>
 </body>
 
 </html>
