@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+include "conn.php";
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -390,65 +392,102 @@
                                     </button>
                                 </form>
                             </div>
-    </div>
-                       <!--  Milestones  -->
-                        <div id="" class="" x-show="openTab === 5">
-                            <div class="max-w-xl mx-auto p-4 bg-white shadow-md rounded-md">
-                                <h2 class="text-lg font-bold mb-4">Publish Milestone</h2>
-                                <a href="">   
-                                    <button type="button"
-                                        class="px-4 mb-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none">
-                                        check Milestones 
-                                    </button>
-                                </a>
-                                <form>
-                                    <div class="mb-4">
-                                        <label class="block text-gray-700 mb-2" for="event-name">
-                                            <i class="fas fa-calendar-alt mr-2"></i>Event Name
-                                        </label>
-                                        <input type="text" id="event-name"
-                                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                                            placeholder="Enter the event name">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="block text-gray-700 mb-2" for="participants">
-                                            <i class="fas fa-users mr-2"></i>Total Participants
-                                        </label>
-                                        <input type="number" id="participants"
-                                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                                            placeholder="Enter total participants">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="block text-gray-700 mb-2" for="waste-collected">
-                                            <i class="fas fa-recycle mr-2"></i>Waste Collected (kg)
-                                        </label>
-                                        <input type="number" id="waste-collected"
-                                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                                            placeholder="Enter total waste collected">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="block text-gray-700 mb-2" for="trees-planted">
-                                            <i class="fas fa-tree mr-2"></i>Trees Planted
-                                        </label>
-                                        <input type="number" id="trees-planted"
-                                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                                            placeholder="Enter total trees planted">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="block text-gray-700 mb-2" for="banner-upload">
-                                            <i class="fas fa-upload mr-2"></i>Upload Supporting Image
-                                        </label>
-                                        <input type="file" id="banner-upload"
-                                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300">
-                                    </div>
-                                    <button type="submit"
-                                        class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">
-                                        <i class="fas fa-chart-line mr-2"></i>Publish Milestone
-                                    </button>
-                                </form>
-                            </div>
-    </div>
                         </div>
+                       <!--  reco  -->
+                        <div id="" class="" x-show="openTab === 5">
+                            <div class="bg-white overflow-auto">
+                                <table class="text-left w-full border-collapse">
+                                    
+                                    <thead>
+                                        <tr class="bg-gray-800 text-white">
+                                            <th
+                                                class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                                                prodcut title</th>
+                                            <th
+                                                class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                                                product Description</th>
+                                            
+                                            <th
+                                                class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                                                product picture</th>
+                                            <th
+                                                class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                                                product quantity</th>
+                                            <th
+                                                class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                                                Nom Partner</th>
+                                            <th
+                                                class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                                                status</th>
+                                            <th
+                                                class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                                                Actions</th>
+                                        
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                   
+                                    $req = "SELECT r.idReqReco,r.IDpartner,r.status,r.title, r.quantity,r.description, r.picture, u.nom AS partner_name 
+                                            FROM requestrecompance r
+                                            LEFT JOIN utilisateur u ON r.IDpartner = u.ID
+                                            where r.status='pending'
+                                            ";
+
+                                    $res = mysqli_query($conn, $req);
+                                    
+                                    if ($res) {
+                                        while ($row = mysqli_fetch_assoc($res)) {
+                                            
+                                            $title = htmlspecialchars($row['title'], ENT_QUOTES, 'UTF-8');
+                                            $description = htmlspecialchars($row['description'], ENT_QUOTES, 'UTF-8');
+                                            $picture = htmlspecialchars($row['picture'], ENT_QUOTES, 'UTF-8');
+                                            $partnerName = htmlspecialchars($row['partner_name'], ENT_QUOTES, 'UTF-8');
+                                            $partnerID=htmlspecialchars($row['IDpartner'], ENT_QUOTES, 'UTF-8');
+                                            $quantity = htmlspecialchars($row['quantity'], ENT_QUOTES, 'UTF-8');
+                                            $status = htmlspecialchars($row['status'], ENT_QUOTES, 'UTF-8');
+                                            $idReqReco=htmlspecialchars($row['idReqReco'], ENT_QUOTES, 'UTF-8');
+                                            
+
+                                           
+                                                echo ('<tr class="hover:bg-grey-lighter" id="test">
+                                                <td class="py-4 px-6 border-b border-grey-light">'.$title.'</td>
+                                                <td class="py-4 px-6 border-b border-grey-light">'.$description.'</td>
+                                                <td class="py-4 px-6 border-b border-grey-light text-blue-800"><a target="_blank" href="../uploads/'.$picture.'">'.$picture.'</a></td>
+                                                <td class="py-4 px-6 border-b border-grey-light">'.$quantity.'</td>
+                                                <td class="py-4 px-6 border-b border-grey-light">'.$partnerName.'</td>');
+                                        
+                                            echo '<td class="py-4 px-6 border-b text-yellow-600 border-grey-light">'.$status.'</td>';
+                                        
+                                        
+                                        echo ("<td class='py-4 px-6 border-b border-grey-light flex items-center'>
+                                               <a href='AcceptRecompance.php?idReqReco=$idReqReco&title=$title&partnerID=$partnerID&quantity=$quantity&description=$description&partnerName=$partnerName&picture=$picture'>
+                                        <i class='fas fa-check-square text-2xl'
+                                            style='color: rgb(4, 160, 25);'></i></a>
+                                                <a href='AcceptRecompance.php?idReqReco=$idReqReco'>
+                                                    <i class='fas fa-trash-alt text-xl ml-2 text-red-600' aria-hidden=".true."></i>
+                                                </a>
+                                            </td>
+                                            </tr>");
+                                            
+                                          
+                                            
+
+                                        }
+                                    } 
+                                    else {
+                                        echo "Error: " . $req . "<br>" . mysqli_error($conn);
+                                    }
+                                    ?>
+                                        
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+        
+                        
                     </div>
                 </div>
             </main>

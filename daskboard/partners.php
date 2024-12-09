@@ -217,12 +217,12 @@ $res = mysqli_query($conn, $req);
                                             if($row['statue'] =="P") {
                                                 echo "<td class='py-4 px-4 border-b border-grey-light text-yellow-500'>Pending</td>";
                                             }
-                                            /* else if($row['statue'] =="A") {
+                                            /*  else if($row['statue'] =="A") {
                                                 echo "<td class='py-4 px-4 border-b border-grey-light text-green-600'>Accepted</td>";
                                             }
                                             else if($row['statue'] =="D") {
                                                 echo "<td class='py-4 px-4 border-b border-grey-light text-red-600'>Declined</td>";
-                                            } */
+                                            }  */
                                             echo "<td class='py-4 px-4 border-b border-grey-light flex items-center '>
                                       <a href='partnersAccept.php?IDpartenaire=".$row['IDpartenaire']."'>
                                             <i class='fas fa-check-square text-2xl'
