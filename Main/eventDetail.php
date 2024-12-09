@@ -45,7 +45,23 @@
     <main class="container mx-auto mt-20 px-4 py-10 bg-white shadow-md rounded-lg">
         <div class="flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0">
             <div class="w-full md:w-1/2 space-y-4">
-                <h1 class="text-3xl font-bold text-gray-800">Nom de l'event</h1>
+                <?php
+                include "conn.php";
+                $eventID=$_GET['eventID'];
+                $req="select Nom, Description, Location, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, DAYNAME(Date) as dayName, DATE_FORMAT(startTime, '%h:%i %p') as startTime, DATE_FORMAT(endTime, '%h:%i %p') as endTime from evenements where IDevent=$eventID";
+                $res=mysqli_query($conn, $req);
+                while($row=mysqli_fetch_assoc($res)) {
+                    $nom=$row["Nom"];
+                    $Description=$row["Description"];
+                    $Location=$row['Location'];
+                    $month=$row['month'];
+                    $day=$row['day'];
+                    $dayName=$row['dayName'];
+                    $startTime=$row['startTime'];
+                    $endTime=$row['endTime'];
+                }
+                ?>
+                <h1 class="text-3xl font-bold text-gray-800"><?php echo($nom); ?></h1>
                 <p class="text-gray-600 text-justify">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vehicula dapibus erat, a viverra erat efficitur ac. Ut bibendum velit vel vehicula fermentum.
                 </p>
@@ -53,7 +69,7 @@
             <div class="w-full md:w-1/2 flex justify-center">
                 <div class="bg-gray-100 p-6 rounded-lg shadow-md w-full md:w-3/4">
                     <h2 class="text-lg font-semibold text-gray-800 text-center mb-4">Date & Temp</h2>
-                    <p class="text-gray-700 text-center mb-4">Vendredi, 12 sep, 2024 à 10:00 AM</p>
+                    <p class="text-gray-700 text-center mb-4"><?php echo($dayName.", ".$day." ".$month." à ".$startTime); ?></p>
                     <button class="bg-[#328E4E] text-white font-medium py-2 px-4 rounded-lg w-full hover:bg-green-800 transition duration-300">
                         Postuler maintenant
                     </button>
@@ -71,17 +87,15 @@
                 <h2 class="text-2xl font-bold mb-2">Description</h2>
                 <div class="flex items-start justify-between">
                     <p class="text-gray-700 text-justify flex-1">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Sed sit amet lorem nec
-                        lacus vehicula fringilla. Integer id augue eget nulla dapibus sollicitudin. Fusce nec arcu vitae
-                        risus scelerisque luctus. Aenean ac fermentum libero.
+                    <?php echo($Description); ?>
                     </p>
                     
                 </div>
             </div>
             <div class="mt-4">
                 <h2 class="text-2xl font-bold mb-2">Heure</h2>
-                <p class="text-gray-700 mb-2">Heure de départ: 10:00 AM</p>
-                <p class="text-gray-700">Heure de fin: 12:00 PM</p>
+                <p class="text-gray-700 mb-2">Heure de départ: <?php echo($startTime); ?></p>
+                <p class="text-gray-700">Heure de fin: <?php echo($endTime); ?></p>
             </div>
         </div>
 
@@ -91,7 +105,7 @@
             <div class="bg-black h-28 w-full mb-4"></div>
             <h3 class="text-lg font-bold mb-2">Lorem Ipsum</h3>
             <p class="text-gray-700">
-                Fusce vel lacus nec sapien dapibus posuere. Mauris id sapien sed augue varius congue.
+            <?php echo($Location); ?>
             </p>
         </div>
     </div>
