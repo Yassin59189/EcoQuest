@@ -107,48 +107,25 @@
         <h2 class="text-2xl font-semibold mb-6">Campagnes à venir</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             <!-- Campaign Card -->
-            <div
+             
+             <?php
+                include "conn.php";
+                $req="select IDevent, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, Nom, eventType from evenements where date > CURDATE()";
+                $res=mysqli_query($conn, $req);
+                while($row=mysqli_fetch_assoc($res)){
+                    echo(' <a href="eventDetail.php?eventID='.$row['IDevent'].'">           <div
                 class="bg-gray-200 shadow rounded p-4 hover:shadow-lg transform hover:scale-105 transition duration-300">
                 <div class="w-full h-32 bg-gray-300 rounded"></div>
-                <div class="mt-4 text-sm font-bold">Par équipe</div>
+                <div class="mt-4 text-sm font-bold">'.$row['eventType'].'</div>
                 <div class="flex items-center space-x-2 mt-2">
-                    <div class="text-xl font-bold">Sep</div>
-                    <div class="text-lg font-bold">12</div>
+                    <div class="text-xl font-bold">'.$row['month'].'</div>
+                    <div class="text-lg font-bold">'.$row['day'].'</div>
                 </div>
-                <p class="text-sm mt-2">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.</p>
-            </div>
+                <p class="text-sm mt-2">'.$row['Nom'].'</p>
+            </div></a>');
+                }
+             ?>
             <!-- Additional Cards -->
-            <div
-                class="bg-gray-200 shadow rounded p-4 hover:shadow-lg transform hover:scale-105 transition duration-300">
-                <div class="w-full h-32 bg-gray-300 rounded"></div>
-                <div class="mt-4 text-sm font-bold">Individuel</div>
-                <div class="flex items-center space-x-2 mt-2">
-                    <div class="text-xl font-bold">Oct</div>
-                    <div class="text-lg font-bold">05</div>
-                </div>
-                <p class="text-sm mt-2">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.</p>
-            </div>
-            <div
-                class="bg-gray-200 shadow rounded p-4 hover:shadow-lg transform hover:scale-105 transition duration-300">
-                <div class="w-full h-32 bg-gray-300 rounded"></div>
-                <div class="mt-4 text-sm font-bold">Collectif</div>
-                <div class="flex items-center space-x-2 mt-2">
-                    <div class="text-xl font-bold">Nov</div>
-                    <div class="text-lg font-bold">18</div>
-                </div>
-                <p class="text-sm mt-2">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.</p>
-            </div>
-            <div
-                class="bg-gray-200 shadow rounded p-4 hover:shadow-lg transform hover:scale-105 transition duration-300">
-                <div class="w-full h-32 bg-gray-300 rounded"></div>
-                <div class="mt-4 text-sm font-bold">Par équipe</div>
-                <div class="flex items-center space-x-2 mt-2">
-                    <div class="text-xl font-bold">Dec</div>
-                    <div class="text-lg font-bold">01</div>
-                </div>
-                <p class="text-sm mt-2">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.</p>
-            </div>
-        </div>
     </section>
 
     <!-- Past Campaigns -->
@@ -156,47 +133,23 @@
         <h2 class="text-2xl font-semibold mb-6">Campagnes passées</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             <!-- Campaign Card -->
-            <div
+            <?php
+                $req1="select IDevent, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, Nom, eventType from evenements where date < CURDATE()";
+                $res1=mysqli_query($conn, $req1);
+                while($row1=mysqli_fetch_assoc($res1)){
+                    echo(' <a href="eventDetail.php?eventID='.$row1['IDevent'].'">           <div
                 class="bg-gray-200 shadow rounded p-4 hover:shadow-lg transform hover:scale-105 transition duration-300">
                 <div class="w-full h-32 bg-gray-300 rounded"></div>
-                <div class="mt-4 text-sm font-bold">Individuel</div>
+                <div class="mt-4 text-sm font-bold">'.$row1['eventType'].'</div>
                 <div class="flex items-center space-x-2 mt-2">
-                    <div class="text-xl font-bold">Aug</div>
-                    <div class="text-lg font-bold">15</div>
+                    <div class="text-xl font-bold">'.$row1['month'].'</div>
+                    <div class="text-lg font-bold">'.$row1['day'].'</div>
                 </div>
-                <p class="text-sm mt-2">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.</p>
-            </div>
-            <!-- Additional Cards -->
-            <div
-                class="bg-gray-200 shadow rounded p-4 hover:shadow-lg transform hover:scale-105 transition duration-300">
-                <div class="w-full h-32 bg-gray-300 rounded"></div>
-                <div class="mt-4 text-sm font-bold">Par équipe</div>
-                <div class="flex items-center space-x-2 mt-2">
-                    <div class="text-xl font-bold">Jul</div>
-                    <div class="text-lg font-bold">10</div>
-                </div>
-                <p class="text-sm mt-2">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.</p>
-            </div>
-            <div
-                class="bg-gray-200 shadow rounded p-4 hover:shadow-lg transform hover:scale-105 transition duration-300">
-                <div class="w-full h-32 bg-gray-300 rounded"></div>
-                <div class="mt-4 text-sm font-bold">Collectif</div>
-                <div class="flex items-center space-x-2 mt-2">
-                    <div class="text-xl font-bold">Jun</div>
-                    <div class="text-lg font-bold">28</div>
-                </div>
-                <p class="text-sm mt-2">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.</p>
-            </div>
-            <div
-                class="bg-gray-200 shadow rounded p-4 hover:shadow-lg transform hover:scale-105 transition duration-300">
-                <div class="w-full h-32 bg-gray-300 rounded"></div>
-                <div class="mt-4 text-sm font-bold">Par équipe</div>
-                <div class="flex items-center space-x-2 mt-2">
-                    <div class="text-xl font-bold">May</div>
-                    <div class="text-lg font-bold">02</div>
-                </div>
-                <p class="text-sm mt-2">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.</p>
-            </div>
+                <p class="text-sm mt-2">'.$row1['Nom'].'</p>
+            </div></a>');
+                }
+             ?>
+            
         </div>
     </section>
 

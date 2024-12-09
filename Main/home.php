@@ -11,6 +11,7 @@ if(isset($_SESSION["name"]) && isset($_SESSION["id"])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
         <!-- Header -->
@@ -73,7 +74,7 @@ if(isset($_SESSION["name"]) && isset($_SESSION["id"])){
             </div>
         </div>
     </nav>
-    <h1>Welcome <?php echo($_SESSION["name"]); ?></h1>
+    <h1 class="mt-[5rem]">Welcome <?php echo($_SESSION["name"]); ?></h1>
 
     <a href="logout.php">Sign out</a>
 </body>
