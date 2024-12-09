@@ -1,9 +1,4 @@
-const menuToggle = document.getElementById('menu-toggle');
-const navbarSticky = document.getElementById('navbar-sticky');
 
-menuToggle.addEventListener('click', () => {
-    navbarSticky.classList.toggle('hidden');
-});
 function validateForm() {
     let isValid = true;
 
