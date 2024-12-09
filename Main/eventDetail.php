@@ -145,6 +145,80 @@
         </div>
     </section>
 
+    <style>
+        /* Style pour la section tableau */
+        .team-table {
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+          margin: 20px auto;
+        }
+      
+        .team-column {
+          border: 1px solid #ddd;
+          border-radius: 10px;
+          width: 200px;
+          background-color: #f9f9f9;
+          overflow: hidden;
+        }
+      
+        .team-header {
+          background-color: #f4f4f4;
+          font-weight: bold;
+          text-align: center;
+          padding: 10px;
+          border-bottom: 1px solid #ddd;
+        }
+      
+        .team-row {
+          text-align: center;
+          padding: 10px;
+          border-bottom: 1px solid #ddd;
+        }
+      
+        .team-row:last-child {
+          border-bottom: none;
+        }
+      </style>
+      
+      <!-- Tableau corrigé -->
+      <section class="bg-white py-10">
+        <div class="container mx-auto px-4">
+          <h2 class="text-2xl font-bold mb-6 text-center">Tableau des équipes</h2>
+          <div class="team-table">
+            <!-- Colonne Équipe A -->
+            <div class="team-column">
+              <div class="team-header">Équipe A</div>
+              <div class="team-row">Participant 1</div>
+              <div class="team-row">Participant 2</div>
+              <div class="team-row">Participant 3</div>
+              <div class="team-row">Participant 4</div>
+              <div class="team-row">Participant 5</div>
+              <div class="team-row">Participant 6</div>
+              <div class="team-row">Participant 7</div>
+              <div class="team-row">Participant 8</div>
+              <div class="team-row">Participant 9</div>
+              <div class="team-row">Participant 10</div>
+            </div>
+            <!-- Colonne Équipe B -->
+            <div class="team-column">
+              <div class="team-header">Équipe B</div>
+              <div class="team-row">Participant 1</div>
+              <div class="team-row">Participant 2</div>
+              <div class="team-row">Participant 3</div>
+              <div class="team-row">Participant 4</div>
+              <div class="team-row">Participant 5</div>
+              <div class="team-row">Participant 6</div>
+              <div class="team-row">Participant 7</div>
+              <div class="team-row">Participant 8</div>
+              <div class="team-row">Participant 9</div>
+              <div class="team-row">Participant 10</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-6">
         <div class="container mx-auto px-4 space-y-4 md:space-y-0 md:flex md:justify-between">
