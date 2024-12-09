@@ -82,9 +82,41 @@ CREATE TABLE `evenements` (
 --
 
 INSERT INTO `evenements` (`IDevent`, `Nom`, `Description`, `Location`, `Date`, `startTime`, `endTime`, `eventType`, `Status`, `eventImage`) VALUES
+(0, 'Event a venir', 'Event a venir', 'Tunis', '2024-12-11', '24:37:28', '25:37:28', 'Individuele', '', ''),
 (9, 'test 1', 'gfdgfd', 'gdffd', '2024-11-01', '07:31:00', '19:31:00', 'Teams', 'upcomming', '');
 
 -- --------------------------------------------------------
+
+--
+-- Table structure for table `partenaires`
+--
+
+CREATE TABLE `partenaires` (
+  `IDpartenaire` int(11) NOT NULL,
+  `firstname` varchar(20) NOT NULL,
+  `lastname` varchar(20) NOT NULL,
+  `role` varchar(30) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `vertical` varchar(30) NOT NULL,
+  `businessName` varchar(100) NOT NULL,
+  `location` varchar(30) NOT NULL,
+  `tel` varchar(30) NOT NULL,
+  `statue` enum('P','A','D') NOT NULL DEFAULT 'P',
+  `dateapplication` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `partenaires`
+--
+
+INSERT INTO `partenaires` (`IDpartenaire`, `firstname`, `lastname`, `role`, `email`, `password`, `username`, `vertical`, `businessName`, `location`, `tel`, `statue`, `dateapplication`, `message`) VALUES
+(4, 'yassin', 'ben mosbeh', 'partner', 'wecab@gmail.com', '', '', 'Green Technology', 'WeCab', 'Mountain View California', '56650772', 'P', '2024-12-08 21:33:24', 'test');
+
+-- --------------------------------------------------------
+
 
 --
 -- Table structure for table `partenaires`

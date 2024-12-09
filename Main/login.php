@@ -13,7 +13,6 @@
         <label for="password">Password</label>
         <input type="password" name="password" id=""><br>
         <input type="submit" name="submit" value="Login">
-
         <?php
         include "conn.php";
         session_start();
