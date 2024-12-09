@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,7 +8,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
-        // Function to handle the search bar functionality
         function handleSearch() {
             const query = document.getElementById('searchQuery').value.toLowerCase();
             const location = document.getElementById('searchLocation').value.toLowerCase();
@@ -17,7 +16,6 @@
             alert(`Searching for: "${query}" in "${location}" on "${date}"`);
         }
 
-        // Function to toggle FAQ items
         function toggleFAQ(faqId) {
             const faqContent = document.getElementById(faqId);
             faqContent.classList.toggle('hidden');
