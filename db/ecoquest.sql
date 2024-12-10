@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2024 at 12:25 AM
+-- Generation Time: Dec 11, 2024 at 12:28 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -74,36 +74,19 @@ CREATE TABLE `evenements` (
   `endTime` time NOT NULL,
   `eventType` varchar(20) NOT NULL,
   `Status` varchar(20) NOT NULL,
-  `eventImage` blob NOT NULL
+  `eventImage` varchar(20) NOT NULL,
+  `trash` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `evenements`
 --
 
-INSERT INTO `evenements` (`IDevent`, `Nom`, `Description`, `Location`, `Date`, `startTime`, `endTime`, `eventType`, `Status`, `eventImage`) VALUES
-(0, 'Event a venir', 'Event a venir', 'Tunis', '2024-12-11', '24:37:28', '25:37:28', 'Individuele', '', ''),
-(9, 'test 1', 'gfdgfd', 'gdffd', '2024-11-01', '07:31:00', '19:31:00', 'Teams', 'upcomming', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `home`
---
-
-CREATE TABLE `home` (
-  `id` int(11) NOT NULL,
-  `about` text NOT NULL,
-  `aboutimg` varchar(250) NOT NULL,
-  `banner` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `home`
---
-
-INSERT INTO `home` (`id`, `about`, `aboutimg`, `banner`) VALUES
-(1, 'yassin ben mosbeh :)', 'editedimg', '');
+INSERT INTO `evenements` (`IDevent`, `Nom`, `Description`, `Location`, `Date`, `startTime`, `endTime`, `eventType`, `Status`, `eventImage`, `trash`) VALUES
+(0, 'testg', 'dsdssd', 'test', '2024-12-11', '23:28:00', '15:30:00', 'Team', 'done', '1733873068.png', 42.6),
+(1, 'test', 'test', 'test', '2024-12-11', '23:41:00', '16:38:00', 'Team', 'done', '1733872309.jpg', 42.6),
+(2, 'test', 'test', 'test', '2024-12-11', '23:42:00', '23:42:00', 'Team', 'done', '1733870356.jpg', 42.6),
+(9, 'test 1', 'gfdgfd', 'gdffd', '2024-11-01', '07:31:00', '19:31:00', 'Teams', 'upcomming', '1733872309.jpg', 30);
 
 -- --------------------------------------------------------
 
@@ -125,15 +108,19 @@ CREATE TABLE `partenaires` (
   `tel` varchar(30) NOT NULL,
   `statue` enum('P','A','D') NOT NULL DEFAULT 'P',
   `dateapplication` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `message` text NOT NULL
+  `message` text NOT NULL,
+  `typepartenaire` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `partenaires`
 --
 
-INSERT INTO `partenaires` (`IDpartenaire`, `firstname`, `lastname`, `role`, `email`, `password`, `username`, `vertical`, `businessName`, `location`, `tel`, `statue`, `dateapplication`, `message`) VALUES
-(4, 'yassin', 'ben mosbeh', 'partner', 'wecab@gmail.com', '', '', 'Green Technology', 'WeCab', 'Mountain View California', '56650772', 'P', '2024-12-08 21:33:24', 'test');
+INSERT INTO `partenaires` (`IDpartenaire`, `firstname`, `lastname`, `role`, `email`, `password`, `username`, `vertical`, `businessName`, `location`, `tel`, `statue`, `dateapplication`, `message`, `typepartenaire`) VALUES
+(4, 'yassin', 'ben mosbeh', 'partner', 'wecab@gmail.com', '', '', 'Green Technology', 'WeCab', 'Mountain View California', '56650772', 'A', '2024-12-10 21:07:13', 'test', ''),
+(5, 'test', 'tz', 'partner', 'wecab@gmail.com', '', '', 'Green Technology', 'WeCab', 'Mountain View California', '56650772', 'A', '2024-12-10 21:07:13', 'test', ''),
+(6, 'testtt', 'testtt', 'partner', 'wecab@gmail.com', '', '', 'Green Technology', 'WeCab', 'Mountain View California', '56650772', 'A', '2024-12-10 21:07:13', 'test', ''),
+(7, 'test', 'tz', 'partner', 'wecab@gmail.com', '', '', 'Green Technology', 'WeCab', 'Mountain View California', '56650772', 'P', '2024-12-10 21:07:13', 'testttt', '');
 
 -- --------------------------------------------------------
 
@@ -153,9 +140,9 @@ CREATE TABLE `participants` (
 --
 
 INSERT INTO `participants` (`idevent`, `idutilsateur`, `dateparticipation`, `team`) VALUES
-(0, 4, '2024-12-10 17:27:36', 'A'),
-(0, 0, '2024-12-10 17:54:44', 'B'),
-(9, 4, '2024-12-10 21:22:07', 'B');
+(9, 1, '2024-11-26 18:32:09', 'A'),
+(9, 1, '2024-11-26 22:10:47', 'A'),
+(9, 2, '2024-11-26 22:14:16', 'A');
 
 -- --------------------------------------------------------
 
@@ -168,7 +155,7 @@ CREATE TABLE `recompance` (
   `reco_title` varchar(30) NOT NULL,
   `reco_partnerID` int(11) NOT NULL,
   `reco_quantity` int(11) NOT NULL,
-  `reco_Discription` varchar(30) NOT NULL,
+  `reco_Discription` varchar(250) NOT NULL,
   `partenaireName` varchar(30) NOT NULL,
   `recoPicture` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -178,7 +165,11 @@ CREATE TABLE `recompance` (
 --
 
 INSERT INTO `recompance` (`reco_ID`, `reco_title`, `reco_partnerID`, `reco_quantity`, `reco_Discription`, `partenaireName`, `recoPicture`) VALUES
-(9, 'vr', 0, 30, 'vrvr', 'ismailturki', '1733765110.jpg');
+(9, 'vr', 0, 30, 'vrvr', 'ismailturki', '1733765110.jpg'),
+(10, 'bracelet', 0, 30, 'lether organic material', 'ismailturki', '1733850354.png'),
+(11, 'glasses', 0, 12, 'Organic glasses are polymers w', 'ismailturki', '1733850472.png'),
+(12, 'Snacker Gift Box', 0, 10, 'For the loved ones we care for', 'ismailturki', '1733850646.png'),
+(13, 'Snacker Gift Box', 0, 10, 'For the loved ones we care for and the health frea', 'ismailturki', '1733850646.png');
 
 -- --------------------------------------------------------
 
@@ -190,7 +181,7 @@ CREATE TABLE `requestrecompance` (
   `idReqReco` int(11) NOT NULL,
   `title` varchar(20) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `description` varchar(50) NOT NULL,
+  `description` varchar(250) NOT NULL,
   `picture` varchar(20) NOT NULL,
   `IDpartner` int(11) NOT NULL,
   `status` varchar(20) NOT NULL
@@ -201,7 +192,10 @@ CREATE TABLE `requestrecompance` (
 --
 
 INSERT INTO `requestrecompance` (`idReqReco`, `title`, `quantity`, `description`, `picture`, `IDpartner`, `status`) VALUES
-(1, 'vr', 30, 'vrvr', '1733765110.jpg', 0, 'accepted');
+(1, 'vr', 30, 'vrvr', '1733765110.jpg', 0, 'accepted'),
+(2, 'bracelet', 30, 'lether organic material', '1733850354.png', 0, 'accepted'),
+(3, 'glasses', 12, 'Organic glasses are polymers with an irregular seq', '1733850472.png', 0, 'accepted'),
+(4, 'Snacker Gift Box', 10, 'For the loved ones we care for and the health frea', '1733850646.png', 0, 'accepted');
 
 -- --------------------------------------------------------
 
@@ -228,9 +222,7 @@ INSERT INTO `utilisateur` (`ID`, `role`, `Nom`, `username`, `Email`, `password`,
 (1, 'admin', 'yassin', 'yassin59189', 'yassin.59189@gmail.com', '59189', 'tunis', '56650772'),
 (2, 'citoyen', 'isamil', 'ismail59189', 'yassine.msbs@gmail.com', '59189', 'ariena', '56650772'),
 (4, 'citoyen', 'yassin ben mosbeh', 'yassin59189', 'msbs59189@gmail.com', '$2y$10$MLB/fw6dWs3a/hC9YfYBhefYitu0v4unGUswSwgNllLob7H/CNseC', 'tunis', '56650772'),
-(5, 'citoyen', 'ismailturki', 'ismail', 'turkiismail08@gmail.com', '$2y$10$QMFbNIbl7vr/r.M3eZ2KZu2bRxn0JZzAZYDj3VlGIZto2iicnJHsq', 'ariana', '93199900'),
-(6, 'citoyen', 'ines mlaouhi', 'mlew7i', 'ines.mlaouhi.pro@gmail.com', '$2y$10$QVEuXJb.ssFXQoTvtYjZnuBqrZ3Ka4og/YqvP7/zGPzCByG4XToci', 'rawed', '52997792'),
-(10, 'citoyen', 'yassin 2', 'yassin 2', 'yassin2@gmail.com', '$2y$10$zuLiibShJkSujPg4K4PyPuPOvuihDbBBTIr72c4fo43pcWpVNscYC', 'tunis', '56650772');
+(0, 'citoyen', 'ismailturki', 'ismail', 'turkiismail08@gmail.com', '$2y$10$QMFbNIbl7vr/r.M3eZ2KZu2bRxn0JZzAZYDj3VlGIZto2iicnJHsq', 'ariana', '93199900');
 
 --
 -- Indexes for dumped tables
@@ -255,12 +247,6 @@ ALTER TABLE `evenements`
   ADD PRIMARY KEY (`IDevent`);
 
 --
--- Indexes for table `home`
---
-ALTER TABLE `home`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `partenaires`
 --
 ALTER TABLE `partenaires`
@@ -279,12 +265,6 @@ ALTER TABLE `requestrecompance`
   ADD PRIMARY KEY (`idReqReco`);
 
 --
--- Indexes for table `utilisateur`
---
-ALTER TABLE `utilisateur`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -295,34 +275,22 @@ ALTER TABLE `donation`
   MODIFY `id_Donation` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `home`
---
-ALTER TABLE `home`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT for table `partenaires`
 --
 ALTER TABLE `partenaires`
-  MODIFY `IDpartenaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IDpartenaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `recompance`
 --
 ALTER TABLE `recompance`
-  MODIFY `reco_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `reco_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `requestrecompance`
 --
 ALTER TABLE `requestrecompance`
-  MODIFY `idReqReco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `utilisateur`
---
-ALTER TABLE `utilisateur`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idReqReco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
