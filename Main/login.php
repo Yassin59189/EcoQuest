@@ -27,7 +27,13 @@
                     $_SESSION["name"] = $user['Nom'];
                     $_SESSION["email"] = $user['Email'];
                     $_SESSION["id"] = $user['ID'];
-                    header("Location: home.php");
+                    $_SESSION["role"] = $user['role'];
+                    if($user['role']==='citoyen'){
+                        header("Location: user/home.php");
+                    } else if($user['role']==='citoyen') {
+                        header("Location: partner/home.php");
+                    }
+                    
                 } else {
                     echo("<p>password does not match</p><br>");
                     echo($user['Email']."= $email"." and ".$user['password']."= $password");

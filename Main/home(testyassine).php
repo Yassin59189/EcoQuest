@@ -81,8 +81,3 @@ if(isset($_SESSION["name"]) && isset($_SESSION["id"])){
 </html>
 
 
-<?php
-} else {
-    header("Location: login.php");
-}
-?>
