@@ -74,20 +74,20 @@ include "conn.php";
         </div>
     </nav>
     <!-- Header Section -->
-  <div class="bg-gray-200 p-6" style="background-image: url('https://via.placeholder.com/1920x1080');">
-    <h1 class="text-xl font-bold mb-2">Les Campagnes</h1>
-    <p>Explorez nos initiatives et participez aux événements pour un monde meilleur.</p>
-  </div>
+    <div class="bg-gray-200 p-6" style="background-image: url('https://via.placeholder.com/1920x1080');">
+  <h1 class="text-xl font-bold mb-2">Campaigns</h1>
+  <p>Discover our initiatives and participate in events for a better world.</p>
+</div>
 
-  <!-- Qui Sommes-Nous Section -->
-  <div class="max-w-6xl mx-auto p-6 grid grid-cols-2 gap-4 items-center">
-    <img src="https://via.placeholder.com/400" alt="About us" class="rounded-lg shadow-lg" />
-    <div>
-      <h2 class="text-2xl font-bold mb-2">Qui sommes-nous</h2>
-      <p class="mb-2">Nous organisons des campagnes pour améliorer l’environnement et sensibiliser les citoyens.</p>
-      <p>Rejoignez-nous pour rendre notre planète plus propre et plus saine.</p>
-    </div>
+<!-- About Us Section -->
+<div class="max-w-6xl mx-auto p-6 grid grid-cols-2 gap-4 items-center">
+  <img src="https://via.placeholder.com/400" alt="About us" class="rounded-lg shadow-lg" />
+  <div>
+    <h2 class="text-2xl font-bold mb-2">About Us</h2>
+    <p class="mb-2">We organize campaigns to improve the environment and raise awareness among citizens.</p>
+    <p>Join us to make our planet cleaner and healthier.</p>
   </div>
+</div>
 
   <!-- Stats Section -->
    <?php
@@ -121,7 +121,7 @@ include "conn.php";
   
 
     echo("<div class='bg-white py-8'>
-    <h2 class='text-center text-2xl font-bold mb-6'>Nos résultats en chiffres</h2>
+    <h2 class='text-center text-2xl font-bold mb-6'>Our Results in Numbers</h2>
     <div class='flex justify-center gap-8'>
       <div class='text-center'>
         <span class='text-4xl font-bold text-green-500 counter' data-target=${totalParticipants}>0</span>

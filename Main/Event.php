@@ -84,7 +84,7 @@
         <div class="absolute inset-0"></div>
         <div class="absolute bottom-0 left-0 right-0 bg-black text-white p-4">
 
-                <form action="event.php"  method="get">
+                <form action="event.php"  method="get" enctype="multipart/form-data" >
                 <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
                 <input id="searchQuery" name="name" type="text" placeholder="Looking for"
                     class="p-2 rounded bg-gray-800 text-white">
@@ -117,12 +117,13 @@
              
              <?php
                 include "conn.php";
-                $req="select IDevent, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, Nom, eventType from evenements where date > CURDATE()";
+                $req="select IDevent, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, Nom, eventType,eventImage from evenements where date > CURDATE()";
                 $res=mysqli_query($conn, $req);
                 while($row=mysqli_fetch_assoc($res)){
+           
                     echo(' <a href="eventDetail.php?eventID='.$row['IDevent'].'">           <div
                 class="bg-gray-200 shadow rounded p-4 hover:shadow-lg transform hover:scale-105 transition duration-300">
-                <div class="w-full h-32 bg-gray-300 rounded"></div>
+                <img src="../uploads/'.$row['eventImage'].'" class="w-full h-32  rounded"/>
                 <div class="mt-4 text-sm font-bold">'.$row['eventType'].'</div>
                 <div class="flex items-center space-x-2 mt-2">
                     <div class="text-xl font-bold">'.$row['month'].'</div>
@@ -140,12 +141,12 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             <!-- Campaign Card -->
             <?php
-                $req1="select IDevent, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, Nom, eventType from evenements where date < CURDATE()";
+                $req1="select IDevent, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, Nom, eventType,eventImage from evenements where date < CURDATE()";
                 $res1=mysqli_query($conn, $req1);
                 while($row1=mysqli_fetch_assoc($res1)){
                     echo(' <a href="eventDetail.php?eventID='.$row1['IDevent'].'">           <div
                 class="bg-gray-200 shadow rounded p-4 hover:shadow-lg transform hover:scale-105 transition duration-300">
-                <div class="w-full h-32 bg-gray-300 rounded"></div>
+                <img src="../uploads/'.$row1['eventImage'].'" class="w-full h-32  rounded"/>
                 <div class="mt-4 text-sm font-bold">'.$row1['eventType'].'</div>
                 <div class="flex items-center space-x-2 mt-2">
                     <div class="text-xl font-bold">'.$row1['month'].'</div>
@@ -162,17 +163,17 @@
      }else{
         include "conn.php";
         if($eventName !=="" && $eventLocation !=="" && $eventDate !==""){
-            $searchReq="select IDevent, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, Nom, eventType from evenements
+            $searchReq="select IDevent, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, Nom,eventImage, eventType from evenements
             where Nom='$eventName' and Location='$eventLocation' and Date='$eventDate'";
         } else {
-            $searchReq="select IDevent, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, Nom, eventType from evenements
+            $searchReq="select IDevent, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, Nom,eventImage, eventType from evenements
             where Nom='$eventName' or Location='$eventLocation' or Date='$eventDate'";
         }
         $searchRes = mysqli_query($conn, $searchReq);
         while($row2=mysqli_fetch_assoc($searchRes)){
             echo(' <a href="eventDetail.php?eventID='.$row2['IDevent'].'">           <div
         class="bg-gray-200 w-[25%] mt-5 shadow rounded p-4 hover:shadow-lg transform hover:scale-105 transition duration-300">
-        <div class="w-full h-32 bg-gray-300 rounded"></div>
+         <img src="../uploads/'.$row1['eventImage'].'" class="w-full h-32  rounded"/>
         <div class="mt-4 text-sm font-bold">'.$row2['eventType'].'</div>
         <div class="flex items-center space-x-2 mt-2">
             <div class="text-xl font-bold">'.$row2['month'].'</div>

@@ -72,7 +72,7 @@ include "conn.php";
                 <i class="fas fa-table mr-3"></i>
                 Manage Partners
             </a>
-            <a href="forms.php" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="forms.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-align-left mr-3"></i>
                 Forms
             </a>
@@ -134,7 +134,7 @@ include "conn.php";
                     <i class="fas fa-table mr-3"></i>
                     Manage Partners
                 </a>
-                <a href="forms.php"
+                <a href="forms.html"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-align-left mr-3"></i>
                     Forms
