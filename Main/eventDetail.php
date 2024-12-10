@@ -206,7 +206,6 @@
           border-bottom: none;
         }
       </style>
-      
       <!-- Tableau corrigé -->
       <section class="bg-white py-10">
         <div class="container mx-auto px-4">

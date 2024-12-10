@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2024 at 07:00 PM
+-- Generation Time: Dec 10, 2024 at 07:33 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -207,7 +207,8 @@ INSERT INTO `utilisateur` (`ID`, `role`, `Nom`, `username`, `Email`, `password`,
 (1, 'admin', 'yassin', 'yassin59189', 'yassin.59189@gmail.com', '59189', 'tunis', '56650772'),
 (2, 'citoyen', 'isamil', 'ismail59189', 'yassine.msbs@gmail.com', '59189', 'ariena', '56650772'),
 (4, 'citoyen', 'yassin ben mosbeh', 'yassin59189', 'msbs59189@gmail.com', '$2y$10$MLB/fw6dWs3a/hC9YfYBhefYitu0v4unGUswSwgNllLob7H/CNseC', 'tunis', '56650772'),
-(0, 'citoyen', 'ismailturki', 'ismail', 'turkiismail08@gmail.com', '$2y$10$QMFbNIbl7vr/r.M3eZ2KZu2bRxn0JZzAZYDj3VlGIZto2iicnJHsq', 'ariana', '93199900');
+(5, 'citoyen', 'ismailturki', 'ismail', 'turkiismail08@gmail.com', '$2y$10$QMFbNIbl7vr/r.M3eZ2KZu2bRxn0JZzAZYDj3VlGIZto2iicnJHsq', 'ariana', '93199900'),
+(6, 'citoyen', 'ines mlaouhi', 'mlew7i', 'ines.mlaouhi.pro@gmail.com', '$2y$10$QVEuXJb.ssFXQoTvtYjZnuBqrZ3Ka4og/YqvP7/zGPzCByG4XToci', 'rawed', '52997792');
 
 --
 -- Indexes for dumped tables
@@ -250,6 +251,12 @@ ALTER TABLE `requestrecompance`
   ADD PRIMARY KEY (`idReqReco`);
 
 --
+-- Indexes for table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -276,6 +283,12 @@ ALTER TABLE `recompance`
 --
 ALTER TABLE `requestrecompance`
   MODIFY `idReqReco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
