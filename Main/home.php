@@ -39,7 +39,7 @@ include "conn.php";
                 <ul
                     class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                     <li>
-                        <a href="#"
+                        <a href="home.php"
                             class="block py-2 px-3 text-white bg-[#328E4E] rounded md:bg-transparent md:text-[#328E4E] md:p-0 md:dark:text-[#328E4E]"
                             aria-current="page">Home</a>
                     </li>
@@ -74,13 +74,13 @@ include "conn.php";
         </div>
     </nav>
     <!-- Header Section -->
-  <div class="bg-gray-200 p-6">
+  <div class="bg-gray-200 p-6" style="background-image: url('https://via.placeholder.com/1920x1080');">
     <h1 class="text-xl font-bold mb-2">Les Campagnes</h1>
     <p>Explorez nos initiatives et participez aux événements pour un monde meilleur.</p>
   </div>
 
   <!-- Qui Sommes-Nous Section -->
-  <div class="max-w-6xl mx-auto p-6 grid grid-cols-2 gap-4">
+  <div class="max-w-6xl mx-auto p-6 grid grid-cols-2 gap-4 items-center">
     <img src="https://via.placeholder.com/400" alt="About us" class="rounded-lg shadow-lg" />
     <div>
       <h2 class="text-2xl font-bold mb-2">Qui sommes-nous</h2>
@@ -90,27 +90,61 @@ include "conn.php";
   </div>
 
   <!-- Stats Section -->
-  <div class="bg-white py-8">
-    <h2 class="text-center text-2xl font-bold mb-6">Nos résultats en chiffres</h2>
-    <div class="flex justify-center gap-8">
-      <div class="text-center">
-        <span class="text-4xl font-bold text-green-500 counter" data-target="999">0</span>
+   <?php
+    
+    $reqTotalEvent = "SELECT COUNT(IDevent) AS total_events FROM evenements WHERE Status != 'upcomming'";
+    $resTotalEvent =(mysqli_query($conn, $reqTotalEvent));
+    if(!$resTotalEvent){
+        echo("error ".mysqli_error($conn));
+    }
+    while($rowtotalevent=mysqli_fetch_assoc($resTotalEvent)){
+        $totalEvents=$rowtotalevent['total_events'];} 
+    
+   
+    $reqTotalParticipant = "SELECT COUNT(*) AS total_participants FROM participants";
+    $resTotalParticipant =mysqli_query($conn, $reqTotalParticipant);
+    if(!$resTotalParticipant){
+        echo("error ".mysqli_error($conn));
+    }
+    while($rowtotalparticipant=mysqli_fetch_assoc($resTotalParticipant)){
+        $totalParticipants=$rowtotalparticipant['total_participants'];} 
+
+    
+    
+    $reqTotalTrash = "SELECT SUM(trash) AS total_trash FROM evenements WHERE Status != 'upcomming'";
+    $resTotalTrash = mysqli_query($conn, $reqTotalTrash);
+    if(!$resTotalTrash){
+        echo("error ".mysqli_error($conn));
+    }
+    while($rowtotalparticipant=mysqli_fetch_assoc($resTotalTrash)){
+        $totalTrash=round($rowtotalparticipant['total_trash'],2);}
+  
+
+    echo("<div class='bg-white py-8'>
+    <h2 class='text-center text-2xl font-bold mb-6'>Nos résultats en chiffres</h2>
+    <div class='flex justify-center gap-8'>
+      <div class='text-center'>
+        <span class='text-4xl font-bold text-green-500 counter' data-target=${totalParticipants}>0</span>
         <p>Participants</p>
       </div>
-      <div class="text-center">
-        <span class="text-4xl font-bold text-green-500 counter" data-target="99">0</span>
-        <p>% Satisfaction</p>
+      <div class='text-center'>
+        <span class='text-4xl font-bold text-green-500 counter' data-target='99'>0</span>
+        <p>Satisfaction</p>
       </div>
-      <div class="text-center">
-        <span class="text-4xl font-bold text-green-500 counter" data-target="99">0</span>
-        <p>Événements</p>
+      <div class='text-center'>
+        <span class='text-4xl font-bold text-green-500 counter' data-target=${totalEvents}>0</span>
+        <p>Total campaigns</p>
       </div>
-      <div class="text-center">
-        <span class="text-4xl font-bold text-green-500 counter" data-target="99">0</span>
-        <p>Événements</p>
+      <div class='text-center'>
+        <span class='text-4xl font-bold text-green-500 counter' data-target=${totalTrash}>0</span>
+        <p>KG of trash collected</p>
       </div>
     </div>
-  </div>
+  </div>")
+
+
+   ?>
+  
 
   <!-- Upcoming Campaigns -->
   <div class="max-w-6xl mx-auto p-6">
@@ -130,7 +164,7 @@ include "conn.php";
     <div class="bg-white">
         <div class="container mx-auto  my-20 px-4 md:flex md:items-center" >
             
-            <div class="text-left mb-6 w-1/3 mr-6">
+            <div class="text-left mb-6  md:w-1/3 sm:w-full mr-6 sm:pt-10 md:pt-0">
                 <h2 class="text-2xl font-bold text-gray-800">Our Eco-Friendly Products</h2>
                 <p class="text-gray-600 mt-2">
                 Discover the items obtained through our partners in exchange for materials collected during our campaigns.
