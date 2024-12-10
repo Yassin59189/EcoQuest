@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2024 at 10:49 PM
+-- Generation Time: Dec 10, 2024 at 07:00 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -117,37 +117,6 @@ INSERT INTO `partenaires` (`IDpartenaire`, `firstname`, `lastname`, `role`, `ema
 
 -- --------------------------------------------------------
 
-
---
--- Table structure for table `partenaires`
---
-
-CREATE TABLE `partenaires` (
-  `IDpartenaire` int(11) NOT NULL,
-  `firstname` varchar(20) NOT NULL,
-  `lastname` varchar(20) NOT NULL,
-  `role` varchar(30) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `vertical` varchar(30) NOT NULL,
-  `businessName` varchar(100) NOT NULL,
-  `location` varchar(30) NOT NULL,
-  `tel` varchar(30) NOT NULL,
-  `statue` enum('P','A','D') NOT NULL DEFAULT 'P',
-  `dateapplication` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `message` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `partenaires`
---
-
-INSERT INTO `partenaires` (`IDpartenaire`, `firstname`, `lastname`, `role`, `email`, `password`, `username`, `vertical`, `businessName`, `location`, `tel`, `statue`, `dateapplication`, `message`) VALUES
-(4, 'yassin', 'ben mosbeh', 'partner', 'wecab@gmail.com', '', '', 'Green Technology', 'WeCab', 'Mountain View California', '56650772', 'P', '2024-12-08 21:33:24', 'test');
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `participants`
 --
@@ -164,9 +133,8 @@ CREATE TABLE `participants` (
 --
 
 INSERT INTO `participants` (`idevent`, `idutilsateur`, `dateparticipation`, `team`) VALUES
-(9, 1, '2024-11-26 18:32:09', 'A'),
-(9, 1, '2024-11-26 22:10:47', 'A'),
-(9, 2, '2024-11-26 22:14:16', 'A');
+(0, 4, '2024-12-10 17:27:36', 'A'),
+(0, 0, '2024-12-10 17:54:44', 'B');
 
 -- --------------------------------------------------------
 

@@ -47,6 +47,7 @@
             <div class="w-full md:w-1/2 space-y-4">
                 <?php
                 include "conn.php";
+                session_start();
                 $eventID=$_GET['eventID'];
                 $req="select Nom, Description, Location, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, DAYNAME(Date) as dayName, DATE_FORMAT(startTime, '%h:%i %p') as startTime, DATE_FORMAT(endTime, '%h:%i %p') as endTime from evenements where IDevent=$eventID";
                 $res=mysqli_query($conn, $req);
@@ -70,9 +71,34 @@
                 <div class="bg-gray-100 p-6 rounded-lg shadow-md w-full md:w-3/4">
                     <h2 class="text-lg font-semibold text-gray-800 text-center mb-4">Date & Temp</h2>
                     <p class="text-gray-700 text-center mb-4"><?php echo($dayName.", ".$day." ".$month." à ".$startTime); ?></p>
-                    <button class="bg-[#328E4E] text-white font-medium py-2 px-4 rounded-lg w-full hover:bg-green-800 transition duration-300">
-                        Postuler maintenant
-                    </button>
+                    <form action="" method="POST">
+                    <input type="submit" value="Postuler maintenant" name="apply" class="bg-[#328E4E] text-white font-medium py-2 px-4 rounded-lg w-full hover:bg-green-800 transition duration-300">
+                    </form>
+                    
+                    <?php
+                    if(isset($_POST['apply'])){
+                        $team="select DISTINCT sum(Nom) as participants from utilisateur u, participants p where u.ID=p.idutilsateur";
+                        $participantsSum=mysqli_query($conn, $team);
+                        if($row=mysqli_fetch_assoc($participantsSum)){
+                            $sum=$row['participants'];
+                        }
+                        $userID=$_SESSION["id"];
+                        $check = "select * from participants where idutilsateur ='$userID' and idevent='$eventID'";
+                        $checkres=mysqli_query($conn, $check);
+                        if(mysqli_num_rows($checkres)>0){
+                            echo("Already applied");
+                        } else {
+                            if($sum%2 == 0){
+                                $joinTeam='B';
+                            }else{
+                                $joinTeam='A';
+                            }
+                            $req1="insert into participants (idevent, idutilsateur, team) values ('$eventID', '$userID', '$joinTeam')";
+                            $res1=mysqli_query($conn, $req1);
+                        }
+
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -189,30 +215,24 @@
             <!-- Colonne Équipe A -->
             <div class="team-column">
               <div class="team-header">Équipe A</div>
-              <div class="team-row">Participant 1</div>
-              <div class="team-row">Participant 2</div>
-              <div class="team-row">Participant 3</div>
-              <div class="team-row">Participant 4</div>
-              <div class="team-row">Participant 5</div>
-              <div class="team-row">Participant 6</div>
-              <div class="team-row">Participant 7</div>
-              <div class="team-row">Participant 8</div>
-              <div class="team-row">Participant 9</div>
-              <div class="team-row">Participant 10</div>
+              <?php
+                $req2="select DISTINCT Nom from utilisateur u, participants p where u.ID=p.idutilsateur and idevent = '$eventID' and team='A'";
+                $participants=mysqli_query($conn,$req2);
+                while($row=mysqli_fetch_assoc($participants)){
+                    echo('<div class="team-row">'.$row['Nom'].'</div>');
+                }
+              ?>
             </div>
             <!-- Colonne Équipe B -->
             <div class="team-column">
               <div class="team-header">Équipe B</div>
-              <div class="team-row">Participant 1</div>
-              <div class="team-row">Participant 2</div>
-              <div class="team-row">Participant 3</div>
-              <div class="team-row">Participant 4</div>
-              <div class="team-row">Participant 5</div>
-              <div class="team-row">Participant 6</div>
-              <div class="team-row">Participant 7</div>
-              <div class="team-row">Participant 8</div>
-              <div class="team-row">Participant 9</div>
-              <div class="team-row">Participant 10</div>
+              <?php
+                $req3="select DISTINCT Nom from utilisateur u, participants p where u.ID=p.idutilsateur and idevent = '$eventID' and team='B'";
+                $participants1=mysqli_query($conn,$req3);
+                while($row3=mysqli_fetch_assoc($participants1)){
+                    echo('<div class="team-row">'.$row3['Nom'].'</div>');
+                }
+              ?>
             </div>
           </div>
         </div>
