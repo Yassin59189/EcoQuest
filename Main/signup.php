@@ -28,55 +28,7 @@
          //Submit button //
          <input type="submit" name="submit" value="Sign up">
 
-         <?php
-include "conn.php";
 
-if(isset($_POST["submit"])) {
-    $fullname = $_POST['name'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $repeatpassword = $_POST['repeatpassword'];
-    $adresse = $_POST['adresse'];
-    $tel = $_POST['tel'];
-
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    $errors = array();
-
-    $check_req = "select * from utilisateur where Email='$email'";
-    $check_res = mysqli_query($conn, $check_req);
-    if(mysqli_num_rows($check_res)>0){
-        array_push($errors, "User already exist");
-    }
-
-
-    if(empty($fullname) OR empty($username) OR empty($email) OR empty($password) OR empty($adresse) OR empty($tel)) {
-        array_push($errors, "All fields are required");
-    }
-    if(strlen($password)<8) {
-        array_push($errors, "Password must be at least 8 characters long");
-    }
-    if($password!==$repeatpassword) {
-        array_push($errors, "Password does not match");
-    }
-    
-    if(count($errors)>0) {
-        foreach($errors as $error) {
-            echo("<p>$error</p>");
-        }
-    }
-    else {
-        $req="insert into utilisateur (role, Nom, username, Email, password, adresse, tel) values ('citoyen', '$fullname', '$username', '$email', '$hashed_password', '$adresse', '$tel')";
-        $res = mysqli_query($conn, $req);
-        if($res) {
-            echo("<p>Registered successfully");
-        }
-    }
-}
-
-
-?>
     </form>
 
     <p>Already registered? <a href="login.php">Login in</a></p>
@@ -286,7 +238,7 @@ if(isset($_POST["submit"])) {
     </div>
 
     <!-- Footer -->
-    <footer>
+    <footer class="mt-5">
         <p>&copy; 2024 Your Website. All rights reserved.</p>
     </footer>
 </body>
