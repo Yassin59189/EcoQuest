@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2024 at 10:49 PM
+-- Generation Time: Dec 10, 2024 at 08:58 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -82,41 +82,9 @@ CREATE TABLE `evenements` (
 --
 
 INSERT INTO `evenements` (`IDevent`, `Nom`, `Description`, `Location`, `Date`, `startTime`, `endTime`, `eventType`, `Status`, `eventImage`) VALUES
-(0, 'Event a venir', 'Event a venir', 'Tunis', '2024-12-11', '24:37:28', '25:37:28', 'Individuele', '', ''),
 (9, 'test 1', 'gfdgfd', 'gdffd', '2024-11-01', '07:31:00', '19:31:00', 'Teams', 'upcomming', '');
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `partenaires`
---
-
-CREATE TABLE `partenaires` (
-  `IDpartenaire` int(11) NOT NULL,
-  `firstname` varchar(20) NOT NULL,
-  `lastname` varchar(20) NOT NULL,
-  `role` varchar(30) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `vertical` varchar(30) NOT NULL,
-  `businessName` varchar(100) NOT NULL,
-  `location` varchar(30) NOT NULL,
-  `tel` varchar(30) NOT NULL,
-  `statue` enum('P','A','D') NOT NULL DEFAULT 'P',
-  `dateapplication` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `message` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `partenaires`
---
-
-INSERT INTO `partenaires` (`IDpartenaire`, `firstname`, `lastname`, `role`, `email`, `password`, `username`, `vertical`, `businessName`, `location`, `tel`, `statue`, `dateapplication`, `message`) VALUES
-(4, 'yassin', 'ben mosbeh', 'partner', 'wecab@gmail.com', '', '', 'Green Technology', 'WeCab', 'Mountain View California', '56650772', 'P', '2024-12-08 21:33:24', 'test');
-
--- --------------------------------------------------------
-
 
 --
 -- Table structure for table `partenaires`
@@ -179,7 +147,7 @@ CREATE TABLE `recompance` (
   `reco_title` varchar(30) NOT NULL,
   `reco_partnerID` int(11) NOT NULL,
   `reco_quantity` int(11) NOT NULL,
-  `reco_Discription` varchar(30) NOT NULL,
+  `reco_Discription` varchar(250) NOT NULL,
   `partenaireName` varchar(30) NOT NULL,
   `recoPicture` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -189,7 +157,11 @@ CREATE TABLE `recompance` (
 --
 
 INSERT INTO `recompance` (`reco_ID`, `reco_title`, `reco_partnerID`, `reco_quantity`, `reco_Discription`, `partenaireName`, `recoPicture`) VALUES
-(9, 'vr', 0, 30, 'vrvr', 'ismailturki', '1733765110.jpg');
+(9, 'vr', 0, 30, 'vrvr', 'ismailturki', '1733765110.jpg'),
+(10, 'bracelet', 0, 30, 'lether organic material', 'ismailturki', '1733850354.png'),
+(11, 'glasses', 0, 12, 'Organic glasses are polymers w', 'ismailturki', '1733850472.png'),
+(12, 'Snacker Gift Box', 0, 10, 'For the loved ones we care for', 'ismailturki', '1733850646.png'),
+(13, 'Snacker Gift Box', 0, 10, 'For the loved ones we care for and the health frea', 'ismailturki', '1733850646.png');
 
 -- --------------------------------------------------------
 
@@ -201,7 +173,7 @@ CREATE TABLE `requestrecompance` (
   `idReqReco` int(11) NOT NULL,
   `title` varchar(20) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `description` varchar(50) NOT NULL,
+  `description` varchar(250) NOT NULL,
   `picture` varchar(20) NOT NULL,
   `IDpartner` int(11) NOT NULL,
   `status` varchar(20) NOT NULL
@@ -212,7 +184,10 @@ CREATE TABLE `requestrecompance` (
 --
 
 INSERT INTO `requestrecompance` (`idReqReco`, `title`, `quantity`, `description`, `picture`, `IDpartner`, `status`) VALUES
-(1, 'vr', 30, 'vrvr', '1733765110.jpg', 0, 'accepted');
+(1, 'vr', 30, 'vrvr', '1733765110.jpg', 0, 'accepted'),
+(2, 'bracelet', 30, 'lether organic material', '1733850354.png', 0, 'accepted'),
+(3, 'glasses', 12, 'Organic glasses are polymers with an irregular seq', '1733850472.png', 0, 'accepted'),
+(4, 'Snacker Gift Box', 10, 'For the loved ones we care for and the health frea', '1733850646.png', 0, 'accepted');
 
 -- --------------------------------------------------------
 
@@ -301,13 +276,13 @@ ALTER TABLE `partenaires`
 -- AUTO_INCREMENT for table `recompance`
 --
 ALTER TABLE `recompance`
-  MODIFY `reco_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `reco_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `requestrecompance`
 --
 ALTER TABLE `requestrecompance`
-  MODIFY `idReqReco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idReqReco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

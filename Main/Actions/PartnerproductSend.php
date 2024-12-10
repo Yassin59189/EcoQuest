@@ -22,8 +22,8 @@ if (move_uploaded_file($tmp_name, $location)) {
     echo "File not uploaded";
 }
 
-$req = "INSERT INTO requestrecompance (IDpartner, title, quantity, description, picture) VALUES ('$idPartner', '$title', '$quantity', '$description', '$newFileName')";
+$req = "INSERT INTO requestrecompance (IDpartner, title, quantity, description, picture,status) VALUES ('$idPartner', '$title', '$quantity', '$description', '$newFileName','pending')";
 $res = mysqli_query($conn, $req);
 if($res){
-header("location:../PartnerContrbuite.php");} 
+header("location:../home.php");} 
 ?>

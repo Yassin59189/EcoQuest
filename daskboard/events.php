@@ -14,7 +14,7 @@ $res = mysqli_query($conn, $req);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind Admin Template</title>
+    <title>EcoQuest Dashboard</title>
     <meta name="author" content="David Grzyb">
     <meta name="description" content="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
