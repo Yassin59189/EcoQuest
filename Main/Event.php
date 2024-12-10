@@ -8,13 +8,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
-        function handleSearch() {
-            const query = document.getElementById('searchQuery').value.toLowerCase();
-            const location = document.getElementById('searchLocation').value.toLowerCase();
-            const date = document.getElementById('searchDate').value;
-
-            alert(`Searching for: "${query}" in "${location}" on "${date}"`);
-        }
 
         function toggleFAQ(faqId) {
             const faqContent = document.getElementById(faqId);
@@ -90,19 +83,33 @@
     <section class="relative bg-gray-200 h-64 flex items-center justify-center">
         <div class="absolute inset-0"></div>
         <div class="absolute bottom-0 left-0 right-0 bg-black text-white p-4">
-            <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
-                <input id="searchQuery" type="text" placeholder="Looking for"
+
+                <form action="event.php"  method="get">
+                <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
+                <input id="searchQuery" name="name" type="text" placeholder="Looking for"
                     class="p-2 rounded bg-gray-800 text-white">
-                <input id="searchLocation" type="text" placeholder="In" class="p-2 rounded bg-gray-800 text-white">
-                <input id="searchDate" type="date" class="p-2 rounded bg-gray-800 text-white">
-                <button onclick="handleSearch()" class="bg-gray-900 p-2 rounded">Search</button>
-            </div>
+                <input id="searchLocation" type="text" placeholder="In" name="location" class="p-2 rounded bg-gray-800 text-white">
+                <input id="searchDate" name="date" type="date" class="p-2 rounded bg-gray-800 text-white">
+                <button type="submit" name="search" class="bg-gray-900 p-2 rounded">Search</button>
+                </div>
+                <?php
+                    $eventName= isset($_GET['name']) ? $_GET['name'] : '';
+                    $eventLocation= isset($_GET['location']) ? $_GET['location'] : '';
+                    $eventDate= isset($_GET['date']) ? $_GET['date'] : '';
+                
+                ?>
+                </form>
+                
+            
         </div>
     </section>
 
 
 
     <!-- Upcoming Campaigns -->
+     <?php 
+     if($eventName ==="" && $eventLocation ==="" && $eventDate ===""){
+      ?>
     <section class="container mx-auto py-12 px-6">
         <h2 class="text-2xl font-semibold mb-6">Campagnes à venir</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
@@ -125,7 +132,6 @@
             </div></a>');
                 }
              ?>
-            <!-- Additional Cards -->
     </section>
 
     <!-- Past Campaigns -->
@@ -152,10 +158,31 @@
             
         </div>
     </section>
-
-
-
-
+    <?php 
+     }else{
+        include "conn.php";
+        if($eventName !=="" && $eventLocation !=="" && $eventDate !==""){
+            $searchReq="select IDevent, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, Nom, eventType from evenements
+            where Nom='$eventName' and Location='$eventLocation' and Date='$eventDate'";
+        } else {
+            $searchReq="select IDevent, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, Nom, eventType from evenements
+            where Nom='$eventName' or Location='$eventLocation' or Date='$eventDate'";
+        }
+        $searchRes = mysqli_query($conn, $searchReq);
+        while($row2=mysqli_fetch_assoc($searchRes)){
+            echo(' <a href="eventDetail.php?eventID='.$row2['IDevent'].'">           <div
+        class="bg-gray-200 w-[25%] mt-5 shadow rounded p-4 hover:shadow-lg transform hover:scale-105 transition duration-300">
+        <div class="w-full h-32 bg-gray-300 rounded"></div>
+        <div class="mt-4 text-sm font-bold">'.$row2['eventType'].'</div>
+        <div class="flex items-center space-x-2 mt-2">
+            <div class="text-xl font-bold">'.$row2['month'].'</div>
+            <div class="text-lg font-bold">'.$row2['day'].'</div>
+        </div>
+        <p class="text-sm mt-2">'.$row2['Nom'].'</p>
+        </div></a>');
+        }
+     }
+      ?>
     <!-- FAQ Section -->
     <section class="container mx-auto py-12 px-6">
         <h2 class="text-2xl font-semibold mb-6">Questions fréquemment posées (FAQ)</h2>

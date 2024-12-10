@@ -17,7 +17,7 @@ while($row = mysqli_fetch_assoc($res)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind Admin Template</title>
+    <title>EcoQuest Dashboard</title>
     <meta name="author" content="David Grzyb">
     <meta name="description" content="">
 
@@ -88,7 +88,7 @@ while($row = mysqli_fetch_assoc($res)) {
                 <i class="fas fa-table mr-3"></i>
                 Manage Partners
             </a>
-            <a href="forms.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="forms.php" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-align-left mr-3"></i>
                 Forms
             </a>
@@ -150,7 +150,7 @@ while($row = mysqli_fetch_assoc($res)) {
                     <i class="fas fa-table mr-3"></i>
                     Manage Partners
                 </a>
-                <a href="forms.html"
+                <a href="forms.php"
                     class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-align-left mr-3"></i>
                     Forms
