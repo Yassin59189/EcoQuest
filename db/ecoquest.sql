@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2024 at 08:58 PM
+-- Generation Time: Dec 09, 2024 at 10:49 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -132,9 +132,8 @@ CREATE TABLE `participants` (
 --
 
 INSERT INTO `participants` (`idevent`, `idutilsateur`, `dateparticipation`, `team`) VALUES
-(9, 1, '2024-11-26 18:32:09', 'A'),
-(9, 1, '2024-11-26 22:10:47', 'A'),
-(9, 2, '2024-11-26 22:14:16', 'A');
+(0, 4, '2024-12-10 17:27:36', 'A'),
+(0, 0, '2024-12-10 17:54:44', 'B');
 
 -- --------------------------------------------------------
 
@@ -214,7 +213,8 @@ INSERT INTO `utilisateur` (`ID`, `role`, `Nom`, `username`, `Email`, `password`,
 (1, 'admin', 'yassin', 'yassin59189', 'yassin.59189@gmail.com', '59189', 'tunis', '56650772'),
 (2, 'citoyen', 'isamil', 'ismail59189', 'yassine.msbs@gmail.com', '59189', 'ariena', '56650772'),
 (4, 'citoyen', 'yassin ben mosbeh', 'yassin59189', 'msbs59189@gmail.com', '$2y$10$MLB/fw6dWs3a/hC9YfYBhefYitu0v4unGUswSwgNllLob7H/CNseC', 'tunis', '56650772'),
-(0, 'citoyen', 'ismailturki', 'ismail', 'turkiismail08@gmail.com', '$2y$10$QMFbNIbl7vr/r.M3eZ2KZu2bRxn0JZzAZYDj3VlGIZto2iicnJHsq', 'ariana', '93199900');
+(5, 'citoyen', 'ismailturki', 'ismail', 'turkiismail08@gmail.com', '$2y$10$QMFbNIbl7vr/r.M3eZ2KZu2bRxn0JZzAZYDj3VlGIZto2iicnJHsq', 'ariana', '93199900'),
+(6, 'citoyen', 'ines mlaouhi', 'mlew7i', 'ines.mlaouhi.pro@gmail.com', '$2y$10$QVEuXJb.ssFXQoTvtYjZnuBqrZ3Ka4og/YqvP7/zGPzCByG4XToci', 'rawed', '52997792');
 
 --
 -- Indexes for dumped tables
@@ -257,6 +257,12 @@ ALTER TABLE `requestrecompance`
   ADD PRIMARY KEY (`idReqReco`);
 
 --
+-- Indexes for table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -282,7 +288,7 @@ ALTER TABLE `recompance`
 -- AUTO_INCREMENT for table `requestrecompance`
 --
 ALTER TABLE `requestrecompance`
-  MODIFY `idReqReco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idReqReco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
