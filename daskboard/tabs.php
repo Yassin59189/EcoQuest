@@ -51,6 +51,16 @@ include "conn.php";
 
 <body class="bg-gray-100 font-family-karla flex">
 
+                                    <?php
+                                    $home="select * from home";
+                                    $homeRes = mysqli_query($conn, $home);
+                                    if($row=mysqli_fetch_assoc($homeRes)){
+                                        $banner=$row['banner'];
+                                        $aboutimg=$row['aboutimg'];
+                                        $about=$row['about'];
+                                    }
+                                    ?>
+
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
         <div class="p-6">
             <a href="index.php" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
@@ -177,7 +187,7 @@ include "conn.php";
                         <ul class="flex border-b">
                             <li class="-mb-px mr-1" @click="openTab = 1">
                                 <a :class="openTab === 1 ? 'border-l border-t border-r rounded-t text-blue-700 font-semibold' : 'text-blue-500 hover:text-blue-800'"
-                                    class="bg-white inline-block py-2 px-4 font-semibold" href="#">Banners</a>
+                                    class="bg-white inline-block py-2 px-4 font-semibold" href="#">Home</a>
                             </li>
                             <li class="mr-1" @click="openTab = 2">
                                 <a :class="openTab === 2 ? 'border-l border-t border-r rounded-t text-blue-700 font-semibold' : 'text-blue-500 hover:text-blue-800'"
@@ -216,8 +226,8 @@ include "conn.php";
                                         check Banners 
                                     </button>
                                 </a>
-                                <form>
-                                    <div class="mb-4">
+                                <form method="post">
+                                    <!-- <div class="mb-4">
                                         <label class="block text-gray-700 mb-2" for="banner-title">
                                             <i class="fas fa-heading mr-2"></i>Banner Title
                                         </label>
@@ -249,8 +259,35 @@ include "conn.php";
                                     <button type="submit"
                                         class="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600">
                                         <i class="fas fa-save mr-2"></i>Save Banner
-                                    </button>
+                                    </button> -->
+
+
+
+                                    <!-- Yassin -->
+
+                                    <?php
+                                        echo('<div>
+                                        <img src="'.$row["banner"].'" alt="">
+                                        <button>Upload banner</button><br>                                        
+                                        <textarea rows="7" cols="50" name="aboutContent" id="">
+                                        '.$row["about"].'
+                                        </textarea><br>
+                                        about image
+                                        <img src="'.$row["aboutimg"].'" alt="">
+                                        <button>Upload image</button><br>
+                                        <input type="submit" value="Edit" name="editHome">
+                                        </div>');
+                                        if(isset($_POST["editHome"])){
+                                            $aboutContent = isset($_POST['aboutContent']) ? $_POST['aboutContent'] : '';
+                                            $homeEdit="update home set about='$aboutContent', aboutimg='editedimg'";
+                                            $homeEditRes=mysqli_query($conn, $homeEdit);
+                                            if($homeEditRes){
+                                                echo("edited");
+                                            }
+                                        }
+                                    ?>
                                 </form>
+                                
                             </div>
                            <!--  new post  -->
                         </div>
