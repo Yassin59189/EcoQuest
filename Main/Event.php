@@ -130,7 +130,7 @@
                     <div class="text-lg font-bold">'.$row['day'].'</div>
                 </div>
                 <p class="text-sm mt-2">'.$row['Nom'].'</p>
-            </div></a>');
+                </div></a>');
                 }
              ?>
     </section>
@@ -173,7 +173,7 @@
         while($row2=mysqli_fetch_assoc($searchRes)){
             echo(' <a href="eventDetail.php?eventID='.$row2['IDevent'].'">           <div
         class="bg-gray-200 w-[25%] mt-5 shadow rounded p-4 hover:shadow-lg transform hover:scale-105 transition duration-300">
-         <img src="../uploads/'.$row1['eventImage'].'" class="w-full h-32  rounded"/>
+         <img src="../uploads/'.$row2['eventImage'].'" class="w-full h-32  rounded"/>
         <div class="mt-4 text-sm font-bold">'.$row2['eventType'].'</div>
         <div class="flex items-center space-x-2 mt-2">
             <div class="text-xl font-bold">'.$row2['month'].'</div>

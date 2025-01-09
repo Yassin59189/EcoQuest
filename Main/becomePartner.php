@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -44,17 +44,23 @@
     </form>
 
 
-    <?php
+
+</body>
+</html>
+
+
+
+<?php
     include "conn.php";
     if(isset($_POST["submit"])){
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
         $businessEmail = $_POST['businessEmail'];
-        $address = $_POST['address'];
+        $address =  isset($_POST['address']) ? $_POST['address'] : '' ;
         $businessName = $_POST['businessName'];
-        $tel = $_POST['tel'];
-        $vertical = $_POST['vertical'];
-        $message = $_POST['message'];
+        $tel = isset($_POST['tel']) ? $_POST['tel'] : '' ;
+        $vertical = isset($_POST['vertical']) ? $_POST['vertical'] : '' ;
+        $message = isset($_POST['message']) ? $_POST['message'] : '' ;
 
         $errors = array();
 
@@ -80,8 +86,6 @@
     }
 
     ?>
-</body>
-</html> -->
 
 
 
@@ -100,11 +104,7 @@
 
 
 
-
-
-
-
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -116,7 +116,6 @@
 
 <body class="bg-gray-100">
 
-    <!-- Header -->
     <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -164,13 +163,11 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="container mx-auto px-4 py-10 mt-20 ">
         <form action="becomePartner.php" method="post" class="bg-white shadow-md rounded-lg p-6 md:p-8 max-w-lg mx-auto">
             <h1 class="text-2xl font-semibold mb-6 text-center">Become Our Partner</h1>
 
             <div class="mb-4 flex">
-                <!-- First Name -->
                 <div class="mr-5 w-1/2">
                     <label for="first-name" class="block text-sm font-medium text-gray-700">
                         First Name
@@ -179,7 +176,6 @@
                         class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                         placeholder="First Name">
                 </div>
-                <!-- Last Name -->
                 <div class="w-1/2">
                     <label for="last-name" class="block text-sm font-medium text-gray-700">Last Name</label>
                     <input type="text" id="last-name" name="lastName"
@@ -188,23 +184,18 @@
                 </div>
             </div>
 
-            <!-- Business Email -->
             <div class="mb-4">
                 <label for="business-email" class="block text-sm font-medium text-gray-700">Business Email</label>
                 <input type="email" id="business-email" name="businessEmail"
                     class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                     placeholder="example@business.com">
             </div>
-
-            <!-- Business Name -->
             <div class="mb-4">
                 <label for="business-name" class="block text-sm font-medium text-gray-700">Business Name</label>
                 <input type="text" id="business-name" name="businessName"
                     class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Your Business Name">
             </div>
-
-            <!-- Partnership Details -->
             <div class="mb-4">
                 <label for="partnership-details" class="block text-sm font-medium text-gray-700">Why would you like to partner with us?</label>
                 <textarea id="partnership-details" name="partnershipDetails"
@@ -212,15 +203,11 @@
                     placeholder="Enter details about your partnership"></textarea>
             </div>
 
-            <!-- Submit Button -->
-            <button type="submit"
-                class="w-full bg-[#328E4E] text-white py-2 px-4 rounded-md hover:bg-green-800 duration-300 transition">
-                Submit Partnership Request
-            </button>
+            <input class="w-full bg-[#328E4E] text-white py-2 px-4 rounded-md hover:bg-green-800 duration-300 transition" type="submit" name="submit" value="Submit Partnership Request">
         </form>
     </main>
 
-    <!-- Footer -->
+
     <footer class="bg-gray-800 text-white py-6">
         <div class="container mx-auto px-4 space-y-4 md:space-y-0 md:flex md:justify-between sm:items-center sm:justify-center">
             <div>
@@ -253,4 +240,4 @@
                
     </body>
 
-</html>
+</html> -->

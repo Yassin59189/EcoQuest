@@ -14,12 +14,12 @@
                     $_SESSION["email"] = $user['Email'];
                     $_SESSION["id"] = $user['ID'];
                     $_SESSION["role"] = $user['role'];
-                    if($user['role']==='citoyen'){
-                        
+/*                     if($user['role']==='citoyen'){
+                           
                     } else if($user['role']==='partenaire') {
                         header("Location:partner/home.php");
-                    }
-                    header("Location:home.php");
+                    } */
+                    header("Location:home.php"); 
                     
                 } else {
                     echo("<p>password does not match</p><br>");

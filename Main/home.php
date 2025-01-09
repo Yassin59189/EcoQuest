@@ -98,23 +98,11 @@ if(isset($_SESSION["name"]) && isset($_SESSION["id"])){
   <img src="https://via.placeholder.com/400" alt="About us" class="rounded-lg shadow-lg" />
   <div>
     <h2 class="text-2xl font-bold mb-2">About Us</h2>
-    <p class="mb-2">We organize campaigns to improve the environment and raise awareness among citizens.</p>
+    <p class="mb-2"><?php echo($about); ?></p>
     <p>Join us to make our planet cleaner and healthier.</p>
   </div>
 </div>
   <!-- Qui Sommes-Nous Section -->
-  <div class="max-w-6xl mx-auto p-6 grid grid-cols-2 gap-4 items-center">
-    <img src="https://via.placeholder.com/400" alt="About us" class="rounded-lg shadow-lg" />
-    <div>
-      <h2 class="text-2xl font-bold mb-2">Qui sommes-nous</h2>
-      <p class="mb-2">
-        <?php
-        echo($about); 
-         ?>
-      
-    </p>
-    </div>
-  </div>
 
   <!-- Stats Section -->
    <?php
