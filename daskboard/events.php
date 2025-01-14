@@ -28,7 +28,7 @@ $res = mysqli_query($conn, $req);
         }
 
         .bg-sidebar {
-            background: #3d68ff;
+            background: #044952;
         }
 
         .cta-btn {

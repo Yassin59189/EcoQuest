@@ -101,7 +101,7 @@ if(isset($_POST["submit"])) {
 
         /* Header */
         header {
-            background-color: #111827; /* Bleu */
+            background-color: #044952; /* Bleu */
             color: #fff;
             padding: 20px 20px;
             display: flex;
@@ -128,7 +128,7 @@ if(isset($_POST["submit"])) {
 
         /* Footer */
         footer {
-            background-color: #111827; /* Bleu */
+            background-color: #044952; /* Bleu */
             color: #fff;
             text-align: center;
             padding: 10px 0;
@@ -206,12 +206,12 @@ if(isset($_POST["submit"])) {
 <body>
     <!-- Header -->
     <header>
-        <div class="text"><b>Welcome to EcoQuest</b></div>
+        <div class="text text-3xl font-semibold mb-6"><b>Welcome to EcoQuest</b></div>
     </header>
 
     <!-- Formulaire d'inscription -->
     <div class="signup-container">
-        <h1>Sign Up</h1>
+        <h1  class="text-3xl font-semibold mb-6 text-[#044952] text-center" >Sign Up</h1>
         <form action="signup.php" method="post">
             <label for="name">Full Name</label>
             <input type="text" name="name" id="name" placeholder="Enter your full name" required>

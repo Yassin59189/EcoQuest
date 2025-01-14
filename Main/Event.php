@@ -20,7 +20,7 @@
 
     <!-- Header -->
     <nav
-        class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+        class="bg-[#044952] dark:bg-[#044952] fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 
             <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -30,7 +30,7 @@
 
             <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                 <button type="button"
-                    class="text-white bg-[#328E4E] hover:bg-green-800 duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-[#328E4E] dark:hover:bg-[#328E4E] dark:focus:ring-[#1d3b24]">
+                    class="text-white bg-[#FF9100] hover:bg-green-800 duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-[#FF9100] dark:hover:bg-[#FFCE00] dark:focus:ring-[#1d3b24]">
                     Donate
                 </button>
                 <button id="menu-toggle"
@@ -45,32 +45,32 @@
 
             <div id="navbar-sticky" class="hidden items-center justify-between w-full md:flex md:w-auto md:order-1">
                 <ul
-                    class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                    class="flex flex-col p-4 md:p-0 mt-4 font-medium border  rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-[#044952] dark:border-gray-700">
                     <li>
                         <a href="home.php"
-                            class="block py-2 px-3 text-gray-900  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#328E4E] md:p-0 md:dark:hover:text-[#328E4E] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
+                            class="block py-2 px-3 text-gray-900  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
                     </li>
                     <li>
                         <a href="#"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#328E4E] md:p-0 md:dark:hover:text-[#328E4E] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">The
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">The
                             SDGs</a>
                     </li>
                     <li>
                         <a href="becomePartner.php"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#328E4E] md:p-0 md:dark:hover:text-[#328E4E] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Partnership
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Partnership
                             Request</a>
                     </li>
                     <li>
                         <a href="Event.php"
-                            class="block py-2 px-3 text-white bg-[#328E4E] rounded md:bg-transparent md:text-[#328E4E] md:p-0 md:dark:text-[#328E4E]">Campaigns</a>
+                            class="block py-2 px-3 text-white bg-[#FF9100] rounded md:bg-transparent md:text-[#FF9100] md:p-0 md:dark:text-[#FF9100]">Campaigns</a>
                     </li>
                     <li>
                         <a href="Contact.html"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#328E4E] md:p-0 md:dark:hover:text-[#328E4E] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
                     </li>
                     <li>
                         <a href="Donation.html"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#328E4E] md:p-0 md:dark:hover:text-[#328E4E] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                             aria-current="page">Donation</a>
                     </li>
 
@@ -80,9 +80,9 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative bg-gray-200 h-64 flex items-center justify-center">
+    <section class="relative bg-gray-200 h-60 flex items-center justify-center ">
         <div class="absolute inset-0"></div>
-        <div class="absolute bottom-0 left-0 right-0 bg-black text-white p-4">
+        <div class="absolute bottom-12 left-0 right-0 bg-[#032529] text-white p-4  border rounded-lg mx-5">
 
                 <form action="event.php"  method="get">
                 <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -90,7 +90,7 @@
                     class="p-2 rounded bg-gray-800 text-white">
                 <input id="searchLocation" type="text" placeholder="In" name="location" class="p-2 rounded bg-gray-800 text-white">
                 <input id="searchDate" name="date" type="date" class="p-2 rounded bg-gray-800 text-white">
-                <button type="submit" name="search" class="bg-gray-900 p-2 rounded">Search</button>
+                <button type="submit" name="search" class="bg-[#328E4E] p-2 rounded">Search</button>
                 </div>
                 <?php
                     $eventName= isset($_GET['name']) ? $_GET['name'] : '';
@@ -99,10 +99,10 @@
                 
                 ?>
                 </form>
-                
-            
+          
         </div>
     </section>
+    
 
 
 
@@ -111,7 +111,8 @@
      if($eventName ==="" && $eventLocation ==="" && $eventDate ===""){
       ?>
     <section class="container mx-auto py-12 px-6">
-        <h2 class="text-2xl font-semibold mb-6">Campagnes à venir</h2>
+    <h2 class="text-3xl font-semibold mb-6 text-[#044952]">Campagnes à venir</h2>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             <!-- Campaign Card -->
              
@@ -136,7 +137,7 @@
 
     <!-- Past Campaigns -->
     <section class="container mx-auto py-12 px-6">
-        <h2 class="text-2xl font-semibold mb-6">Campagnes passées</h2>
+        <h2 class="text-3xl font-semibold mb-6 text-[#044952]">Campagnes passées</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             <!-- Campaign Card -->
             <?php
@@ -185,7 +186,7 @@
       ?>
     <!-- FAQ Section -->
     <section class="container mx-auto py-12 px-6">
-        <h2 class="text-2xl font-semibold mb-6">Questions fréquemment posées (FAQ)</h2>
+        <h2 class="text-3xl font-semibold mb-6 text-[#044952]">Questions fréquemment posées (FAQ)</h2>
         <div class="space-y-4">
             <!-- FAQ Item -->
             <div class="bg-gray-200 rounded p-4">
@@ -224,7 +225,7 @@
 
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
+    <footer class="bg-[#044952] text-white py-6">
         <div
             class="container mx-auto px-4 space-y-4 md:space-y-0 md:flex md:justify-between sm:items-center sm:justify-center">
             <div>
@@ -247,7 +248,7 @@
                         class="p-2 border border-gray-600 rounded-l-md focus:ring-blue-500 focus:border-blue-500"
                         placeholder="Enter your email">
                     <button
-                        class="bg-[#328E4E] text-white px-4 py-2 rounded-r-md hover:bg-green-800 duration-300 transition">
+                        class="bg-[#FF9100] text-white px-4 py-2 rounded-r-md hover:bg-[#FFCE00] duration-300 transition">
                         Subscribe
                     </button>
                 </div>
