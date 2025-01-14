@@ -39,7 +39,7 @@
                     <!-- Modal -->
                     <div class="bg-white rounded-lg shadow-lg w-1/3 p-6">
                         <h2 class="text-lg font-semibold mb-4">Edit Event</h2>
-                        <form id="eventForm" action="editEventAction.php?eventID=<?php echo($eventID) ?>" method="post">  
+                        <form id="eventForm" action="editEventAction.php?eventID=<?php echo($eventID) ?>" enctype="multipart/form-data"  method="post">  
                             <!-- Event Name -->
                             <div class="mb-4">
                                 <label for="eventName" class="block text-sm font-medium text-gray-700">Event

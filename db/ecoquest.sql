@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2024 at 10:44 PM
+-- Generation Time: Dec 11, 2024 at 12:28 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -74,7 +74,7 @@ CREATE TABLE `evenements` (
   `endTime` time NOT NULL,
   `eventType` varchar(20) NOT NULL,
   `Status` varchar(20) NOT NULL,
-  `eventImage` blob NOT NULL,
+  `eventImage` varchar(20) NOT NULL,
   `trash` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -83,10 +83,10 @@ CREATE TABLE `evenements` (
 --
 
 INSERT INTO `evenements` (`IDevent`, `Nom`, `Description`, `Location`, `Date`, `startTime`, `endTime`, `eventType`, `Status`, `eventImage`, `trash`) VALUES
-(0, 'test', 'test', 'test', '2024-12-11', '28:01:33', '42:01:33', 'Team', 'done', '', 42.6),
-(1, 'test', 'test', 'test', '2024-12-11', '28:01:33', '42:01:33', 'Team', 'done', '', 42.6),
-(2, 'test', 'test', 'test', '2024-12-11', '28:01:33', '42:01:33', 'Team', 'done', '', 42.6),
-(9, 'test 1', 'gfdgfd', 'gdffd', '2024-11-01', '07:31:00', '19:31:00', 'Teams', 'upcomming', '', 30);
+(0, 'testg', 'dsdssd', 'test', '2024-12-11', '23:28:00', '15:30:00', 'Team', 'done', '1733873068.png', 42.6),
+(1, 'test', 'test', 'test', '2024-12-11', '23:41:00', '16:38:00', 'Team', 'done', '1733872309.jpg', 42.6),
+(2, 'test', 'test', 'test', '2024-12-11', '23:42:00', '23:42:00', 'Team', 'done', '1733870356.jpg', 42.6),
+(9, 'test 1', 'gfdgfd', 'gdffd', '2024-11-01', '07:31:00', '19:31:00', 'Teams', 'upcomming', '1733872309.jpg', 30);
 
 -- --------------------------------------------------------
 

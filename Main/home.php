@@ -1,8 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 include "conn.php";
+session_start();
+if(isset($_SESSION["name"]) && isset($_SESSION["id"])){
 ?>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +27,7 @@ include "conn.php";
                     class="text-white bg-[#328E4E] hover:bg-green-900 duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-[#328E4E] dark:hover:bg-[#328E4E] dark:focus:ring-[#1d3b24]">
                     Donate
                 </button>
+                <a href="logout.php" class="text-white">Sign out</a>
                 <button id="menu-toggle"
                     class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                     <span class="sr-only">Open main menu</span>
@@ -73,21 +76,33 @@ include "conn.php";
             </div>
         </div>
     </nav>
-    <!-- Header Section -->
-  <div class="bg-gray-200 p-6" style="background-image: url('https://via.placeholder.com/1920x1080');">
-    <h1 class="text-xl font-bold mb-2">Les Campagnes</h1>
-    <p>Explorez nos initiatives et participez aux événements pour un monde meilleur.</p>
-  </div>
 
-  <!-- Qui Sommes-Nous Section -->
-  <div class="max-w-6xl mx-auto p-6 grid grid-cols-2 gap-4 items-center">
-    <img src="https://via.placeholder.com/400" alt="About us" class="rounded-lg shadow-lg" />
-    <div>
-      <h2 class="text-2xl font-bold mb-2">Qui sommes-nous</h2>
-      <p class="mb-2">Nous organisons des campagnes pour améliorer l’environnement et sensibiliser les citoyens.</p>
-      <p>Rejoignez-nous pour rendre notre planète plus propre et plus saine.</p>
-    </div>
+    <?php
+        $home="select * from home";
+        $homeRes = mysqli_query($conn, $home);
+        if($row=mysqli_fetch_assoc($homeRes)){
+            $banner=$row['banner'];
+            $aboutimg=$row['aboutimg'];
+            $about=$row['about'];
+        }
+        ?>
+
+    <!-- Header Section -->
+    <div class="bg-gray-200 p-6" style="background-image: url('https://via.placeholder.com/1920x1080');">
+  <h1 class="text-xl font-bold mb-2">Campaigns</h1>
+  <p>Discover our initiatives and participate in events for a better world.</p>
+</div>
+
+<!-- About Us Section -->
+<div class="max-w-6xl mx-auto p-6 grid grid-cols-2 gap-4 items-center">
+  <img src="https://via.placeholder.com/400" alt="About us" class="rounded-lg shadow-lg" />
+  <div>
+    <h2 class="text-2xl font-bold mb-2">About Us</h2>
+    <p class="mb-2"><?php echo($about); ?></p>
+    <p>Join us to make our planet cleaner and healthier.</p>
   </div>
+</div>
+  <!-- Qui Sommes-Nous Section -->
 
   <!-- Stats Section -->
    <?php
@@ -121,7 +136,7 @@ include "conn.php";
   
 
     echo("<div class='bg-white py-8'>
-    <h2 class='text-center text-2xl font-bold mb-6'>Nos résultats en chiffres</h2>
+    <h2 class='text-center text-2xl font-bold mb-6'>Our Results in Numbers</h2>
     <div class='flex justify-center gap-8'>
       <div class='text-center'>
         <span class='text-4xl font-bold text-green-500 counter' data-target=${totalParticipants}>0</span>
@@ -292,3 +307,8 @@ include "conn.php";
 </body>
 
 </html>
+<?php
+} else {
+    header("Location: login.php");
+}
+?>
