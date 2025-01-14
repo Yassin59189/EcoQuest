@@ -184,7 +184,7 @@ if(isset($_POST["submit"])) {
         }
 
         .signup-container input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color:rgb(127, 132, 1);
         }
 
         .signup-container p {
