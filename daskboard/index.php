@@ -261,7 +261,7 @@
                             <thead class="bg-gray-800 text-white">
                                 <tr>
                                     <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Name</th>
-                                    <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">TYPE</th>
+                                    <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">LOCATION</th>
                                     <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Phone</th>
                                     <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Email</th>
                                 </tr>
@@ -270,8 +270,8 @@
                                 <?php
                                 while($row2=mysqli_fetch_assoc($res2)) {
                                     echo('<tr>
-                                    <td class="w-1/3 text-left py-3 px-4">'.$row2['username'].'</td>
-                                    <td class="w-1/3 text-left py-3 px-4">'.$row2['typepartenaire'].'</td>
+                                    <td class="w-1/3 text-left py-3 px-4">'.$row2['businessName'].'</td>
+                                    <td class="w-1/3 text-left py-3 px-4">'.$row2['location'].'</td>
                                     <td class="text-left py-3 px-4"><a class="hover:text-blue-500"
                                             href="tel:622322662">'.$row2['tel'].'</a></td>
                                     <td class="text-left py-3 px-4"><a class="hover:text-blue-500"

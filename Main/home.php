@@ -75,8 +75,6 @@
                             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#328E4E] md:p-0 md:dark:hover:text-[#328E4E] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                             aria-current="page">Donation</a>
                     </li>
-
-
                 </ul>
             </div>
         </div>
@@ -272,7 +270,6 @@
       ?>
     </div>
   </div>
-
   <!-- Newsletter Section -->
   <div class="bg-white py-8">
     <div class="max-w-6xl mx-auto p-6 flex items-center gap-8">
