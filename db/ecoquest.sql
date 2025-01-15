@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2024 at 12:28 AM
+-- Generation Time: Jan 15, 2025 at 02:53 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -83,10 +83,29 @@ CREATE TABLE `evenements` (
 --
 
 INSERT INTO `evenements` (`IDevent`, `Nom`, `Description`, `Location`, `Date`, `startTime`, `endTime`, `eventType`, `Status`, `eventImage`, `trash`) VALUES
-(0, 'testg', 'dsdssd', 'test', '2024-12-11', '23:28:00', '15:30:00', 'Team', 'done', '1733873068.png', 42.6),
+(0, 'Game Jam', 'dsdssd', 'test', '2025-01-24', '23:28:00', '15:30:00', 'Team', 'done', '1736887488.PNG', 42.6),
 (1, 'test', 'test', 'test', '2024-12-11', '23:41:00', '16:38:00', 'Team', 'done', '1733872309.jpg', 42.6),
-(2, 'test', 'test', 'test', '2024-12-11', '23:42:00', '23:42:00', 'Team', 'done', '1733870356.jpg', 42.6),
 (9, 'test 1', 'gfdgfd', 'gdffd', '2024-11-01', '07:31:00', '19:31:00', 'Teams', 'upcomming', '1733872309.jpg', 30);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `home`
+--
+
+CREATE TABLE `home` (
+  `id` int(11) NOT NULL,
+  `banner` varchar(250) NOT NULL,
+  `about` text NOT NULL,
+  `aboutimg` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `home`
+--
+
+INSERT INTO `home` (`id`, `banner`, `about`, `aboutimg`) VALUES
+(1, '', 'yassin', '1736948876.jpg');
 
 -- --------------------------------------------------------
 
@@ -120,7 +139,9 @@ INSERT INTO `partenaires` (`IDpartenaire`, `firstname`, `lastname`, `role`, `ema
 (4, 'yassin', 'ben mosbeh', 'partner', 'wecab@gmail.com', '', '', 'Green Technology', 'WeCab', 'Mountain View California', '56650772', 'A', '2024-12-10 21:07:13', 'test', ''),
 (5, 'test', 'tz', 'partner', 'wecab@gmail.com', '', '', 'Green Technology', 'WeCab', 'Mountain View California', '56650772', 'A', '2024-12-10 21:07:13', 'test', ''),
 (6, 'testtt', 'testtt', 'partner', 'wecab@gmail.com', '', '', 'Green Technology', 'WeCab', 'Mountain View California', '56650772', 'A', '2024-12-10 21:07:13', 'test', ''),
-(7, 'test', 'tz', 'partner', 'wecab@gmail.com', '', '', 'Green Technology', 'WeCab', 'Mountain View California', '56650772', 'P', '2024-12-10 21:07:13', 'testttt', '');
+(7, 'test', 'tz', 'partner', 'wecab@gmail.com', '', '', 'Green Technology', 'WeCab', 'Mountain View California', '56650772', 'P', '2024-12-10 21:07:13', 'testttt', ''),
+(8, 'yassin', 'mosbeh', 'partner', 'lorem@gmail.com', '', '', 'Sustainable Fashion', 'fsdf', 'fsdfsd', '56650772', 'P', '2025-01-14 22:52:33', 'fdsfsd', ''),
+(9, 'yassin', 'mosbeh', 'partner', 'lorem@gmail.com', '', '', 'Sustainable Fashion', 'fsdf', 'fsdfsd', '56650772', 'A', '2025-01-14 22:54:34', 'fdsfsd', '');
 
 -- --------------------------------------------------------
 
@@ -200,6 +221,26 @@ INSERT INTO `requestrecompance` (`idReqReco`, `title`, `quantity`, `description`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sponsors`
+--
+
+CREATE TABLE `sponsors` (
+  `idsponsor` int(11) NOT NULL,
+  `nomsponsor` varchar(100) NOT NULL,
+  `imgsponsor` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sponsors`
+--
+
+INSERT INTO `sponsors` (`idsponsor`, `nomsponsor`, `imgsponsor`) VALUES
+(1, '', '1736948859.jpg'),
+(2, '', '1736948876.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `utilisateur`
 --
 
@@ -247,6 +288,12 @@ ALTER TABLE `evenements`
   ADD PRIMARY KEY (`IDevent`);
 
 --
+-- Indexes for table `home`
+--
+ALTER TABLE `home`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `partenaires`
 --
 ALTER TABLE `partenaires`
@@ -265,6 +312,12 @@ ALTER TABLE `requestrecompance`
   ADD PRIMARY KEY (`idReqReco`);
 
 --
+-- Indexes for table `sponsors`
+--
+ALTER TABLE `sponsors`
+  ADD PRIMARY KEY (`idsponsor`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -275,10 +328,16 @@ ALTER TABLE `donation`
   MODIFY `id_Donation` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `home`
+--
+ALTER TABLE `home`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `partenaires`
 --
 ALTER TABLE `partenaires`
-  MODIFY `IDpartenaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `IDpartenaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `recompance`
@@ -291,6 +350,12 @@ ALTER TABLE `recompance`
 --
 ALTER TABLE `requestrecompance`
   MODIFY `idReqReco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `sponsors`
+--
+ALTER TABLE `sponsors`
+  MODIFY `idsponsor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

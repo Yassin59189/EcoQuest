@@ -219,51 +219,10 @@ include "conn.php";
                         <!-- banner -->
                         <div id="" class="" x-show="openTab === 1">
                             <div class="max-w-xl mx-auto p-4 bg-white shadow-md rounded-md">
-                                <h2 class="text-lg font-bold mb-4">Add New Banner</h2>
-                                <a href="">   
-                                    <button type="button"
-                                        class="px-4 mb-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none">
-                                        check Banners 
-                                    </button>
-                                </a>
-                                <form method="post">
-                                    <!-- <div class="mb-4">
-                                        <label class="block text-gray-700 mb-2" for="banner-title">
-                                            <i class="fas fa-heading mr-2"></i>Banner Title
-                                        </label>
-                                        <input type="text" id="banner-title"
-                                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-300"
-                                            placeholder="Enter banner title">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="block text-gray-700 mb-2" for="banner-description">
-                                            <i class="fas fa-align-left mr-2"></i>Description
-                                        </label>
-                                        <textarea id="banner-description" rows="4"
-                                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-300"
-                                            placeholder="Enter banner description"></textarea>
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="block text-gray-700 mb-2" for="cta-link">
-                                            <i class="fas fa-link mr-2"></i>Call-to-Action Link
-                                        </label>
-                                        <input type="url" id="cta-link" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-300" placeholder="Enter URL for call-to-action (e.g., registration link)">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="block text-gray-700 mb-2" for="banner-image">
-                                            <i class="fas fa-upload mr-2"></i>Upload Banner Image
-                                        </label>
-                                        <input type="file" id="banner-image"
-                                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-300">
-                                    </div>
-                                    <button type="submit"
-                                        class="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600">
-                                        <i class="fas fa-save mr-2"></i>Save Banner
-                                    </button> -->
+                                <h2 class="text-lg font-bold mb-4">Edit home content</h2>
+                                
+                                <form method="post" enctype="multipart/form-data">
 
-
-
-                                    <!-- Yassin -->
 
                                     <?php
                                         echo('<div>
@@ -274,20 +233,66 @@ include "conn.php";
                                         </textarea><br>
                                         about image
                                         <img src="'.$row["aboutimg"].'" alt="">
-                                        <button>Upload image</button><br>
-                                        <input type="submit" value="Edit" name="editHome">
+                                        <input type="file" name="aboutImage" id="aboutImage"><br>
+                                        <input type="submit" value="Edit" name="submit" class="my-5">
                                         </div>');
-                                        if(isset($_POST["editHome"])){
+
+                                    ?>
+                                    <hr class="my-5">
+                                    <h2>add sponsor</h2><br>
+                                    <input type="file" name="sponsor" id="sponsor">
+                                </form>
+                                <?php
                                             $aboutContent = isset($_POST['aboutContent']) ? $_POST['aboutContent'] : '';
-                                            $homeEdit="update home set about='$aboutContent', aboutimg='editedimg'";
+                                            if(isset($_POST['submit'])){
+                                            if (isset($_FILES['aboutImage']) && !empty($_FILES['aboutImage']['name'])){
+                                                $eventImage = $_FILES['aboutImage']['name'];
+                                                $tmp_name = $_FILES['aboutImage']['tmp_name'];
+                                                $timestamp = time();
+                                                $extension = pathinfo($eventImage, PATHINFO_EXTENSION);
+    
+                                                $newFileName = $timestamp . '.' . $extension;
+    
+                                                $location = "../uploads/" . $newFileName;
+    
+                                                if (move_uploaded_file($tmp_name, $location)) {
+      
+                                                } else {
+                                                    echo "File not uploaded";
+                                                }
+                                            }
+
+                                            if (isset($_FILES['sponsor']) && !empty($_FILES['sponsor']['name'])){
+                                                $sponsorImage = $_FILES['sponsor']['name'];
+                                                $sponsor_tmp_name = $_FILES['sponsor']['tmp_name'];
+                                                $timestamp = time();
+                                                $sponsorExtension = pathinfo($sponsorImage, PATHINFO_EXTENSION);
+    
+                                                $newSponsorFileName = $timestamp . '.' . $sponsorExtension;
+    
+                                                $sponsorLocation = "../uploads/" . $newSponsorFileName;
+    
+                                                if (move_uploaded_file($sponsor_tmp_name, $sponsorLocation)) {
+      
+                                                } else {
+                                                    echo "sponsor File not uploaded <br>";
+                                                }
+                                            }
+
+
+
+                                            
+                                            }
+                                            $homeEdit="update home set about='$aboutContent', aboutimg='$newFileName'";
                                             $homeEditRes=mysqli_query($conn, $homeEdit);
-                                            if($homeEditRes){
+                                            $sponsorEdit="insert into sponsors(imgsponsor) values('$newSponsorFileName')";
+                                            $sponsorEditRes=mysqli_query($conn, $sponsorEdit);
+                                            if($sponsorEditRes && $homeEditRes){
                                                 echo("edited");
                                             }
-                                        }
-                                    ?>
-                                </form>
-                                
+                                            
+                                        
+                                ?>
                             </div>
                            <!--  new post  -->
                         </div>
@@ -300,43 +305,9 @@ include "conn.php";
                                         check Sponsors 
                                     </button>
                                 </a>
-                                <form>
-                                    <div class="mb-4">
-                                        <label class="block text-gray-700 mb-2" for="post-title">
-                                            <i class="fas fa-heading mr-2"></i>Post Title
-                                        </label>
-                                        <input type="text" id="post-title"
-                                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                                            placeholder="Enter post title">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="block text-gray-700 mb-2" for="content">
-                                            <i class="fas fa-align-justify mr-2"></i>Content
-                                        </label>
-                                        <textarea id="content" rows="6"
-                                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                                            placeholder="Write your post"></textarea>
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="block text-gray-700 mb-2" for="category">
-                                            <i class="fas fa-tags mr-2"></i>Category
-                                        </label>
-                                        <input type="text" id="category"
-                                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                                            placeholder="Enter category">
-                                    </div>
-                                    
-                                    <div class="mb-4">
-                                        <label class="block text-gray-700 mb-2" for="post-image">
-                                            <i class="fas fa-upload mr-2"></i>Upload Post Image
-                                        </label>
-                                        <input type="file" id="post-image"
-                                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300">
-                                    </div>
-                                    <button type="submit"
-                                        class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">
-                                        <i class="fas fa-upload mr-2"></i>Publish Post
-                                    </button>
+                                <form method="post">
+                                    <h2>add sponsor</h2><br>
+                                    <input type="file" name="sponsor" id="sponsor">
                                 </form>
                             </div>
                         </div>

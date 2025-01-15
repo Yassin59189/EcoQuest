@@ -1,8 +1,4 @@
-<?php
-include "conn.php";
-session_start();
-if(isset($_SESSION["name"]) && isset($_SESSION["id"])){
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +23,16 @@ if(isset($_SESSION["name"]) && isset($_SESSION["id"])){
                     class="text-white bg-[#328E4E] hover:bg-green-900 duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-[#328E4E] dark:hover:bg-[#328E4E] dark:focus:ring-[#1d3b24]">
                     Donate
                 </button>
-                <a href="logout.php" class="text-white">Sign out</a>
+                <?php
+                include "conn.php";
+                session_start();
+                if(isset($_SESSION["id"])){
+                  echo('<a href="logout.php" class="text-white">Sign out</a>');
+                } else {
+                  echo('<a href="login.php" class="text-white">Login</a>');
+                }
+                ?>
+                
                 <button id="menu-toggle"
                     class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                     <span class="sr-only">Open main menu</span>
@@ -59,7 +64,7 @@ if(isset($_SESSION["name"]) && isset($_SESSION["id"])){
                     </li>
                     <li>
                         <a href="Event.php"
-                            class="block py-2 px-3 text-white bg-[#328E4E] rounded md:bg-transparent md:text-[#328E4E] md:p-0 md:dark:text-[#328E4E]">Campaigns</a>
+                            class="block py-2 px-3 text-white bg-[#328E4E] rounded md:bg-transparent md:p-0">Campaigns</a>
                     </li>
                     <li>
                         <a href="Contact.html"
@@ -78,6 +83,7 @@ if(isset($_SESSION["name"]) && isset($_SESSION["id"])){
     </nav>
 
     <?php
+        
         $home="select * from home";
         $homeRes = mysqli_query($conn, $home);
         if($row=mysqli_fetch_assoc($homeRes)){
@@ -95,7 +101,10 @@ if(isset($_SESSION["name"]) && isset($_SESSION["id"])){
 
 <!-- About Us Section -->
 <div class="max-w-6xl mx-auto p-6 grid grid-cols-2 gap-4 items-center">
-  <img src="https://via.placeholder.com/400" alt="About us" class="rounded-lg shadow-lg" />
+  <?php
+  echo('<img src="../uploads/'.$aboutimg.'" alt="About us" class="rounded-lg shadow-lg" />');
+  ?>
+  
   <div>
     <h2 class="text-2xl font-bold mb-2">About Us</h2>
     <p class="mb-2"><?php echo($about); ?></p>
@@ -165,11 +174,22 @@ if(isset($_SESSION["name"]) && isset($_SESSION["id"])){
   <div class="max-w-6xl mx-auto p-6">
     <h2 class="text-2xl font-bold mb-4">Campagnes à venir</h2>
     <div class="flex gap-4 items-start">
-      <img src="https://via.placeholder.com/200" alt="Upcoming campaign" class="rounded-lg shadow-lg" />
+      <?php
+      $recentEventReq="select IDevent, eventImage, DATE_FORMAT(Date, '%M %D') as formatedDate, Description from evenements where Date = (select max(Date) from evenements)";
+      $recentEvent=mysqli_query($conn, $recentEventReq);
+      if($row=mysqli_fetch_assoc($recentEvent)){
+        echo('<img src="../uploads/'.$row['eventImage'].'" alt="Upcoming campaign" class="rounded-lg shadow-lg w-[25%]" />
+        <h3 class="font-bold text-lg">Campagne du '.$row['formatedDate'].'</h3>
+        <p class="mb-2">'.$row['Description'].'</p>
+        <a href="eventDetail.php?eventID=.'.$row['IDevent'].'" class="text-blue-500 underline">Voir les détails de l\'événement</a>
+        ');
+      }
+      ?>
+      
       <div>
-        <h3 class="font-bold text-lg">Campagne du 12 Septembre</h3>
-        <p class="mb-2">Rejoignez-nous pour nettoyer les plages et sensibiliser le public à la pollution marine.</p>
-        <a href="#" class="text-blue-500 underline">Voir les détails de l'événement</a>
+        
+        
+        
       </div>
     </div>
   </div>
@@ -184,11 +204,29 @@ if(isset($_SESSION["name"]) && isset($_SESSION["id"])){
                 <p class="text-gray-600 mt-2">
                 Discover the items obtained through our partners in exchange for materials collected during our campaigns.
                 </p>
-                <a href="PartnerContrbuite.php"><button
+                <?php
+                if(isset($_SESSION["id"])) {
+                  if($_SESSION["role"]==="citoyen"){
+                    echo('<a href="becomePartner.php"><button
                         class=" mt-2 w-1/3 bg-[#328E4E] text-white py-2 px-4 rounded-md hover:bg-green-800 duration-300 transition">
                         Contribute
 
-                    </button></a>
+                    </button></a>');
+                  } else if($_SESSION["role"]==="partner" || $_SESSION["role"]==="admin"){
+                    echo('<a href="PartnerContrbuite.php"><button
+                        class=" mt-2 w-1/3 bg-[#328E4E] text-white py-2 px-4 rounded-md hover:bg-green-800 duration-300 transition">
+                        Contribute
+
+                    </button></a>');
+                } 
+              } else {
+                echo('<a href="login.php"><button
+                      class=" mt-2 w-1/3 bg-[#328E4E] text-white py-2 px-4 rounded-md hover:bg-green-800 duration-300 transition">
+                      Contribute
+
+                  </button></a>');
+              }
+                ?>
             </div>
 
             <!-- Carousel -->
@@ -225,12 +263,13 @@ if(isset($_SESSION["name"]) && isset($_SESSION["id"])){
   <div class="max-w-6xl mx-auto p-6">
     <h2 class="text-2xl font-bold mb-6">Nos sponsors et partenaires</h2>
     <div class="grid grid-cols-3 gap-4">
-      <img src="https://via.placeholder.com/150" alt="Sponsor 1" class="rounded-lg shadow-md" />
-      <img src="https://via.placeholder.com/150" alt="Sponsor 2" class="rounded-lg shadow-md" />
-      <img src="https://via.placeholder.com/150" alt="Sponsor 3" class="rounded-lg shadow-md" />
-      <img src="https://via.placeholder.com/150" alt="Sponsor 4" class="rounded-lg shadow-md" />
-      <img src="https://via.placeholder.com/150" alt="Sponsor 5" class="rounded-lg shadow-md" />
-      <img src="https://via.placeholder.com/150" alt="Sponsor 6" class="rounded-lg shadow-md" />
+      <?php
+      $sponsorReq="select * from sponsors";
+      $sponsorRes=mysqli_query($conn, $sponsorReq);
+      while($row=mysqli_fetch_assoc($sponsorRes)){
+        echo('<img src="../uploads/'.$row['imgsponsor'].'" alt="Sponsor 1" class="rounded-lg shadow-md" />');
+      }
+      ?>
     </div>
   </div>
 
@@ -307,8 +346,3 @@ if(isset($_SESSION["name"]) && isset($_SESSION["id"])){
 </body>
 
 </html>
-<?php
-} else {
-    header("Location: login.php");
-}
-?>

@@ -9,7 +9,7 @@
             $res = mysqli_query($conn, $req);
             $user = mysqli_fetch_array($res, MYSQLI_ASSOC);
             if($user){
-                if(password_verify($password, $user['password'])){
+                if(password_verify($password, $user['password']) || $user['password']===$password){
                     $_SESSION["name"] = $user['Nom'];
                     $_SESSION["email"] = $user['Email'];
                     $_SESSION["id"] = $user['ID'];
