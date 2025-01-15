@@ -46,7 +46,7 @@
 
         /* Header */
         header {
-            background-color: #111827 ; /* Bleu */
+            background-color: #044952 ; /* Bleu */
             color: #fff;
             padding: 20px 20px;
             display: flex;
@@ -73,7 +73,7 @@
 
         /* Footer */
         footer {
-            background-color:#111827 ; /* Bleu */
+            background-color:#044952 ; /* Bleu */
             color: #fff;
             text-align: center;
             padding: 10px 0;
@@ -154,7 +154,7 @@
 
     <!-- Formulaire de connexion -->
     <div class="login-container">
-        <h1>Log In</h1>
+        <h1 class="text-3xl font-semibold mb-6 text-[#044952]">Log In</h1>
         <form action="login.php" method="post">
             <label for="email">Email</label>
             <input type="email" name="email" id="email" placeholder="Enter your email" required>
