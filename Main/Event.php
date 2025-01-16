@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="Main.css">
     <title>Event Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <script>
 
         function toggleFAQ(faqId) {
@@ -80,28 +80,37 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative bg-gray-200 h-60 flex items-center justify-center ">
-        <div class="absolute inset-0"></div>
-        <div class="absolute bottom-12 left-0 right-0 bg-[#032529] text-white p-4  border rounded-lg mx-5">
-
-                <form action="event.php"  method="get" enctype="multipart/form-data" >
-                <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
+    <section class="relative h-96 flex items-center justify-center py-32" 
+         style="background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url('../uploads/garbage2.jpg'); 
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;">
+    <!-- Overlay to ensure form visibility -->
+    
+    <h1 class="font-extrabold text-5xl text-white min-[375px]:hidden md:flex text-center">Trouvez un événement près de chez vous
+</h1>
+    <!-- Search Form Container -->
+    <div class="absolute bottom-12 left-0 right-0 bg-[#044952] text-slate-800 p-4  rounded-lg mx-5 ">
+        
+        <form action="event.php" method="get" enctype="multipart/form-data">
+            <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
                 <input id="searchQuery" name="name" type="text" placeholder="Looking for"
-                    class="p-2 rounded bg-gray-800 text-white">
-                <input id="searchLocation" type="text" placeholder="In" name="location" class="p-2 rounded bg-gray-800 text-white">
-                <input id="searchDate" name="date" type="date" class="p-2 rounded bg-gray-800 text-white">
-                <button type="submit" name="search" class="bg-[#328E4E] p-2 rounded">Search</button>
-                </div>
-                <?php
-                    $eventName= isset($_GET['name']) ? $_GET['name'] : '';
-                    $eventLocation= isset($_GET['location']) ? $_GET['location'] : '';
-                    $eventDate= isset($_GET['date']) ? $_GET['date'] : '';
-                
-                ?>
-                </form>
-          
-        </div>
-    </section>
+                    class="p-2 rounded text-slate-800">
+                <input id="searchLocation" type="text" placeholder="In" name="location" 
+                    class="p-2 rounded text-slate-800">
+                <input id="searchDate" name="date" type="date" 
+                    class="p-2 rounded  text-slate-800">
+                <button type="submit" name="search" 
+                    class="bg-[#328E4E] p-2 text-white  rounded hover:bg-[#2a7841]">Search</button>
+            </div>
+            <?php
+                $eventName= isset($_GET['name']) ? $_GET['name'] : '';
+                $eventLocation= isset($_GET['location']) ? $_GET['location'] : '';
+                $eventDate= isset($_GET['date']) ? $_GET['date'] : '';
+            ?>
+        </form>
+    </div>
+</section>
     
 
 
@@ -125,7 +134,7 @@
                     echo(' <a href="eventDetail.php?eventID='.$row['IDevent'].'">           <div
                 class="bg-gray-200 shadow rounded p-4 hover:shadow-lg transform hover:scale-105 transition duration-300">
                 <img src="../uploads/'.$row['eventImage'].'" class="w-full h-32  rounded"/>
-                <div class="mt-4 text-sm font-bold">'.$row['eventType'].'</div>
+                <div class="mt-4 text-sm font-bold">'.$row['eventType'].'<i class="fa-regular fa-user"></i></div>
                 <div class="flex items-center space-x-2 mt-2">
                     <div class="text-xl font-bold">'.$row['month'].'</div>
                     <div class="text-lg font-bold">'.$row['day'].'</div>
@@ -185,6 +194,7 @@
         }
      }
       ?>
+      
     <!-- FAQ Section -->
     <section class="container mx-auto py-12 px-6">
         <h2 class="text-3xl font-semibold mb-6 text-[#044952]">Questions fréquemment posées (FAQ)</h2>
@@ -206,13 +216,8 @@
             </div>');
             }
             ?>
-            
         </div>
     </section>
-
-
-
-
     <!-- Footer -->
     <footer class="bg-[#044952] text-white py-6">
         <div
