@@ -4,7 +4,11 @@ $req = "select * from partenaires";
 $res = mysqli_query($conn, $req);
 
 
+session_start();
+if(isset($_SESSION['Nom']) && isset($_SESSION['id'])){
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -255,3 +259,8 @@ $res = mysqli_query($conn, $req);
 </body>
 
 </html>
+<?php
+}else{
+    header("location: login.html");
+}
+?>

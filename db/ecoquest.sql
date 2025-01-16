@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2025 at 02:53 PM
+-- Generation Time: Jan 16, 2025 at 09:08 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -83,9 +83,59 @@ CREATE TABLE `evenements` (
 --
 
 INSERT INTO `evenements` (`IDevent`, `Nom`, `Description`, `Location`, `Date`, `startTime`, `endTime`, `eventType`, `Status`, `eventImage`, `trash`) VALUES
-(0, 'Game Jam', 'dsdssd', 'test', '2025-01-24', '23:28:00', '15:30:00', 'Team', 'done', '1736887488.PNG', 42.6),
-(1, 'test', 'test', 'test', '2024-12-11', '23:41:00', '16:38:00', 'Team', 'done', '1733872309.jpg', 42.6),
-(9, 'test 1', 'gfdgfd', 'gdffd', '2024-11-01', '07:31:00', '19:31:00', 'Teams', 'upcomming', '1733872309.jpg', 30);
+(0, 'Game Jam 1', 'dsdssd', 'test', '2025-01-24', '23:28:00', '15:30:00', 'Teams', 'Done', '1737055173.png', 42.6),
+(1, 'Game Jam 2', 'test', 'test', '2024-12-11', '23:41:00', '16:38:00', 'Teams', 'Done', '1737055738.png', 42.6),
+(9, 'yassin', 'gfdgfd', 'gdffd', '2025-01-25', '07:31:00', '19:31:00', 'Teams', 'Upcoming', '1737053039.png', 30);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `eventmaterials`
+--
+
+CREATE TABLE `eventmaterials` (
+  `idcol` int(11) NOT NULL,
+  `idmat` int(11) NOT NULL,
+  `idevent` int(11) NOT NULL,
+  `nommat` varchar(100) NOT NULL,
+  `qty` decimal(10,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `eventmaterials`
+--
+
+INSERT INTO `eventmaterials` (`idcol`, `idmat`, `idevent`, `nommat`, `qty`) VALUES
+(31, 2, 0, 'Plastic', 10),
+(32, 3, 0, 'Métal', 10),
+(33, 4, 0, 'Papier et carton', 10),
+(34, 5, 0, 'Verre', 10),
+(35, 6, 0, 'Déchets organiques', 10),
+(36, 2, 1, 'Plastic', 13),
+(37, 3, 1, 'Métal', 40),
+(38, 4, 1, 'Papier et carton', 4),
+(39, 5, 1, 'Verre', 5),
+(40, 6, 1, 'Déchets organiques', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `faq`
+--
+
+CREATE TABLE `faq` (
+  `idFAQ` int(11) NOT NULL,
+  `question` text NOT NULL,
+  `answer` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `faq`
+--
+
+INSERT INTO `faq` (`idFAQ`, `question`, `answer`) VALUES
+(1, 'question1: Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+(2, 'question2: Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
 
 -- --------------------------------------------------------
 
@@ -105,7 +155,30 @@ CREATE TABLE `home` (
 --
 
 INSERT INTO `home` (`id`, `banner`, `about`, `aboutimg`) VALUES
-(1, '', 'yassin', '1736948876.jpg');
+(1, '', ' - Join us to make our planet cleaner and healthier. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi nihil corporis soluta temporibus minus ea asperiores molestiae voluptate praesentium nesciunt voluptatibus, tempora veritatis autem repellendus sequi, maxime alias, numquam officia?', '1737030849.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `materials`
+--
+
+CREATE TABLE `materials` (
+  `idmat` int(11) NOT NULL,
+  `nommat` varchar(100) NOT NULL,
+  `qty` decimal(10,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `materials`
+--
+
+INSERT INTO `materials` (`idmat`, `nommat`, `qty`) VALUES
+(2, 'Plastic', 23),
+(3, 'Métal', 50),
+(4, 'Papier et carton', 14),
+(5, 'Verre', 15),
+(6, 'Déchets organiques', 13);
 
 -- --------------------------------------------------------
 
@@ -115,33 +188,31 @@ INSERT INTO `home` (`id`, `banner`, `about`, `aboutimg`) VALUES
 
 CREATE TABLE `partenaires` (
   `IDpartenaire` int(11) NOT NULL,
-  `firstname` varchar(20) NOT NULL,
-  `lastname` varchar(20) NOT NULL,
-  `role` varchar(30) NOT NULL,
+  `iduser` int(11) NOT NULL,
+  `nom` varchar(20) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `vertical` varchar(30) NOT NULL,
   `businessName` varchar(100) NOT NULL,
   `location` varchar(30) NOT NULL,
   `tel` varchar(30) NOT NULL,
   `statue` enum('P','A','D') NOT NULL DEFAULT 'P',
   `dateapplication` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `message` text NOT NULL,
-  `typepartenaire` varchar(30) NOT NULL
+  `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `partenaires`
 --
 
-INSERT INTO `partenaires` (`IDpartenaire`, `firstname`, `lastname`, `role`, `email`, `password`, `username`, `vertical`, `businessName`, `location`, `tel`, `statue`, `dateapplication`, `message`, `typepartenaire`) VALUES
-(4, 'yassin', 'ben mosbeh', 'partner', 'wecab@gmail.com', '', '', 'Green Technology', 'WeCab', 'Mountain View California', '56650772', 'A', '2024-12-10 21:07:13', 'test', ''),
-(5, 'test', 'tz', 'partner', 'wecab@gmail.com', '', '', 'Green Technology', 'WeCab', 'Mountain View California', '56650772', 'A', '2024-12-10 21:07:13', 'test', ''),
-(6, 'testtt', 'testtt', 'partner', 'wecab@gmail.com', '', '', 'Green Technology', 'WeCab', 'Mountain View California', '56650772', 'A', '2024-12-10 21:07:13', 'test', ''),
-(7, 'test', 'tz', 'partner', 'wecab@gmail.com', '', '', 'Green Technology', 'WeCab', 'Mountain View California', '56650772', 'P', '2024-12-10 21:07:13', 'testttt', ''),
-(8, 'yassin', 'mosbeh', 'partner', 'lorem@gmail.com', '', '', 'Sustainable Fashion', 'fsdf', 'fsdfsd', '56650772', 'P', '2025-01-14 22:52:33', 'fdsfsd', ''),
-(9, 'yassin', 'mosbeh', 'partner', 'lorem@gmail.com', '', '', 'Sustainable Fashion', 'fsdf', 'fsdfsd', '56650772', 'A', '2025-01-14 22:54:34', 'fdsfsd', '');
+INSERT INTO `partenaires` (`IDpartenaire`, `iduser`, `nom`, `email`, `businessName`, `location`, `tel`, `statue`, `dateapplication`, `message`) VALUES
+(4, 1, 'yassin', 'wecab@gmail.com', 'WeCab', 'Mountain View California', '56650772', 'A', '2025-01-15 22:46:12', 'test'),
+(5, 1, 'test', 'wecab@gmail.com', 'WeCab', 'Mountain View California', '56650772', 'A', '2025-01-15 22:46:12', 'test'),
+(6, 1, 'testtt', 'wecab@gmail.com', 'WeCab', 'Mountain View California', '56650772', 'A', '2025-01-15 22:46:12', 'test'),
+(7, 1, 'test', 'wecab@gmail.com', 'WeCab', 'Mountain View California', '56650772', 'D', '2025-01-15 22:46:12', 'testttt'),
+(8, 1, 'yassin', 'lorem@gmail.com', 'fsdf', 'fsdfsd', '56650772', 'D', '2025-01-15 22:46:12', 'fdsfsd'),
+(9, 1, 'yassin', 'lorem@gmail.com', 'fsdf', 'fsdfsd', '56650772', 'A', '2025-01-15 22:46:12', 'fdsfsd'),
+(15, 1, 'yassin', 'wecab@gmail.com', 'wecab 2', 'tunis', '56650772', 'A', '2025-01-15 22:46:12', 'test test etst'),
+(16, 1, 'yassin', 'wecab@gmail.com', 'wecab 2', 'tunis', '56650772', 'D', '2025-01-15 22:46:12', 'test test etst'),
+(20, 6, 'Yassin Ben Mosbeh', 'yassin@gmail.com', 'yassinBusiness', 'tunis', '56650772', 'A', '2025-01-15 22:59:54', 'yassin ben mosbeh business');
 
 -- --------------------------------------------------------
 
@@ -150,6 +221,7 @@ INSERT INTO `partenaires` (`IDpartenaire`, `firstname`, `lastname`, `role`, `ema
 --
 
 CREATE TABLE `participants` (
+  `idparticipant` int(11) NOT NULL,
   `idevent` int(11) NOT NULL,
   `idutilsateur` int(11) NOT NULL,
   `dateparticipation` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -160,10 +232,10 @@ CREATE TABLE `participants` (
 -- Dumping data for table `participants`
 --
 
-INSERT INTO `participants` (`idevent`, `idutilsateur`, `dateparticipation`, `team`) VALUES
-(9, 1, '2024-11-26 18:32:09', 'A'),
-(9, 1, '2024-11-26 22:10:47', 'A'),
-(9, 2, '2024-11-26 22:14:16', 'A');
+INSERT INTO `participants` (`idparticipant`, `idevent`, `idutilsateur`, `dateparticipation`, `team`) VALUES
+(1, 9, 1, '2024-11-26 18:32:09', 'A'),
+(2, 9, 1, '2024-11-26 22:10:47', 'A'),
+(3, 9, 2, '2024-11-26 22:14:16', 'A');
 
 -- --------------------------------------------------------
 
@@ -235,8 +307,8 @@ CREATE TABLE `sponsors` (
 --
 
 INSERT INTO `sponsors` (`idsponsor`, `nomsponsor`, `imgsponsor`) VALUES
-(1, '', '1736948859.jpg'),
-(2, '', '1736948876.jpg');
+(28, 'yassin', '1736971769.png'),
+(29, 'ISAMM', '1736972135.png');
 
 -- --------------------------------------------------------
 
@@ -263,7 +335,8 @@ INSERT INTO `utilisateur` (`ID`, `role`, `Nom`, `username`, `Email`, `password`,
 (1, 'admin', 'yassin', 'yassin59189', 'yassin.59189@gmail.com', '59189', 'tunis', '56650772'),
 (2, 'citoyen', 'isamil', 'ismail59189', 'yassine.msbs@gmail.com', '59189', 'ariena', '56650772'),
 (4, 'citoyen', 'yassin ben mosbeh', 'yassin59189', 'msbs59189@gmail.com', '$2y$10$MLB/fw6dWs3a/hC9YfYBhefYitu0v4unGUswSwgNllLob7H/CNseC', 'tunis', '56650772'),
-(0, 'citoyen', 'ismailturki', 'ismail', 'turkiismail08@gmail.com', '$2y$10$QMFbNIbl7vr/r.M3eZ2KZu2bRxn0JZzAZYDj3VlGIZto2iicnJHsq', 'ariana', '93199900');
+(5, 'citoyen', 'ismailturki', 'ismail', 'turkiismail08@gmail.com', '$2y$10$QMFbNIbl7vr/r.M3eZ2KZu2bRxn0JZzAZYDj3VlGIZto2iicnJHsq', 'ariana', '93199900'),
+(6, 'partner', 'Yassin Ben Mosbeh', 'Yassin59189', 'Yassin@gmail.com', '$2y$10$wcnjRzuRjZc93KXY47gii.b9UOFJyII2bGTVEOJbsEYYpnOmOhbiS', 'tunis', '56650772');
 
 --
 -- Indexes for dumped tables
@@ -288,16 +361,41 @@ ALTER TABLE `evenements`
   ADD PRIMARY KEY (`IDevent`);
 
 --
+-- Indexes for table `eventmaterials`
+--
+ALTER TABLE `eventmaterials`
+  ADD PRIMARY KEY (`idcol`);
+
+--
+-- Indexes for table `faq`
+--
+ALTER TABLE `faq`
+  ADD PRIMARY KEY (`idFAQ`);
+
+--
 -- Indexes for table `home`
 --
 ALTER TABLE `home`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `materials`
+--
+ALTER TABLE `materials`
+  ADD PRIMARY KEY (`idmat`);
+
+--
 -- Indexes for table `partenaires`
 --
 ALTER TABLE `partenaires`
-  ADD PRIMARY KEY (`IDpartenaire`);
+  ADD PRIMARY KEY (`IDpartenaire`),
+  ADD KEY `iduser` (`iduser`);
+
+--
+-- Indexes for table `participants`
+--
+ALTER TABLE `participants`
+  ADD PRIMARY KEY (`idparticipant`);
 
 --
 -- Indexes for table `recompance`
@@ -318,6 +416,12 @@ ALTER TABLE `sponsors`
   ADD PRIMARY KEY (`idsponsor`);
 
 --
+-- Indexes for table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -328,16 +432,40 @@ ALTER TABLE `donation`
   MODIFY `id_Donation` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `eventmaterials`
+--
+ALTER TABLE `eventmaterials`
+  MODIFY `idcol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT for table `faq`
+--
+ALTER TABLE `faq`
+  MODIFY `idFAQ` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `home`
 --
 ALTER TABLE `home`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `materials`
+--
+ALTER TABLE `materials`
+  MODIFY `idmat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `partenaires`
 --
 ALTER TABLE `partenaires`
-  MODIFY `IDpartenaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `IDpartenaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `participants`
+--
+ALTER TABLE `participants`
+  MODIFY `idparticipant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `recompance`
@@ -355,7 +483,23 @@ ALTER TABLE `requestrecompance`
 -- AUTO_INCREMENT for table `sponsors`
 --
 ALTER TABLE `sponsors`
-  MODIFY `idsponsor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idsponsor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `partenaires`
+--
+ALTER TABLE `partenaires`
+  ADD CONSTRAINT `partenaires_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `utilisateur` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

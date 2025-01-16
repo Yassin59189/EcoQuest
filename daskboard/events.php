@@ -1,8 +1,9 @@
 <?php
 include "conn.php";
+session_start();
 $req = "select * from evenements";
 $res = mysqli_query($conn, $req);
-
+if(isset($_SESSION['Nom']) && isset($_SESSION['id'])){
 
 ?>
 
@@ -261,7 +262,7 @@ $res = mysqli_query($conn, $req);
 
                             <!-- Modal Buttons -->
                             <div class="flex justify-end">
-                                <button type="button" id="closeModalButton"
+                                <button type="button" 
                                     class="px-4 py-2 mr-2 bg-gray-300 rounded-md hover:bg-gray-400 focus:outline-none">
                                     Cancel
                                 </button>
@@ -354,14 +355,6 @@ $res = mysqli_query($conn, $req);
             modalBackdrop.classList.remove('hidden');
         });
 
-        closeModalButton.addEventListener('click', () => {
-            modalBackdrop.classList.add('hidden');
-        });
-
-        closeEditModalButton.addEventListener('click', () => {
-            editModalBackdrop.classList.add('hidden');
-        });
-
 
         modalBackdrop.addEventListener('click', (e) => {
             if (e.target === modalBackdrop) {
@@ -381,3 +374,8 @@ $res = mysqli_query($conn, $req);
 </body>
 
 </html>
+<?php
+}else{
+    header("location: login.html");
+}
+?>

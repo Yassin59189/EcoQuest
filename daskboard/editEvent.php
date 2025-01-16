@@ -16,6 +16,33 @@
         .nav-item:hover { background: #1947ee; }
         .account-link:hover { background: #3d68ff; }
     </style>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Select radio buttons and the target div
+        const eventStatues = document.querySelectorAll('input[name="eventStatue"]');
+        const mats = document.querySelector('div.mb-4.hidden');
+
+        // Function to handle visibility based on selected radio value
+        function checkEventType() {
+            const selectedRadio = document.querySelector('input[name="eventStatue"]:checked');
+            if (selectedRadio) {
+                const value = selectedRadio.value;
+                if (value === "Upcoming") {
+                    mats.classList.add('hidden'); // Hide the div
+                    console.log("Upcoming event selected.");
+                } else if (value === "Done") {
+                    mats.classList.remove('hidden'); // Show the div
+                    console.log("Done event selected.");
+                }
+            }
+        }
+
+        // Attach event listeners to radio buttons
+        eventStatues.forEach(radio => {
+            radio.addEventListener('change', checkEventType);
+        });
+    });
+</script>
 
 </head>
 <body>
@@ -35,7 +62,7 @@
     ?>
     <!-- Edit modal -->
     <div id="editModalBackdrop"
-                    class=" my-8 w-100 fixed inset-0 flex items-center justify-center">
+                    class=" my-8 w-100 inset-0 flex items-center justify-center">
                     <!-- Modal -->
                     <div class="bg-white rounded-lg shadow-lg w-1/3 p-6">
                         <h2 class="text-lg font-semibold mb-4">Edit Event</h2>
@@ -102,6 +129,44 @@
                                         class="mr-2" name="eventType" id="type" value="Solo">Individuel</label>
                             </div>
 
+                            <!-- Evnt statue -->
+                            <div class="mb-4 flex justify-between">
+                                <label for="eventPlace" class="block text-sm font-medium text-gray-700">Event
+                                    Statue</label>
+                                <label class="text-sm font-medium text-gray-700"><input type="radio" class="mr-2"
+                                        name="eventStatue" id="type" value="Upcoming" checked>Upcoming</label>
+                                <label class=" text-sm font-medium text-gray-700" for=""><input type="radio"
+                                        class="mr-2" name="eventStatue" id="type" value="Done" >Done</label>
+                            </div>
+
+                            <div class="mb-4 hidden">
+                                <label for="eventName" class="block text-sm font-medium text-gray-700">Collected Materials</label>
+                                <table class="min-w-full bg-white mt-5">
+                                <thead class="bg-gray-800 text-white">
+                                <tr>
+                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Material</th>
+                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Quantity</th>
+                                </tr>
+                                </thead>
+                            <tbody class="text-gray-700">
+                            <tr>
+                                <?php
+                                $getMatReq="select * from materials";
+                                $getMatRes=mysqli_query($conn, $getMatReq);
+                                
+                                while($getMat=mysqli_fetch_assoc($getMatRes)){
+                                    echo("<input type='hidden' name='idmat' value='".$getMat['idmat']."'>");
+                                    echo("<td class='py-4 px-4 border-b border-grey-light'>" .$getMat['nommat']."</td>");
+                                    echo("<td class='py-4 px-4 border-b border-grey-light'> <input type='number' name='quantities[" . $getMat['idmat'] . "]'
+                                    class='mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500'> </td></tr>");
+                                }
+
+                                ?>
+                                
+                                 </tbody>
+                                 </table>
+                            </div>
+
                             <!-- Event Image Upload -->
                             <div class="mb-4">
                                 <label for="eventImage" class="block text-sm font-medium text-gray-700">Upload Event
@@ -112,7 +177,7 @@
 
                             <!-- Modal Buttons -->
                             <div class="flex justify-end">
-                                <button type="button" id="closeEditModalButton"
+                                <button type="button" 
                                     class="px-4 py-2 mr-2 bg-gray-300 rounded-md hover:bg-gray-400 focus:outline-none">
                                     Cancel
                                 </button>

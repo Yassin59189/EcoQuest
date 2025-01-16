@@ -125,7 +125,7 @@
                 include "conn.php";
                 session_start();
                 $eventID=$_GET['eventID'];
-                $req="select Nom, Description,Googlemaps, Location, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, DAYNAME(Date) as dayName, DATE_FORMAT(startTime, '%h:%i %p') as startTime, DATE_FORMAT(endTime, '%h:%i %p') as endTime,eventImage  from evenements where IDevent=$eventID";
+                $req="select Nom, Description,Googlemaps, Status, Location, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, DAYNAME(Date) as dayName, DATE_FORMAT(startTime, '%h:%i %p') as startTime, DATE_FORMAT(endTime, '%h:%i %p') as endTime,eventImage  from evenements where IDevent=$eventID";
                 $res=mysqli_query($conn, $req);
                 while($row=mysqli_fetch_assoc($res)) {
                     $nom=$row["Nom"];
@@ -136,6 +136,7 @@
                     $dayName=$row['dayName'];
                     $startTime=$row['startTime'];
                     $endTime=$row['endTime'];
+                    $status=$row['Status'];
                     $image=$row['eventImage'];
                     $googlemaps=mysqli_real_escape_string($conn, $row['Googlemaps']);
                 }
@@ -273,6 +274,11 @@
 
   
       <!-- Tableau corrigé -->
+       <?php
+        if($status=='Upcoming'){
+            
+        
+       ?>
       <section class="bg-white py-10">
         <div class="container mx-auto px-4">
           <h2 class="text-2xl font-bold mb-6 text-center">Tableau des équipes</h2>
@@ -302,8 +308,60 @@
           </div>
         </div>
       </section>
-      
+      <?php
+        }else{
 
+        
+      ?>
+      <!-- COLLECTED MATERIALS -->
+      <section>
+      <table class="min-w-full leading-normal">
+                            <thead>
+                                <tr>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Material
+                                    </th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Quantity
+                                    </th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $getMatReq="select * from eventmaterials where idevent='$eventID'";
+                                $getMatRes=mysqli_query($conn, $getMatReq);
+
+                                while($mats=mysqli_fetch_assoc($getMatRes)) {
+                                    echo('<tr>
+                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        <div class="flex items-center">
+                                            
+                                            <div class="">
+                                                <p class="text-gray-900 whitespace-no-wrap">'
+                                                    .$mats["nommat"].'
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        <p class="text-gray-900 whitespace-no-wrap">'
+                                                    .$mats["qty"].'</p>
+                                    </td>
+                                    
+                                </tr>');
+                                }
+                                ?>
+                                
+                                
+                            </tbody>
+                        </table>
+      </section>
+    <?php
+        }
+    ?>
     <!-- Footer -->
       <!-- Footer -->
     <footer class="bg-[#044952] text-white py-6">

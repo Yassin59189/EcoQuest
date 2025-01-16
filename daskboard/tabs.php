@@ -196,7 +196,7 @@ include "conn.php";
                             </li>
                             <li class="mr-1" @click="openTab = 4">
                                 <a :class="openTab === 4 ? 'border-l border-t border-r rounded-t text-blue-700 font-semibold' : 'text-blue-500 hover:text-blue-800'"
-                                    class="bg-white inline-block py-2 px-4 font-semibold" href="#">Milestones</a>
+                                    class="bg-white inline-block py-2 px-4 font-semibold" href="#">Manage materials</a>
                             </li>
                             <li class="mr-1" @click="openTab = 5">
                                 <a :class="openTab === 5 ? 'border-l border-t border-r rounded-t text-blue-700 font-semibold' : 'text-blue-500 hover:text-blue-800'"
@@ -375,61 +375,62 @@ include "conn.php";
                                  </table>
                             </div>
                         </div>
-                       <!--  Milestones  -->
+                       <!--  Materials  -->
                         <div id="" class="" x-show="openTab === 4">
-                            <div class="max-w-xl mx-auto p-4 bg-white shadow-md rounded-md">
-                                <h2 class="text-lg font-bold mb-4">Publish Milestone</h2>
-                                <a href="">   
-                                    <button type="button"
-                                        class="px-4 mb-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none">
-                                        check Milestones 
-                                    </button>
-                                </a>
-                                <form>
+                        <div class="max-w-xl mx-auto p-4 bg-white shadow-md rounded-md">
+                                <h2 class="text-lg font-bold mb-4">Manage materials</h2>
+                                
+                                <form method="post">
                                     <div class="mb-4">
-                                        <label class="block text-gray-700 mb-2" for="event-name">
-                                            <i class="fas fa-calendar-alt mr-2"></i>Event Name
+                                        <label class="block text-gray-700 mb-2" for="sponsor-name">
+                                            Material Name
                                         </label>
-                                        <input type="text" id="event-name"
-                                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                                            placeholder="Enter the event name">
+                                        <input type="text"
+                                            name="materialName"
+                                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-yellow-300"
+                                            placeholder="Enter material name">
                                     </div>
-                                    <div class="mb-4">
-                                        <label class="block text-gray-700 mb-2" for="participants">
-                                            <i class="fas fa-users mr-2"></i>Total Participants
-                                        </label>
-                                        <input type="number" id="participants"
-                                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                                            placeholder="Enter total participants">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="block text-gray-700 mb-2" for="waste-collected">
-                                            <i class="fas fa-recycle mr-2"></i>Waste Collected (kg)
-                                        </label>
-                                        <input type="number" id="waste-collected"
-                                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                                            placeholder="Enter total waste collected">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="block text-gray-700 mb-2" for="trees-planted">
-                                            <i class="fas fa-tree mr-2"></i>Trees Planted
-                                        </label>
-                                        <input type="number" id="trees-planted"
-                                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                                            placeholder="Enter total trees planted">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="block text-gray-700 mb-2" for="banner-upload">
-                                            <i class="fas fa-upload mr-2"></i>Upload Supporting Image
-                                        </label>
-                                        <input type="file" id="banner-upload"
-                                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300">
-                                    </div>
-                                    <button type="submit"
-                                        class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">
-                                        <i class="fas fa-chart-line mr-2"></i>Publish Milestone
-                                    </button>
+                                    
+                                    <input type="submit" name="addMaterial" value="Add material" class="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-600">
                                 </form>
+                                <?php
+                                if(isset($_POST['addMaterial'])){
+                                    $mat=$_POST['materialName'];
+                                    $addMatReq="insert into materials(nommat) values('$mat')";
+                                    $addMatRes=mysqli_query($conn, $addMatReq);
+                                    if($addMatRes){
+                                        echo("material added");
+                                    }
+                                }
+                                ?>
+                                <table class="min-w-full bg-white mt-5">
+                                <thead class="bg-gray-800 text-white">
+                                <tr>
+                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Name</th>
+                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Quantity</th>
+                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Actions</th>
+                                </tr>
+                                </thead>
+                            <tbody class="text-gray-700">
+                            <tr>
+                                
+                                <!-- SHOW CURRENT SPONSORS -->
+                                 <?php
+                                 $showMatsReq="select * from materials";
+                                 $showMatsRes=mysqli_query($conn, $showMatsReq);
+                                 while($showMats=mysqli_fetch_assoc($showMatsRes)){
+                                    echo "<td class='py-4 px-4 border-b border-grey-light'>" .$showMats['nommat']."</td>";
+                                    echo "<td class='py-4 px-4 border-b border-grey-light'>" .$showMats['qty']."</td>";
+                                    echo "<td class='py-4 px-4 border-b border-grey-light flex'>
+                                        <a href='deleteMat.php?idmat=".$showMats['idmat']."'>
+                                            <i class='fas fa-trash-alt text-xl text-red-600 ml-2'
+                                                aria-hidden='true'></i></a>
+                                        </td>
+                                    </tr>";
+                                 }
+                                 ?>
+                                 </tbody>
+                                 </table>
                             </div>
                         </div>
                        <!--  reco  -->
