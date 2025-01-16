@@ -4,80 +4,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carousel Page</title>
+    <title>Home Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="Main.css">
+    <style>
+  /* Animation for text to come from the top */
+  @keyframes fade-down {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-down {
+    animation: fade-down 1s ease-out;
+  }
+</style>
+<?php
+ include "conn.php";
+ session_start();?>
 </head>
 
-<body class="bg-gray-100 pt-20">
-    <nav
-        class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600 mb-10">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+<body class="bg-gray-100 pt-16">
+       <!-- Header -->
+       <nav
+      class="bg-[#044952] dark:bg-[#044952] fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600"
+    >
+      <div
+        class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+      >
+        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <img src="logo equoquest imen-06.png" class="h-12" alt="Logo" />
+        </a>
 
-            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Logo">
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">LOGO</span>
-            </a>
-
-            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <button type="button"
-                    class="text-white bg-[#328E4E] hover:bg-green-900 duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-[#328E4E] dark:hover:bg-[#328E4E] dark:focus:ring-[#1d3b24]">
-                    Donate
-                </button>
-                <?php
-                include "conn.php";
-                session_start();
-                if(isset($_SESSION["id"])){
-                  echo('<a href="logout.php" class="text-white">Sign out</a>');
-                } else {
-                  echo('<a href="login.php" class="text-white">Login</a>');
-                }
-                ?>
-                
-                <button id="menu-toggle"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 1h15M1 7h15M1 13h15" />
-                    </svg>
-                </button>
-            </div>
-
-            <div id="navbar-sticky" class="hidden items-center justify-between w-full md:flex md:w-auto md:order-1">
-                <ul
-                    class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                    <li>
-                        <a href="home.php"
-                            class="block py-2 px-3 text-white bg-[#328E4E] rounded md:bg-transparent md:text-[#328E4E] md:p-0 md:dark:text-[#328E4E]"
-                            aria-current="page">Home</a>
-                    </li>
-
-                    <li>
-                        <a href="#"
-                            class="block py-2 px-3 text-gray-900 duration-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#328E4E] md:p-0 md:dark:hover:text-[#328E4E] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">The
-                            SDGs</a>
-                    </li>
-                    <li>
-                        <a href="becomePartner.php"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#328E4E] md:p-0 md:dark:hover:text-[#328E4E] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Partnership
-                            Request</a>
-                    </li>
-                    <li>
-                        <a href="Event.php"
-                            class="block py-2 px-3 text-white bg-[#328E4E] rounded md:bg-transparent md:p-0">Campaigns</a>
-                    </li>
-                    <li>
-                        <a href="Contact.html"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#328E4E] md:p-0 md:dark:hover:text-[#328E4E] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
-                    </li>
-                    <li>
-                        <a href="Donation.html"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#328E4E] md:p-0 md:dark:hover:text-[#328E4E] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                            aria-current="page">Donation</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          
+          <?php
+               
+               if(isset($_SESSION["id"])){
+                 echo('<a href="logout.php" class="text-white"><button
+            type="button"
+            class="text-white bg-[#FF9100] hover:bg-green-800 duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-[#FF9100] dark:hover:bg-[#FFCE00] dark:focus:ring-[#1d3b24]"
+          >Sign out</button></a>');
+               } else {
+                 echo('<a href="logout.php" class="text-white"><button
+            type="button"
+            class="text-white bg-[#FF9100] hover:bg-green-800 duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-[#FF9100] dark:hover:bg-[#FFCE00] dark:focus:ring-[#1d3b24]"
+          >Login</button></a>');
+               }
+               ?>
+          </button>
+          <button
+            id="menu-toggle"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          >
+            <span class="sr-only">Open main menu</span>
+            <svg
+              class="w-5 h-5"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15"
+              />
+            </svg>
+          </button>
         </div>
+
+        <div
+          id="navbar-sticky"
+          class="hidden items-center justify-between w-full md:flex md:w-auto md:order-1"
+        >
+          <ul
+            class="flex flex-col p-4 md:p-0 mt-4 text-white font-medium border rounded-lg bg-[#044952] md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-[#044952] dark:border-gray-700"
+          >
+          <li>
+              <a
+                href="home.html"
+                class="block py-2 px-3 text-white bg-[#FF9100] rounded md:bg-transparent md:text-[#FF9100] md:p-0 md:dark:text-[#FF9100]"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="SDG.php"
+                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >The SDGs</a
+              >
+            </li>
+            <li>
+              <a
+                href="becomePartner.php"
+                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >Partnership Request</a
+              >
+            </li>
+            <li>
+              <a
+                href="Event.php"
+                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >Campaigns</a
+              >
+            </li>
+            <li>
+              <a
+                href="Contact.html"
+                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >Contact</a
+              >
+            </li>
+            <li>
+              <a
+                href="Donation.html"
+                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                aria-current="page"
+                >Donation</a
+              >
+            </li>
+           
+          </ul>
+        </div>
+      </div>
     </nav>
 
     <?php
@@ -91,24 +147,53 @@
         }
         ?>
 
-    <!-- Header Section -->
-    <div class="bg-gray-200 p-6" style="background-image: url('https://via.placeholder.com/1920x1080');">
-  <h1 class="text-xl font-bold mb-2">Campaigns</h1>
-  <p>Discover our initiatives and participate in events for a better world.</p>
-</div>
+ 
+<!-- Header Section -->
+<div class="relative bg-gray-200 p-6 flex items-center justify-start text-left mx-auto p-6  mb-6 " 
+     style="background-image: url('../uploads/bg2.jpg');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            height: 70vh;">
 
-<!-- About Us Section -->
-<div class="max-w-6xl mx-auto p-6 grid grid-cols-2 gap-4 items-center">
-  <?php
-  echo('<img src="../uploads/'.$aboutimg.'" alt="About us" class="rounded-lg shadow-lg" />');
-  ?>
-  
-  <div>
-    <h2 class="text-2xl font-bold mb-2">About Us</h2>
-    <p class="mb-2"><?php echo($about); ?></p>
-    <p>Join us to make our planet cleaner and healthier.</p>
+  <!-- Overlay for dimming effect -->
+  <div class="absolute inset-0 bg-black opacity-50"></div>
+
+  <!-- Content -->
+  <div class="relative animate-fade-down max-w-4xl md:pl-20 sm:pl-0 sm:text-center md:text-start ">
+    <h1 class="md:text-5xl mb-6 font-extrabold text-white leading-leading tracking-wide sm:text-3xl">
+      ACT<br>
+      CONNECT<br>
+      TRANSFORM
+    </h1>
+    
+    <p class="mb-8 text-white font-medium md:text-xl leading-relaxed sm:text-lg">
+      Join EcoQuest and be part of a global movement to transform our planet. <br>
+      Together, we can make a lasting impact for future generations.
+    </p>
+    
+    <a href="#cta" class=" text-white bg-[#FF9100] hover:bg-green-800 duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-4 text-center dark:bg-[#FF9100] dark:hover:bg-[#FFCE00] dark:focus:ring-[#1d3b24]">
+      See Campaigns
+    </a>
   </div>
 </div>
+
+
+
+
+<!-- About Us Section -->
+<div class="max-w-6xl mx-auto p-6 grid grid-cols-2 gap-8 items-center">
+  <div class="w-full">
+    <?php
+      echo('<img src="../uploads/'.$aboutimg.'" alt="About us" class="w-full max-w-md h-auto object-contain rounded-lg shadow-lg" />');
+    ?>
+  </div>
+  
+  <div class="w-full">
+    <h2 class="text-4xl font-bold mb-4 text-[#044952]">About Us</h2>
+    <p class="mb-2 font-regular text-lg text-justify"><?php echo($about); ?> - Join us to make our planet cleaner and healthier. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi nihil corporis soluta temporibus minus ea asperiores molestiae voluptate praesentium nesciunt voluptatibus, tempora veritatis autem repellendus sequi, maxime alias, numquam officia?</p>
+  </div>
+</div>
+
   <!-- Qui Sommes-Nous Section -->
 
   <!-- Stats Section -->
@@ -142,24 +227,24 @@
         $totalTrash=round($rowtotalparticipant['total_trash'],2);}
   
 
-    echo("<div class='bg-white py-8'>
-    <h2 class='text-center text-2xl font-bold mb-6'>Our Results in Numbers</h2>
+    echo("<div class='bg-white py-20'>
+    <h2 class='text-center text-2xl text-[#044952]   font-extrabold uppercase mb-6'>Nos Résultats en Chiffres</h2>
     <div class='flex justify-center gap-8'>
       <div class='text-center'>
-        <span class='text-4xl font-bold text-green-500 counter' data-target=${totalParticipants}>0</span>
-        <p>Participants</p>
+        <span class='text-4xl font-bold text-green-800  counter' data-target=${totalParticipants}>0</span>
+        <p class='text-green-800 '>Participants</p>
       </div>
       <div class='text-center'>
-        <span class='text-4xl font-bold text-green-500 counter' data-target='99'>0</span>
-        <p>Satisfaction</p>
+        <span class='text-4xl font-bold text-green-800  counter' data-target='99'>0</span>
+        <p class='text-green-800 '>Satisfaction</p>
       </div>
       <div class='text-center'>
-        <span class='text-4xl font-bold text-green-500 counter' data-target=${totalEvents}>0</span>
-        <p>Total campaigns</p>
+        <span class='text-4xl font-bold text-green-800 counter' data-target=${totalEvents}>0</span>
+        <p class='text-green-800 '>Total des campagnes</p>
       </div>
       <div class='text-center'>
-        <span class='text-4xl font-bold text-green-500 counter' data-target=${totalTrash}>0</span>
-        <p>KG of trash collected</p>
+        <span class='text-4xl font-bold text-green-800  counter' data-target=${totalTrash}>0</span>
+        <p class='text-green-800 '>KG de déchets collectés</p>
       </div>
     </div>
   </div>")
@@ -168,29 +253,55 @@
    ?>
   
 
-  <!-- Upcoming Campaigns -->
   <div class="max-w-6xl mx-auto p-6">
-    <h2 class="text-2xl font-bold mb-4">Campagnes à venir</h2>
-    <div class="flex gap-4 items-start">
-      <?php
-      $recentEventReq="select IDevent, eventImage, DATE_FORMAT(Date, '%M %D') as formatedDate, Description from evenements where Date = (select max(Date) from evenements)";
-      $recentEvent=mysqli_query($conn, $recentEventReq);
-      if($row=mysqli_fetch_assoc($recentEvent)){
-        echo('<img src="../uploads/'.$row['eventImage'].'" alt="Upcoming campaign" class="rounded-lg shadow-lg w-[25%]" />
-        <h3 class="font-bold text-lg">Campagne du '.$row['formatedDate'].'</h3>
-        <p class="mb-2">'.$row['Description'].'</p>
-        <a href="eventDetail.php?eventID=.'.$row['IDevent'].'" class="text-blue-500 underline">Voir les détails de l\'événement</a>
-        ');
-      }
-      ?>
-      
-      <div>
+  <h2 class="text-2xl font-bold mb-6 text-center uppercase text-[#044952]">Campagne à venir</h2>
+  
+  <div class="flex flex-col space-y-6">
+    <?php
+    $recentEventReq="select IDevent, eventImage, DATE_FORMAT(Date, '%M %D') as formatedDate, Description from evenements where Date = (select max(Date) from evenements)";
+    $recentEvent=mysqli_query($conn, $recentEventReq);
+   
+    if($row=mysqli_fetch_assoc($recentEvent)){
+    
+      echo('
+      <div class="flex flex-col lg:flex-row items-center lg:items-start border-b pb-6">
+        <!-- Date -->
+        <div class="flex-shrink-0 text-center text-gray-600 pr-0 lg:pr-6 mb-4 lg:mb-0">
+          <p class="text-lg font-bold">'.date("M", strtotime($row['formatedDate'])).'</p>
+          <div class="w-10 h-0.5 bg-slate-600 mx-auto"></div>
+          <p class="text-3xl font-bold">'.date("d", strtotime($row['formatedDate'])).'</p>
+        </div>
         
+        <!-- Image -->
+        <div class="flex-shrink-0 sm:w-1/2 lg:w-1/3 mb-4 lg:mb-0">
+          <img src="../uploads/'.$row['eventImage'].'" alt="Upcoming campaign" class="rounded-lg shadow-lg w-full h-auto"/>
+        </div>
         
-        
+        <!-- Text -->
+        <div class="lg:pl-6 flex flex-col w-full lg:w-2/3 py-4 lg:py-0">
+          <h3 class="font-bold text-xl uppercase mb-4 text-gray-800 text-center lg:text-start">Campagne du TITLE HERE</h3>
+          <p class="mb-4 text-gray-700 text-justify">
+            '.$row['Description'].' - Join us to make our planet cleaner and healthier. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi nihil corporis soluta temporibus minus ea asperiores molestiae voluptate praesentium nesciunt voluptatibus, tempora veritatis autem repellendus sequi, maxime alias, numquam officia?
+          </p>
+          
+          <!-- Button -->
+          <div class="flex justify-center lg:justify-start mt-4">
+            <a href="eventDetail.php?eventID='.$row['IDevent'].'" 
+               class="inline-block bg-[#FF9100] text-white font-bold py-2 px-4 rounded-md hover:bg-orange-500 transition duration-300 text-sm md:text-base lg:text-lg w-full sm:w-auto text-center">
+              Voir les détails de l\'événement
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
+      ');
+    }
+    ?>
   </div>
+</div>
+
+
+
+
 
 
 <!-- products -->
@@ -198,29 +309,28 @@
         <div class="container mx-auto  my-20 px-4 md:flex md:items-center" >
             
             <div class="text-left mb-6  md:w-1/3 sm:w-full mr-6 sm:pt-10 md:pt-0">
-                <h2 class="text-2xl font-bold text-gray-800">Our Eco-Friendly Products</h2>
-                <p class="text-gray-600 mt-2">
-                Discover the items obtained through our partners in exchange for materials collected during our campaigns.
-                </p>
+                <h2 class="text-2xl font-bold text-gray-800">Nos produits écologiques</h2>
+                <p class="text-gray-600 mt-2 mb-2">
+                Découvrez les récompenses obtenues grâce à nos partenaires en échange de matériaux collectés lors de nos campagnes.                </p>
                 <?php
                 if(isset($_SESSION["id"])) {
                   if($_SESSION["role"]==="citoyen"){
                     echo('<a href="becomePartner.php"><button
-                        class=" mt-2 w-1/3 bg-[#328E4E] text-white py-2 px-4 rounded-md hover:bg-green-800 duration-300 transition">
-                        Contribute
+                        class=" mt-2 w-1/2 bg-[#328E4E] text-white py-2 px-4 rounded-md hover:bg-green-800 duration-300 transition">
+                        Contribuer
 
                     </button></a>');
                   } else if($_SESSION["role"]==="partner" || $_SESSION["role"]==="admin"){
                     echo('<a href="PartnerContrbuite.php"><button
-                        class=" mt-2 w-1/3 bg-[#328E4E] text-white py-2 px-4 rounded-md hover:bg-green-800 duration-300 transition">
-                        Contribute
+                        class=" mt-2 w-1/2 bg-[#328E4E] text-white py-2 px-4 rounded-md hover:bg-green-800 duration-300 transition">
+                        Contribuer
 
                     </button></a>');
                 } 
               } else {
                 echo('<a href="login.php"><button
-                      class=" mt-2 w-1/3 bg-[#328E4E] text-white py-2 px-4 rounded-md hover:bg-green-800 duration-300 transition">
-                      Contribute
+                      class=" mt-2 w-1/2 bg-[#328E4E] text-white py-2 px-4 rounded-md hover:bg-green-800 duration-300 transition">
+                      Contribuer
 
                   </button></a>');
               }
@@ -228,7 +338,7 @@
             </div>
 
             <!-- Carousel -->
-            <div class="overflow-x-auto flex gap-6 py-4">
+            <div class="overflow-x-auto max-w-6xl mx-auto p-6 flex gap-6 py-4">
 
               
                 <?php
@@ -257,25 +367,58 @@
         </div>
     </div>
     </div>
-     <!-- Sponsors Section -->
-  <div class="max-w-6xl mx-auto p-6">
-    <h2 class="text-2xl font-bold mb-6">Nos sponsors et partenaires</h2>
-    <div class="grid grid-cols-3 gap-4">
-      <?php
-      $sponsorReq="select * from sponsors";
-      $sponsorRes=mysqli_query($conn, $sponsorReq);
-      while($row=mysqli_fetch_assoc($sponsorRes)){
-        echo('<img src="../uploads/'.$row['imgsponsor'].'" alt="Sponsor 1" class="rounded-lg shadow-md" />');
-      }
-      ?>
+ <!-- Sponsors Section -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-center text-3xl uppercase font-bold text-[#044952] mb-8">nos sponsors et partenaires</h2>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+        <?php
+        $sponsorReq = "select * from sponsors";
+        $sponsorRes = mysqli_query($conn, $sponsorReq);
+        
+        while($row = mysqli_fetch_assoc($sponsorRes)) {
+            echo '
+            <div class="aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden w-full">
+                <img 
+                    src="../uploads/'.$row['imgsponsor'].'" 
+                    alt="Sponsor logo" 
+                    class="w-full h-full object-contain p-4"
+                />
+            </div>
+            ';
+        }
+        
+      
+        $count = mysqli_num_rows($sponsorRes);
+        for($i = $count; $i < 8; $i++) {
+            echo '
+            <div class="aspect-[4/3] bg-gray-100 rounded-lg">
+                <!-- Empty placeholder -->
+            </div>
+            ';
+        }
+      
+        ?>
     </div>
-  </div>
+</div>
+
   <!-- Newsletter Section -->
-  <div class="bg-white py-8">
-    <div class="max-w-6xl mx-auto p-6 flex items-center gap-8">
-      <img src="https://via.placeholder.com/300" alt="Newsletter image" class="rounded-lg shadow-md" />
+
+  <div class="bg-white py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <!-- Left side - Image -->
+      <div class="aspect-[4/3] bg-gray-100 rounded-lg shadow-lg overflow-hidden">
+        <img 
+          src="../uploads/1733764363.png ?>" 
+          alt="Newsletter image" 
+          class="w-full h-full object-cover"
+        />
+      </div>
+      
+      <!-- Right side - Newsletter Form -->
       <div>
-        <h2 class="text-2xl font-bold mb-4">Abonnez-vous à notre newsletter</h2>
+        <h2 class="text-2xl text-[#044952] font-bold mb-4 uppercase">Abonnez-vous à notre newsletter</h2>
         <p class="mb-4">Recevez les dernières nouvelles et mises à jour directement dans votre boîte mail.</p>
         <form action="#" class="flex gap-4">
           <input type="email" placeholder="Adresse Email" class="p-2 border rounded-lg w-full" />
@@ -284,35 +427,51 @@
       </div>
     </div>
   </div>
-    <footer class="bg-gray-800 text-white py-6">
-        <div
-            class="container mx-auto px-4 space-y-4 md:space-y-0 md:flex md:justify-between sm:items-center sm:justify-center">
-            <div>
-                <p class="text-lg font-bold">LOGO</p>
-                <p>Contact</p>
-                <p>Email: ecoquest@gmail.com</p>
-                <p>Phone: +216 56 650 772</p>
-            </div>
-            <nav class="space-y-2">
-                <a href="#" class="block text-gray-400 hover:text-white">Home</a>
-                <a href="#" class="block text-gray-400 hover:text-white">The SDGs</a>
-                <a href="#" class="block text-gray-400 hover:text-white">Partnership Request</a>
-                <a href="#" class="block text-gray-400 hover:text-white">Campaigns</a>
-                <a href="#" class="block text-gray-400 hover:text-white">Contact</a>
-            </nav>
-            <div>
-                <label for="newsletter" class="block text-sm font-medium text-gray-400">Email Address</label>
-                <div class="flex mt-1">
-                    <input type="email" id="newsletter"
-                        class="p-2 border border-gray-600 rounded-l-md focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Enter your email">
-                    <button
-                        class="bg-[#328E4E] text-white px-4 py-2 rounded-r-md hover:bg-green-800 duration-300 transition">
-                        Subscribe
-                    </button>
-                </div>
-            </div>
+</div>
+     <!-- Footer -->
+     <footer class="bg-[#044952] text-white py-6">
+      <div
+        class="container mx-auto px-4 space-y-4 md:space-y-0 md:flex md:justify-between sm:items-center sm:justify-center"
+      >
+        <div>
+          <a href="#" class="flex items-center space-x-1 rtl:space-x-reverse">
+            <img src="logo equoquest imen-06.png" class="h-12" alt="Logo" />
+          </a>
+
+          <p>Contact</p>
+          <p>Email: ecoquest@gmail.com</p>
+          <p>Phone: +216 56 650 772</p>
         </div>
+        <nav class="space-y-2">
+          <a href="#" class="block text-gray-400 hover:text-white">Home</a>
+          <a href="#" class="block text-gray-400 hover:text-white">The SDGs</a>
+          <a href="#" class="block text-gray-400 hover:text-white"
+            >Partnership Request</a
+          >
+          <a href="#" class="block text-gray-400 hover:text-white">Campaigns</a>
+          <a href="#" class="block text-gray-400 hover:text-white">Contact</a>
+        </nav>
+        <div>
+          <label
+            for="newsletter"
+            class="block text-sm font-medium text-gray-400"
+            >Email Address</label
+          >
+          <div class="flex mt-1">
+            <input
+              type="email"
+              id="newsletter"
+              class="p-2 border border-gray-600 rounded-l-md focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Enter your email"
+            />
+            <button
+              class="bg-[#FF9100] text-white px-4 py-2 rounded-r-md hover:bg-green-800 duration-300 transition"
+            >
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
     </footer>
     <script>const menuToggle = document.getElementById('menu-toggle');
         const navbarSticky = document.getElementById('navbar-sticky');
