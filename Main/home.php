@@ -149,24 +149,28 @@
 
  
 <!-- Header Section -->
-<div class="relative bg-gray-200 p-6 flex items-center justify-start text-left mx-auto p-6  mb-6 " 
-     style="background-image: url('../uploads/bg2.jpg');
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            height: 70vh;">
+<div class="relative bg-gray-200 p-6 flex items-center justify-start text-left mx-auto py-32  mb-6 " 
+     style="background-image: ;
+             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../uploads/bg2.jpg');
+  height: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;">
+            
 
   <!-- Overlay for dimming effect -->
   <div class="absolute inset-0 bg-black opacity-50"></div>
 
   <!-- Content -->
-  <div class="relative animate-fade-down max-w-4xl md:pl-20 sm:pl-0 sm:text-center md:text-start ">
+  <div class="relative animate-fade-down max-w-4xl md:pl-20 sm:pl-0 text-start ">
     <h1 class="md:text-5xl mb-6 font-extrabold text-white leading-leading tracking-wide sm:text-3xl">
       ACT<br>
       CONNECT<br>
       TRANSFORM
     </h1>
     
-    <p class="mb-8 text-white font-medium md:text-xl leading-relaxed sm:text-lg">
+    <p class="mb-8 text-white  text-lg leading-relaxed ">
       Join EcoQuest and be part of a global movement to transform our planet. <br>
       Together, we can make a lasting impact for future generations.
     </p>
@@ -181,21 +185,27 @@
 
 
 <!-- About Us Section -->
-<div class="max-w-6xl mx-auto p-6 grid grid-cols-2 gap-8 items-center">
-  <div class="w-full">
-    <?php
-      echo('<img src="../uploads/'.$aboutimg.'" alt="About us" class="w-full max-w-md h-auto object-contain rounded-lg shadow-lg" />');
-    ?>
+<div class="max-w-6xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
+  <!-- Image Section -->
+  <div class="w-full h-96 bg-cover bg-center rounded-lg shadow-lg order-2 md:order-1" 
+       style="
+         background-image: url('../uploads/<?php echo $aboutimg; ?>');
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;">
   </div>
-  
-  <div class="w-full">
+
+  <!-- Text Section -->
+  <div class="w-full order-1 md:order-2">
     <h2 class="text-4xl font-bold mb-4 text-[#044952]">About Us</h2>
-    <p class="mb-2 font-regular text-lg text-justify"><?php echo($about); ?></p>
+    <p class="mb-2 font-regular sm:text-sm md:text-lg text-justify">
+      <?php echo($about); ?>  </p>
   </div>
 </div>
 
-  <!-- Qui Sommes-Nous Section -->
 
+
+  
   <!-- Stats Section -->
    <?php
     
@@ -253,8 +263,8 @@
    ?>
   
 
-  <div class="max-w-6xl mx-auto p-6">
-  <h2 class="text-2xl font-bold mb-6 text-center uppercase text-[#044952]">Campagne à venir</h2>
+  <div class="max-w-6xl mx-auto p-6 mt-20">
+  <h2 class="text-2xl font-bold mb-8 text-center uppercase text-[#044952]">Campagne à venir</h2>
   
   <div class="flex flex-col space-y-6">
     <?php
@@ -266,7 +276,7 @@
       echo('
       <div class="flex flex-col lg:flex-row items-center lg:items-start border-b pb-6">
         <!-- Date -->
-        <div class="flex-shrink-0 text-center text-gray-600 pr-0 lg:pr-6 mb-4 lg:mb-0">
+        <div class="flex-shrink-0 text-center text-gray-600 pr-0 lg:pr-12 mb-4 lg:mb-0">
           <p class="text-lg font-bold">'.date("M", strtotime($row['formatedDate'])).'</p>
           <div class="w-10 h-0.5 bg-slate-600 mx-auto"></div>
           <p class="text-3xl font-bold">'.date("d", strtotime($row['formatedDate'])).'</p>
@@ -278,16 +288,16 @@
         </div>
         
         <!-- Text -->
-        <div class="lg:pl-6 flex flex-col w-full lg:w-2/3 py-4 lg:py-0">
+        <div class="lg:pl-12 flex flex-col w-full lg:w-2/3 py-4 lg:py-0 self-center ">
           <h3 class="font-bold text-xl uppercase mb-4 text-gray-800 text-center lg:text-start">Campagne du TITLE HERE</h3>
-          <p class="mb-4 text-gray-700 text-justify">
+          <p class="mb-4 text-gray-700 text-justify text-lg ">
             '.$row['Description'].' - Join us to make our planet cleaner and healthier. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi nihil corporis soluta temporibus minus ea asperiores molestiae voluptate praesentium nesciunt voluptatibus, tempora veritatis autem repellendus sequi, maxime alias, numquam officia?
           </p>
           
           <!-- Button -->
           <div class="flex justify-center lg:justify-start mt-4">
             <a href="eventDetail.php?eventID='.$row['IDevent'].'" 
-               class="inline-block bg-[#FF9100] text-white font-bold py-2 px-4 rounded-md hover:bg-orange-500 transition duration-300 text-sm md:text-base lg:text-lg w-full sm:w-auto text-center">
+               class="inline-block bg-green-800 text-white py-2 px-4 rounded-md hover:bg-green-600 transition duration-300 text-sm md:text-base lg:text-md w-full sm:w-auto text-center">
               Voir les détails de l\'événement
             </a>
           </div>
@@ -305,8 +315,8 @@
 
 
 <!-- products -->
-    <div class="bg-white">
-        <div class="container mx-auto  my-20 px-4 md:flex md:items-center" >
+    <div class="bg-[#dce3c7]">
+        <div class="container mx-auto py-20 my-20 px-4 md:flex md:items-center" >
             
             <div class="text-left mb-6  md:w-1/3 sm:w-full mr-6 sm:pt-10 md:pt-0">
                 <h2 class="text-2xl font-bold text-gray-800">Nos produits écologiques</h2>

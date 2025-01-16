@@ -148,40 +148,42 @@
         }
         ?>
 <!-- ODD Section -->
-<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 overflow-x-hidden">
+<section class="max-w-6xl mx-auto p-6 px-4 sm:px-6 lg:px-8 py-16 overflow-x-hidden">
   <h1 class="text-3xl font-bold text-green-800 uppercase text-center mb-20">nous nous concentrons sur 4 des 17 ODD</h1>
 
   <div class="space-y-32">
     <!-- ODD 12 -->
-    <div class="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-center" data-scroll>
+    <div class="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-center justify-between" data-scroll>
       <div class="order-2 md:order-1 w-full md:w-2/3 opacity-0 -translate-x-full transition-all duration-1000 mx-auto" data-scroll-image="left">
         <img 
           src="../uploads/odd12.svg" 
           alt="ODD 12" 
-          class="w-full aspect-square object-cover bg-gray-200 rounded-lg"
+          class="w-full max-w-[250px] md:max-w-none aspect-square object-cover bg-gray-200 rounded-lg mx-auto"
+
         />
       </div>
-      <div class="order-1 md:order-2 space-y-4 text-center md:text-left">
+      <div class="order-1 md:order-2 space-y-4 text-center md:text-left w-4/5">
         <h2 class="text-xl font-bold text-[#044952]">ODD 12 : Consommation et production responsables</h2>
         <div class="space-y-2">
-          <p>Promouvoir des modes de consommation et de production durables est essentiel pour préserver nos ressources naturelles. Nous nous engageons à sensibiliser les individus et les organisations à adopter des pratiques écoresponsables.</p>
+          <p class="text-justify">Promouvoir des modes de consommation et de production durables est essentiel pour préserver nos ressources naturelles. Nous nous engageons à sensibiliser les individus et les organisations à adopter des pratiques écoresponsables.</p>
         </div>
       </div>
     </div>
 
     <!-- ODD 13 -->
     <div class="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-center" data-scroll>
-      <div class="order-1 space-y-4 text-center md:text-left">
-        <h2 class="text-xl font-bold text-[#044952]">ODD 13 : Mesures relatives à la lutte contre les changements climatiques</h2>
+      <div class="order-1 space-y-4 text-center md:text-left w-4/5 mx-auto">
+        <h2 class="text-xl font-bold text-[#044952]  ">ODD 13 : Mesures relatives à la lutte contre les changements climatiques</h2>
         <div class="space-y-2">
-          <p>Face à l'urgence climatique, nous agissons pour sensibiliser et encourager les actions concrètes contre le réchauffement global.</p>
+          <p class="text-justify">Face à l'urgence climatique, nous agissons pour sensibiliser et encourager les actions concrètes contre le réchauffement global.</p>
         </div>
       </div>
       <div class="order-2 w-full md:w-2/3 opacity-0 translate-x-full transition-all duration-1000 mx-auto" data-scroll-image="right">
         <img 
           src="../uploads/odd13.svg"
           alt="ODD 13" 
-          class="w-full aspect-square object-cover bg-gray-200 rounded-lg"
+          class="w-full max-w-[250px] md:max-w-none aspect-square object-cover bg-gray-200 rounded-lg mx-auto"
+
         />
       </div>
     </div>
@@ -192,30 +194,32 @@
         <img 
           src="../uploads/odd14.svg" 
           alt="ODD 14" 
-          class="w-full aspect-square object-cover bg-gray-200 rounded-lg"
+          class="w-full max-w-[250px] md:max-w-none aspect-square object-cover bg-gray-200 rounded-lg mx-auto"
+
         />
       </div>
-      <div class="order-1 md:order-2 space-y-4 text-center md:text-left">
+      <div class="order-1 md:order-2 space-y-4 text-center md:text-left w-4/5 mx-auto">
         <h2 class="text-xl font-bold text-[#044952]">ODD 14 : Vie aquatique</h2>
         <div class="space-y-2">
-          <p>Protéger les écosystèmes marins est une priorité pour nous. Nos initiatives visent à sensibiliser aux enjeux de la pollution marine.</p>
+          <p class="text-justify">Protéger les écosystèmes marins est une priorité pour nous. Nos initiatives visent à sensibiliser aux enjeux de la pollution marine.</p>
         </div>
       </div>
     </div>
 
     <!-- ODD 15 -->
     <div class="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-center" data-scroll>
-      <div class="order-1 space-y-4 text-center md:text-left">
-        <h2 class="text-xl font-bold text-[#044952]">ODD 15 : Vie terrestre</h2>
+      <div class="order-1 space-y-4 text-center md:text-left w-4/5 mx-auto">
+        <h2 class="text-xl font-bold text-[#044952] ">ODD 15 : Vie terrestre</h2>
         <div class="space-y-2">
-          <p>La protection des écosystèmes terrestres est au cœur de notre mission. Nous encourageons des actions locales telles que le nettoyage des forêts.</p>
+          <p class="text-justify">La protection des écosystèmes terrestres est au cœur de notre mission. Nous encourageons des actions locales telles que le nettoyage des forêts.</p>
         </div>
       </div>
       <div class="order-2 w-full sm:w-3/4 md:w-2/3 opacity-0 translate-x-full transition-all duration-1000 mx-auto" data-scroll-image="right">
         <img 
           src="../uploads/odd15.svg" 
           alt="ODD 15" 
-          class="sm:scale-75 md:w-full aspect-square object-cover bg-gray-200 rounded-lg"
+          class="w-full max-w-[250px] md:max-w-none aspect-square object-cover bg-gray-200 rounded-lg mx-auto"
+
         />
       </div>
     </div>
@@ -266,8 +270,9 @@
         </div>
       </div>
     </footer>
-    <script>const menuToggle = document.getElementById('menu-toggle');
-        const navbarSticky = document.getElementById('navbar-sticky');
+    <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navbarSticky = document.getElementById('navbar-sticky');
 
         menuToggle.addEventListener('click', () => {
             navbarSticky.classList.toggle('hidden');
@@ -291,8 +296,7 @@
         updateCount();
       });
     });
-  </script>
-<script>
+ 
 const observerOptions = {
   root: null,
   rootMargin: '0px',
