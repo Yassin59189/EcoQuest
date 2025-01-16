@@ -86,9 +86,9 @@
             color: #fff;
             text-align: center;
             padding: 10px 0;
-            position: fixed;
             bottom: 0;
             width: 100%;
+            margin-top: 5rem;
         }
 
         /* Formulaire */
@@ -164,7 +164,7 @@
     </header>
 
     <!-- Formulaire d'inscription -->
-    <div class="signup-container">
+    <div class="signup-container mb-5 h-[100vh]">
         <h1  class="text-3xl font-semibold mb-6 text-[#044952] text-center" >Sign Up</h1>
         <form action="signup.php" method="post">
             <label for="name">Full Name</label>
@@ -240,8 +240,8 @@
     </div>
 
     <!-- Footer -->
-    <footer class="mt-5">
-        <p>&copy; 2024 Your Website. All rights reserved.</p>
+    <footer>
+        <p>&copy; 2024 EcoQuest. All rights reserved.</p>
     </footer>
 </body>
 </html>

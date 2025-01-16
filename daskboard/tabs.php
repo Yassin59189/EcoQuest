@@ -189,10 +189,7 @@ include "conn.php";
                                 <a :class="openTab === 1 ? 'border-l border-t border-r rounded-t text-blue-700 font-semibold' : 'text-blue-500 hover:text-blue-800'"
                                     class="bg-white inline-block py-2 px-4 font-semibold" href="#">Home</a>
                             </li>
-                            <li class="mr-1" @click="openTab = 2">
-                                <a :class="openTab === 2 ? 'border-l border-t border-r rounded-t text-blue-700 font-semibold' : 'text-blue-500 hover:text-blue-800'"
-                                    class="bg-white inline-block py-2 px-4 font-semibold" href="#">Posts</a>
-                            </li>
+                           
                             <li class="mr-1" @click="openTab = 3">
                                 <a :class="openTab === 3 ? 'border-l border-t border-r rounded-t text-blue-700 font-semibold' : 'text-blue-500 hover:text-blue-800'"
                                     class="bg-white inline-block py-2 px-4 font-semibold" href="#">Sponsors</a>
@@ -223,24 +220,16 @@ include "conn.php";
                                 
                                 <form method="post" enctype="multipart/form-data">
 
-
-                                    <?php
-                                        echo('<div>
-                                        <img src="'.$row["banner"].'" alt="">
-                                        <button>Upload banner</button><br>                                        
-                                        <textarea rows="7" cols="50" name="aboutContent" id="">
-                                        '.$row["about"].'
+                                    <img src="<?php $row["banner"] ?>" alt="">
+                                    <button>Upload banner</button><br>
+                                    <h2 class="mt-5">About us description</h2>
+                                    <textarea rows="7" cols="50" name="aboutContent" id="">
+                                        <?php echo(trim($row['about'])) ?>
                                         </textarea><br>
-                                        about image
-                                        <img src="'.$row["aboutimg"].'" alt="">
-                                        <input type="file" name="aboutImage" id="aboutImage"><br>
-                                        <input type="submit" value="Edit" name="submit" class="my-5">
-                                        </div>');
-
-                                    ?>
-                                    <hr class="my-5">
-                                    <h2>add sponsor</h2><br>
-                                    <input type="file" name="sponsor" id="sponsor">
+                                    <h2>about image</h2>
+                                    <img src="../uploads/<?php echo($row["aboutimg"]) ?>" alt="" class="w-[5%]">
+                                    <input type="file" name="aboutImage" id="aboutImage"><br>
+                                    <input type="submit" value="Edit" name="submit" class="my-5">
                                 </form>
                                 <?php
                                             $aboutContent = isset($_POST['aboutContent']) ? $_POST['aboutContent'] : '';
@@ -250,83 +239,48 @@ include "conn.php";
                                                 $tmp_name = $_FILES['aboutImage']['tmp_name'];
                                                 $timestamp = time();
                                                 $extension = pathinfo($eventImage, PATHINFO_EXTENSION);
-    
                                                 $newFileName = $timestamp . '.' . $extension;
     
                                                 $location = "../uploads/" . $newFileName;
-    
+                                                
                                                 if (move_uploaded_file($tmp_name, $location)) {
       
                                                 } else {
                                                     echo "File not uploaded";
                                                 }
+                                            $homeEdit="update home set about='$aboutContent', aboutimg='$newFileName'";
+                                            $homeEditRes=mysqli_query($conn, $homeEdit);
+                                            if($homeEditRes){
+                                                echo("edited");
+                                                header("Location: " . $_SERVER['PHP_SELF']);
+                                                exit();
                                             }
-
-                                            if (isset($_FILES['sponsor']) && !empty($_FILES['sponsor']['name'])){
-                                                $sponsorImage = $_FILES['sponsor']['name'];
-                                                $sponsor_tmp_name = $_FILES['sponsor']['tmp_name'];
-                                                $timestamp = time();
-                                                $sponsorExtension = pathinfo($sponsorImage, PATHINFO_EXTENSION);
-    
-                                                $newSponsorFileName = $timestamp . '.' . $sponsorExtension;
-    
-                                                $sponsorLocation = "../uploads/" . $newSponsorFileName;
-    
-                                                if (move_uploaded_file($sponsor_tmp_name, $sponsorLocation)) {
-      
-                                                } else {
-                                                    echo "sponsor File not uploaded <br>";
-                                                }
                                             }
 
 
 
                                             
                                             }
-                                            $homeEdit="update home set about='$aboutContent', aboutimg='$newFileName'";
-                                            $homeEditRes=mysqli_query($conn, $homeEdit);
-                                            $sponsorEdit="insert into sponsors(imgsponsor) values('$newSponsorFileName')";
-                                            $sponsorEditRes=mysqli_query($conn, $sponsorEdit);
-                                            if($sponsorEditRes && $homeEditRes){
-                                                echo("edited");
-                                            }
+                                            
                                             
                                         
                                 ?>
                             </div>
                            <!--  new post  -->
                         </div>
-                        <div id="" class="" x-show="openTab === 2">
-                            <div class="max-w-xl mx-auto p-4 bg-white shadow-md rounded-md">
-                                <h2 class="text-lg font-bold mb-4">Create New Post</h2>
-                                <a href="">   
-                                    <button type="button"
-                                        class="px-4 py-2 mb-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none">
-                                        check Sponsors 
-                                    </button>
-                                </a>
-                                <form method="post">
-                                    <h2>add sponsor</h2><br>
-                                    <input type="file" name="sponsor" id="sponsor">
-                                </form>
-                            </div>
-                        </div>
+                        
                         <!-- add sponsor -->
                         <div id="" class="" x-show="openTab === 3">
                             <div class="max-w-xl mx-auto p-4 bg-white shadow-md rounded-md">
                                 <h2 class="text-lg font-bold mb-4">Add Sponsor</h2>
-                                <a href="">   
-                                    <button type="button"
-                                        class="px-4 py-2 mb-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none">
-                                        check Sponsors 
-                                    </button>
-                                </a>
-                                <form>
+                                
+                                <form method="post" enctype="multipart/form-data">
                                     <div class="mb-4">
                                         <label class="block text-gray-700 mb-2" for="sponsor-name">
                                             <i class="fas fa-handshake mr-2"></i>Sponsor Name
                                         </label>
                                         <input type="text" id="sponsor-name"
+                                            name="sponsorName"
                                             class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-yellow-300"
                                             placeholder="Enter sponsor name">
                                     </div>
@@ -334,14 +288,69 @@ include "conn.php";
                                         <label class="block text-gray-700 mb-2" for="sponsor-logo">
                                             <i class="fas fa-upload mr-2"></i>Upload Sponsor Logo
                                         </label>
-                                        <input type="file" id="sponsor-logo"
+                                        <input type="file" id="sponsorLogo"
+                                            name="sponsorLogo"
                                             class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-yellow-300">
                                     </div>
-                                    <button type="submit"
-                                        class="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-600">
-                                        <i class="fas fa-plus mr-2"></i>Add Sponsor
-                                    </button>
+                                    
+                                    <input type="submit" name="addSponsor" value="Add sponsor" class="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-600">
                                 </form>
+                                <?php
+                                if(isset($_POST['addSponsor'])){
+                                    $sponsorName=$_POST['sponsorName'];
+                                    if (isset($_FILES['sponsorLogo']) && !empty($_FILES['sponsorLogo']['name'])){
+                                        $sponsorLogo=$_FILES['sponsorLogo']['name'];
+                                        $tmp_name = $_FILES['sponsorLogo']['tmp_name'];
+                                                    $timestamp = time();
+                                                    $extension = pathinfo($sponsorLogo, PATHINFO_EXTENSION);
+                                                    $newFileName = $timestamp . '.' . $extension;
+        
+                                                    $location = "../uploads/" . $newFileName;
+                                                    
+                                                    if (move_uploaded_file($tmp_name, $location)) {
+          
+                                                    } else {
+                                                        echo "File not uploaded";
+                                                    }
+                                        $addSponsorReq="insert into sponsors(nomsponsor, imgsponsor) values ('$sponsorName', '$newFileName')";
+                                        $addSponsorRes=mysqli_query($conn, $addSponsorReq);
+                                        if($addSponsorRes){
+                                            echo("inserting sponsor successfully<br>");
+                                        }
+                                    } else{
+                                        echo($_FILES['sponsorLogo']);
+                                    }
+
+                                }
+                                
+                                ?>
+                                <table class="min-w-full bg-white mt-5">
+                                <thead class="bg-gray-800 text-white">
+                                <tr>
+                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Name</th>
+                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Actions</th>
+                                </tr>
+                                </thead>
+                            <tbody class="text-gray-700">
+                            <tr>
+                                
+                                <!-- SHOW CURRENT SPONSORS -->
+                                 <?php
+                                 $showSponsorReq="select * from sponsors";
+                                 $showSponsorRes=mysqli_query($conn, $showSponsorReq);
+                                 while($showSponsor=mysqli_fetch_assoc($showSponsorRes)){
+                                    echo "<td name='hiddenEventID' class='py-4 px-4 border-b border-grey-light hidden'>" .$showSponsor['idsponsor']."</td>";
+                                    echo "<td class='py-4 px-4 border-b border-grey-light'>" .$showSponsor['nomsponsor']."</td>";
+                                    echo "<td class='py-4 px-4 border-b border-grey-light flex'>
+                                        <a href='deleteSponsor.php?idsponsor=".$showSponsor['idsponsor']."'>
+                                            <i class='fas fa-trash-alt text-xl text-red-600 ml-2'
+                                                aria-hidden='true'></i></a>
+                                        </td>
+                                    </tr>";
+                                 }
+                                 ?>
+                                 </tbody>
+                                 </table>
                             </div>
                         </div>
                        <!--  Milestones  -->

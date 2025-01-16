@@ -1,6 +1,6 @@
 <?php
 include "conn.php";
-$req = "select * from partenaires where statue = 'P' ";
+$req = "select * from partenaires";
 $res = mysqli_query($conn, $req);
 
 
@@ -195,7 +195,7 @@ $res = mysqli_query($conn, $req);
                                     <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Name</th>
                                     <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Phone</th>
                                     <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Email</th>
-                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Type</th>
+                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Message</th>
                                     <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Location</th>
                                     <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Application date</th>
                                     <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Status</th>
@@ -208,29 +208,26 @@ $res = mysqli_query($conn, $req);
                                     if(mysqli_num_rows($res)) {
                                         while($row = mysqli_fetch_assoc($res)) {
                                             echo "<td name='hiddenEventID' class='py-4 px-4 border-b border-grey-light hidden'>" .$row['IDpartenaire'] ."</td>";
-                                            echo "<td class='py-4 px-4 border-b border-grey-light'>" .$row['username'] ."</td>";
+                                            echo "<td class='py-4 px-4 border-b border-grey-light'>" .$row['businessName'] ."</td>";
                                             echo "<td class='py-4 px-4 border-b border-grey-light'>" .$row['tel'] ."</td>";
                                             echo "<td class='py-4 px-4 border-b border-grey-light'>" .$row['email'] ."</td>";
-                                            echo "<td class='py-4 px-4 border-b border-grey-light'>" .$row['typepartenaire'] ."</td>";
+                                            echo "<td class='py-4 px-4 border-b border-grey-light'>" .$row['message'] ."</td>";
                                             echo "<td class='py-4 px-4 border-b border-grey-light'>" .$row['location'] ."</td>";
                                             echo "<td class='py-4 px-4 border-b border-grey-light'>" .$row['dateapplication'] ."</td>";
                                             if($row['statue'] =="P") {
                                                 echo "<td class='py-4 px-4 border-b border-grey-light text-yellow-500'>Pending</td>";
-                                            }
-                                            /*  else if($row['statue'] =="A") {
+                                            } else if($row['statue'] =="A") {
                                                 echo "<td class='py-4 px-4 border-b border-grey-light text-green-600'>Accepted</td>";
-                                            }
-                                            else if($row['statue'] =="D") {
+                                            } else if($row['statue'] =="D") {
                                                 echo "<td class='py-4 px-4 border-b border-grey-light text-red-600'>Declined</td>";
-                                            }  */
+                                            } 
                                             echo "<td class='py-4 px-4 border-b border-grey-light flex items-center '>
                                       <a href='partnersAccept.php?IDpartenaire=".$row['IDpartenaire']."'>
                                             <i class='fas fa-check-square text-2xl'
                                                 style='color: rgb(4, 160, 25);'></i></a>
-                                        <a href='partnersPending.php?IDpartenaire=".$row['IDpartenaire']."'>
+                                        <a href='partnersReject.php?IDpartenaire=".$row['IDpartenaire']."'>
                                             <i class='fas fa-trash-alt text-xl text-red-600 ml-2'
                                                 aria-hidden='true'></i></a>
-
                                     </td>
                                 </tr>";
                                         }
