@@ -8,45 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <h1>Become partner</h1>
-    <form action="becomePartner.php" method="post">
-        <label for="firstName">First name</label>
-        <input type="text" name="firstName" id=""><br>
-
-        <label for="lastName">Last name</label>
-        <input type="text" name="lastName" id=""><br>
-
-        <label for="businessEmail">Business email</label>
-        <input type="email" name="businessEmail" id=""><br>
-
-        <label for="tel">Phone number</label>
-        <input type="tel" name="tel" id=""><br>
-
-        <label for="address">Business address</label>
-        <input type="text" name="address" id=""><br>
-
-        <label for="businessName">Business name</label>
-        <input type="text" name="businessName" id=""><br>
-
-        <label for="vertical">Partner vertical</label>
-        <select name="vertical" id="">
-            <option value="Sustainable Fashion">Sustainable Fashion</option>
-            <option value="Home & Living">Home & Living</option>
-            <option value="Health & Wellness">Health & Wellness</option>
-            <option value="Food & Beverage">Food & Beverage</option>
-            <option value="Personal Care">Personal Care</option>
-            <option value="Green Technology">Green Technology</option>
-            <option value="Artisanal & Handmade Goods">Artisanal & Handmade Goods</option>
-        </select><br>
-
-        <label for="message">Message</label>
-        <textarea name="message" id=""></textarea><br>
-
-        <input type="submit" name="submit" value="Become a partner">
-    </form>
-
-
-
+    
 </body>
 </html>
 
@@ -54,19 +16,23 @@
 
 <?php
     include "conn.php";
+    session_start();
     if(isset($_POST["submit"])){
-        $firstName = $_POST['firstName'];
-        $lastName = $_POST['lastName'];
+        $userid=$_SESSION['id'];
+        $userInfoReq="select * from utilisateur where id='$userid'";
+        $userInfoRes=mysqli_query($conn, $userInfoReq);
+        if($userInfo=mysqli_fetch_assoc($userInfoRes)){
+            $Name=$userInfo['Nom'];
+            $tel=$userInfo['tel'];
+        }
         $businessEmail = $_POST['businessEmail'];
-        $address =  isset($_POST['address']) ? $_POST['address'] : '' ;
+        $businessAdresse =  isset($_POST['businessAdresse']) ? $_POST['businessAdresse'] : '' ;
         $businessName = $_POST['businessName'];
-        $tel = isset($_POST['tel']) ? $_POST['tel'] : '' ;
-        $vertical = isset($_POST['vertical']) ? $_POST['vertical'] : '' ;
-        $message = isset($_POST['message']) ? $_POST['message'] : '' ;
+        $message = isset($_POST['partnershipDetails']) ? $_POST['partnershipDetails'] : '' ;
 
         $errors = array();
 
-        if(empty($firstName) OR empty($lastName) OR empty($businessEmail) OR empty($businessName) OR empty($address) OR empty($tel) OR empty($vertical)){
+        if(empty($businessEmail) OR empty($businessName) OR empty($businessAdresse) OR empty($message)){
             array_push($errors, "All fields are required");
         }
 
@@ -77,8 +43,8 @@
         }
 
         else {
-            $req = "insert into partenaires (firstname, lastname, role, email, vertical, businessName, location, tel, message)
-            values ('$firstName', '$lastName', 'partner', '$businessEmail', '$vertical', '$businessName', '$address', '$tel', '$message')";
+            $req = "insert into partenaires (iduser, nom,  email, businessName, location, tel, message)
+            values ('$userid', '$Name', '$businessEmail', '$businessName', '$businessAdresse', '$tel', '$message')";
             $res = mysqli_query($conn, $req);
 
             if($res) {
@@ -145,22 +111,22 @@
             <div id="navbar-sticky" class="hidden items-center justify-between w-full md:flex md:w-auto md:order-1">
                 <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-[#044952] dark:border-gray-700">
                     <li>
-                        <a href="#" class="block py-2 px-3 text-gray-900  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
+                        <a href="home.php" class="block py-2 px-3 text-gray-900  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
                     </li>
                     <li>
                         <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">The SDGs</a>
                     </li>
                     <li>
-                        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Partnership Request</a>
+                        <a href="becomePartner" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 md:text-[#FF9100] md:dark:text-[#FF9100]">Partnership Request</a>
                     </li>
                     <li>
-                        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Campaigns</a>
+                        <a href="Event.php" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Campaigns</a>
                     </li>
                     <li>
                         <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
                     </li>
                     <li>
-                        <a href="#" class="block py-2 px-3 text-white bg-[#FF9100] rounded md:bg-transparent md:text-[#FF9100] md:p-0 md:dark:text-[#FF9100]" aria-current="page">Become a Partner</a>
+                        <a href="#" class="block py-2 px-3 text-white bg-[#FF9100] rounded md:bg-transparent  md:p-0 " aria-current="page">Donation</a>
                     </li>
                 </ul>
             </div>
@@ -171,34 +137,25 @@
         <form action="becomePartner.php" method="post" class="bg-white shadow-md rounded-lg p-6 md:p-8 max-w-lg mx-auto">
             <h1 class="text-3xl font-semibold mb-6 text-[#044952] text-center">Become Our Partner</h1>
 
-            <div class="mb-4 flex">
-                <div class="mr-5 w-1/2">
-                    <label for="first-name" class="block text-sm font-medium text-gray-700">
-                        First Name
-                    </label>
-                    <input type="text" id="first-name" name="firstName"
-                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="First Name">
-                </div>
-                <div class="w-1/2">
-                    <label for="last-name" class="block text-sm font-medium text-gray-700">Last Name</label>
-                    <input type="text" id="last-name" name="lastName"
-                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Last Name">
-                </div>
-            </div>
+            
 
             <div class="mb-4">
-                <label for="business-email" class="block text-sm font-medium text-gray-700">Business Email</label>
+                <label for="business-email" class="block text-sm font-medium text-gray-700">Business Email *</label>
                 <input type="email" id="business-email" name="businessEmail"
                     class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                     placeholder="example@business.com">
             </div>
             <div class="mb-4">
-                <label for="business-name" class="block text-sm font-medium text-gray-700">Business Name</label>
+                <label for="business-name" class="block text-sm font-medium text-gray-700">Business Name *</label>
                 <input type="text" id="business-name" name="businessName"
                     class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Your Business Name">
+            </div>
+            <div class="mb-4">
+                <label for="business-name" class="block text-sm font-medium text-gray-700">Business Adresse *</label>
+                <input type="text" id="business-name" name="businessAdresse"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Your Business Adresse">
             </div>
             <div class="mb-4">
                 <label for="partnership-details" class="block text-sm font-medium text-gray-700">Why would you like to partner with us?</label>

@@ -222,14 +222,20 @@ include "conn.php";
 
                                     <img src="<?php $row["banner"] ?>" alt="">
                                     <button>Upload banner</button><br>
-                                    <h2 class="mt-5">About us description</h2>
-                                    <textarea rows="7" cols="50" name="aboutContent" id="">
+                                    <div class="mb-4 mt-5">
+                                        <label class="block text-gray-700 mb-2">
+                                            About us description
+                                        </label>
+
+                                            <textarea rows="7" cols="50" name="aboutContent" id="" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:ring-yellow-300">
                                         <?php echo(trim($row['about'])) ?>
-                                        </textarea><br>
+                                        </textarea>
+                                    </div>
+                                    
                                     <h2>about image</h2>
                                     <img src="../uploads/<?php echo($row["aboutimg"]) ?>" alt="" class="w-[5%]">
                                     <input type="file" name="aboutImage" id="aboutImage"><br>
-                                    <input type="submit" value="Edit" name="submit" class="my-5">
+                                    <input type="submit" value="Edit" name="submit" class="my-5 w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-600">
                                 </form>
                                 <?php
                                $aboutContent = isset($_POST['aboutContent']) ? $_POST['aboutContent'] : '';
