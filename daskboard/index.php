@@ -285,6 +285,44 @@
                         </table>
                     </div>
                 </div>
+                <!-- DISPLAY USERS -->
+                <div class="w-full mt-12">
+                    <p class="text-xl pb-3 flex items-center">
+                        <i class="fas fa-list mr-3"></i> Users
+                    </p>
+                    <div class="bg-white overflow-auto">
+                        <table class="min-w-full bg-white">
+                            <thead class="bg-gray-800 text-white">
+                                <tr>
+                                    <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Name</th>
+                                    <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Username</th>
+                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Email</th>
+                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Adresse</th>
+                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Tel</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-700">
+                                <?php
+                                $usersReq="select * from utilisateur";
+                                $usersRes=mysqli_query($conn, $usersReq);
+                                while($users=mysqli_fetch_assoc($usersRes)) {
+                                    echo('<tr>
+                                    <td class="w-1/3 text-left py-3 px-4">'.$users['Nom'].'</td>
+                                    <td class="w-1/3 text-left py-3 px-4">'.$users['username'].'</td>
+                                    <td class="text-left py-3 px-4"><a class="hover:text-blue-500"
+                                            href="tel:622322662">'.$users['Email'].'</a></td>
+                                    <td class="text-left py-3 px-4"><a class="hover:text-blue-500"
+                                            >'.$users['adresse'].'</a></td>
+                                    <td class="w-1/3 text-left py-3 px-4 ">'.$users['tel'].'</td>
+                                </tr>');
+                                }
+                                ?>
+                                
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </main>
 
 

@@ -142,7 +142,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             <!-- Campaign Card -->
             <?php
-                $req1="select IDevent, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, Nom, eventType,eventImage from evenements where date < CURDATE()";
+                $req1="select IDevent, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, Nom, eventType,eventImage from evenements where date < CURDATE() and Status = 'Done'";
                 $res1=mysqli_query($conn, $req1);
                 while($row1=mysqli_fetch_assoc($res1)){
                     echo(' <a href="eventDetail.php?eventID='.$row1['IDevent'].'">           <div

@@ -171,7 +171,7 @@
       Together, we can make a lasting impact for future generations.
     </p>
     
-    <a href="#cta" class=" text-white bg-[#FF9100] hover:bg-green-800 duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-4 text-center dark:bg-[#FF9100] dark:hover:bg-[#FFCE00] dark:focus:ring-[#1d3b24]">
+    <a href="event.php" class=" text-white bg-[#FF9100] hover:bg-green-800 duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-4 text-center dark:bg-[#FF9100] dark:hover:bg-[#FFCE00] dark:focus:ring-[#1d3b24]">
       See Campaigns
     </a>
   </div>
@@ -190,7 +190,7 @@
   
   <div class="w-full">
     <h2 class="text-4xl font-bold mb-4 text-[#044952]">About Us</h2>
-    <p class="mb-2 font-regular text-lg text-justify"><?php echo($about); ?> - Join us to make our planet cleaner and healthier. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi nihil corporis soluta temporibus minus ea asperiores molestiae voluptate praesentium nesciunt voluptatibus, tempora veritatis autem repellendus sequi, maxime alias, numquam officia?</p>
+    <p class="mb-2 font-regular text-lg text-justify"><?php echo($about); ?></p>
   </div>
 </div>
 
