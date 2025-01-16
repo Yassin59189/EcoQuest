@@ -1,3 +1,16 @@
+<?php
+  session_start();
+  include "conn.php";
+  $ID=$_SESSION['id'];
+  $req="select * from utilisateur where ID='$ID'";
+  $res=mysqli_query($conn, $req);
+  if($row=mysqli_fetch_assoc($res)){
+    $name=$row['Nom'];
+    $email=$row['Email'];
+    $tel=$row['tel'];
+    $adresse=$row['adresse'];
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,9 +39,7 @@
     animation: fade-down 1s ease-out;
   }
 </style>
-<?php
- include "conn.php";
- session_start();?>
+
 </head>
   <body>
     <nav
@@ -188,8 +199,8 @@
         </div>
 
         <div class="-mt-10">
-            <h1 class="text-2xl font-bold text-[#044952] m-0 mt-4">Mariem Ben Mohamed</h1>
-            <p class="text-gray-600 mt-1">Acteur</p>
+            
+            <h1 class="text-2xl font-bold text-[#044952] m-0 mt-4"><?php echo($name) ?></h1>
         </div>
     </div>
 
@@ -226,15 +237,15 @@
                   <li class="flex items-center space-x-2">
                    <i class="fas fa-regular fa-envelope text-green-700"></i>
                       <i class="fas fa-envelope fa-regular "></i>
-                      <span><b>Email:</b> ecoquest@gmail.com</span>
+                      <span><b>Email:</b> <?php echo($email); ?></span>
                   </li>
                   <li class="flex items-center space-x-2">
                       <i class="fas fa-phone-alt fa-regular text-green-700"></i>
-                      <span><b>Phone:</b> +216 56 650 772</span>
+                      <span><b>Phone:</b> <?php echo($tel); ?></span>
                   </li>
                   <li class="flex items-center space-x-2">
                     <i class="fas fa-map-marker-alt  fa-regular text-green-700"></i>
-                    <span><b>Adress:</b>  123 Green St, Tunis, Tunisia</span>
+                    <span><b>Adress:</b>  <?php echo($adresse); ?></span>
                   </li>
                 </ul>
                 <div class="flex gap-4 mt-4">
