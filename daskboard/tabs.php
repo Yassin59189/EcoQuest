@@ -232,38 +232,54 @@ include "conn.php";
                                     <input type="submit" value="Edit" name="submit" class="my-5">
                                 </form>
                                 <?php
-                                            $aboutContent = isset($_POST['aboutContent']) ? $_POST['aboutContent'] : '';
-                                            if(isset($_POST['submit'])){
-                                            if (isset($_FILES['aboutImage']) && !empty($_FILES['aboutImage']['name'])){
-                                                $eventImage = $_FILES['aboutImage']['name'];
-                                                $tmp_name = $_FILES['aboutImage']['tmp_name'];
-                                                $timestamp = time();
-                                                $extension = pathinfo($eventImage, PATHINFO_EXTENSION);
-                                                $newFileName = $timestamp . '.' . $extension;
-    
-                                                $location = "../uploads/" . $newFileName;
-                                                
-                                                if (move_uploaded_file($tmp_name, $location)) {
-      
-                                                } else {
-                                                    echo "File not uploaded";
-                                                }
-                                            $homeEdit="update home set about='$aboutContent', aboutimg='$newFileName'";
-                                            $homeEditRes=mysqli_query($conn, $homeEdit);
-                                            if($homeEditRes){
-                                                echo("edited");
-                                                header("Location: " . $_SERVER['PHP_SELF']);
-                                                exit();
-                                            }
-                                            }
+                               $aboutContent = isset($_POST['aboutContent']) ? $_POST['aboutContent'] : '';
 
-
-
-                                            
-                                            }
-                                            
-                                            
-                                        
+                               if (isset($_POST['submit'])) {
+                                   // Debugging the submitted content
+                                   var_dump($aboutContent); 
+                               
+                                   if (isset($_FILES['aboutImage']) && !empty($_FILES['aboutImage']['name'])) {
+                                       $eventImage = $_FILES['aboutImage']['name'];
+                                       $tmp_name = $_FILES['aboutImage']['tmp_name'];
+                                       $timestamp = time();
+                                       $extension = pathinfo($eventImage, PATHINFO_EXTENSION);
+                                       $newFileName = $timestamp . '.' . $extension;
+                               
+                                       $location = "../uploads/" . $newFileName;
+                               
+                                       if (move_uploaded_file($tmp_name, $location)) {
+                                           // File uploaded successfully
+                                       } else {
+                                           echo "File not uploaded";
+                                       }
+                               
+                                       $homeEdit = "UPDATE home SET about='$aboutContent', aboutimg='$newFileName'";
+                                       $homeEditRes = mysqli_query($conn, $homeEdit);
+                               
+                                       if (!$homeEditRes) {
+                                           // Debugging SQL errors
+                                           die("Database query failed: " . mysqli_error($conn));
+                                       } else {
+                                           echo "Edited successfully.";
+                                           header("Location: " . $_SERVER['PHP_SELF']);
+                                           exit();
+                                       }
+                                   } else {
+                                       // Handle case where only the text changes, no image upload
+                                       $homeEdit = "UPDATE home SET about='$aboutContent'";
+                                       $homeEditRes = mysqli_query($conn, $homeEdit);
+                               
+                                       if (!$homeEditRes) {
+                                           die("Database query failed: " . mysqli_error($conn));
+                                       } else {
+                                           echo "Edited successfully.";
+                                           header("Location: " . $_SERVER['PHP_SELF']);
+                                           exit();
+                                       }
+                                   }
+                               }
+                               
+       
                                 ?>
                             </div>
                            <!--  new post  -->
