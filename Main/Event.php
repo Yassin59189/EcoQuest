@@ -188,36 +188,24 @@
     <section class="container mx-auto py-12 px-6">
         <h2 class="text-3xl font-semibold mb-6 text-[#044952]">Questions fréquemment posées (FAQ)</h2>
         <div class="space-y-4">
-            <!-- FAQ Item -->
-            <div class="bg-gray-200 rounded p-4">
+            <?php
+            $faqReq="select * from FAQ";
+            $faqRes=mysqli_query($conn, $faqReq);
+            $i=0;
+            while($FAQ=mysqli_fetch_assoc($faqRes)){
+                $i++;
+                echo('<div class="bg-gray-200 rounded p-4">
                 <div class="flex justify-between items-center">
-                    <p>What is EcoQuest?</p>
-                    <button onclick="toggleFAQ('faq1')" class="text-xl font-bold">+</button>
+                    <p>'.$FAQ['question'].'</p>
+                    <button onclick="toggleFAQ(\'faq'.$i.'\')" class="text-xl font-bold">+</button>
                 </div>
-                <div id="faq1" class="mt-2 hidden">
-                    <p class="text-sm text-gray-700">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.</p>
+                <div id="faq'.$i.'" class="mt-2 hidden">
+                    <p class="text-sm text-gray-700">'.$FAQ['answer'].'</p>
                 </div>
-            </div>
-            <!-- FAQ Item -->
-            <div class="bg-gray-200 rounded p-4">
-                <div class="flex justify-between items-center">
-                    <p>How can I contribute?</p>
-                    <button onclick="toggleFAQ('faq2')" class="text-xl font-bold">+</button>
-                </div>
-                <div id="faq2" class="mt-2 hidden">
-                    <p class="text-sm text-gray-700">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.</p>
-                </div>
-            </div>
-            <!-- FAQ Item -->
-            <div class="bg-gray-200 rounded p-4">
-                <div class="flex justify-between items-center">
-                    <p>Where do the donations go?</p>
-                    <button onclick="toggleFAQ('faq3')" class="text-xl font-bold">+</button>
-                </div>
-                <div id="faq3" class="mt-2 hidden">
-                    <p class="text-sm text-gray-700">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.</p>
-                </div>
-            </div>
+            </div>');
+            }
+            ?>
+            
         </div>
     </section>
 
