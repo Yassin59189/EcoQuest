@@ -152,7 +152,7 @@
 <!-- Header Section -->
 <div class="relative bg-gray-200 p-6 flex items-center justify-start text-left mx-auto py-32  mb-6 " 
      style="background-image: ;
-             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../uploads/bg2.jpg');
+             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../uploads/<?php echo($banner); ?>');
   height: 50%;
   background-position: center;
   background-repeat: no-repeat;

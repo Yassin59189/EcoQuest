@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(isset($_SESSION['id'])){
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -173,7 +179,7 @@
 
 <?php
                 include "conn.php";
-                session_start();
+                
                 $eventID=$_GET['eventID'];
                 $req="select Nom, Description,Googlemaps, Status, Location, DATE_FORMAT(Date, '%b') as month, DATE_FORMAT(Date, '%d') as day, DAYNAME(Date) as dayName, DATE_FORMAT(startTime, '%h:%i %p') as startTime, DATE_FORMAT(endTime, '%h:%i %p') as endTime,eventImage  from evenements where IDevent=$eventID";
                 $res=mysqli_query($conn, $req);
@@ -289,7 +295,41 @@
     </div>
 </section>
 
-    
+    <!-- Section Partenaires et Sponsors -->
+    <section class="bg-white py-10">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Partenaires et Sponsors</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+        <?php
+        $sponsorReq = "select * from sponsors";
+        $sponsorRes = mysqli_query($conn, $sponsorReq);
+        
+        while($row = mysqli_fetch_assoc($sponsorRes)) {
+            echo '
+            <div class="aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden w-full">
+                <img 
+                    src="../uploads/'.$row['imgsponsor'].'" 
+                    alt="Sponsor logo" 
+                    class="w-full h-full object-contain p-4"
+                />
+            </div>
+            ';
+        }
+        
+      
+        $count = mysqli_num_rows($sponsorRes);
+        for($i = $count; $i < 8; $i++) {
+            echo '
+            <div class="aspect-[4/3] bg-gray-100 rounded-lg">
+                <!-- Empty placeholder -->
+            </div>
+            ';
+        }
+      
+        ?>
+    </div>
+        </div>
+    </section>
 
   
       <!-- Tableau corrigé -->
@@ -374,6 +414,21 @@
     </tbody>
 </table>
       </section>
+      <section>
+        <h1>Gallery</h1>
+        
+        <?php
+        $galleryReq="select gallery from evenements where IDevent='$eventID'";
+        $gallerRes=mysqli_query($conn, $galleryReq);
+        while($gallery=mysqli_fetch_assoc($gallerRes)){
+            $photos = explode(",", $gallery['gallery']);
+            foreach($photos as $photo){
+                echo('<img src="../uploads/'.$photo.'" alt="">');
+            }
+            
+        }
+        ?>
+      </section>
     <?php
         }
     ?>
@@ -457,3 +512,10 @@
 </body>
 
 </html>
+<?php
+} else {
+    header("location: login.php");
+}
+
+
+?>

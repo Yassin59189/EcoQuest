@@ -1,3 +1,9 @@
+<?php
+include "conn.php";
+session_start();
+if(isset($_SESSION['id'])){
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +21,6 @@
 
 
 <?php
-    include "conn.php";
-    session_start();
     if(isset($_POST["submit"])){
         $userid=$_SESSION['id'];
         $userInfoReq="select * from utilisateur where id='$userid'";
@@ -257,3 +261,8 @@
     </body>
 
 </html>
+<?php
+} else {
+    header("location: login.php");
+}
+?>

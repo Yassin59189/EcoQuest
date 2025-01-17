@@ -7,7 +7,7 @@
     $req2 = "select * from partenaires where statue = 'A' ";
     $res2 = mysqli_query($conn, $req2);
 
-    if(isset($_SESSION['Nom']) && isset($_SESSION['id'])){
+    if(isset($_SESSION["id"]) && $_SESSION["role"]==="admin"){
 
 ?>
 
@@ -36,7 +36,7 @@
         }
 
         .bg-sidebar {
-            background: #3d68ff;
+            background: #044952;
         }
 
         .cta-btn {
@@ -69,10 +69,7 @@
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
         <div class="p-6">
             <a href="index.php" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
-            <button
-                class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                <i class="fas fa-plus mr-3"></i> New Report
-            </button>
+             
         </div>
         <nav class="text-white text-base font-semibold pt-3">
             <a href="index.php" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
@@ -88,13 +85,9 @@
                 <i class="fas fa-table mr-3"></i>
                 Manage Partners
             </a>
-            <a href="forms.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                <i class="fas fa-align-left mr-3"></i>
-                Forms
-            </a>
             <a href="tabs.php" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-tablet-alt mr-3"></i>
-                Tabbed Content
+                Manage Content
             </a>
             <a href="calendar.php"
                 class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
@@ -117,6 +110,7 @@
                 <button x-show="isOpen" @click="isOpen = false"
                     class="h-full w-full fixed inset-0 cursor-default"></button>
                 <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
+                     <a href="../Main/home.php" class="block px-4 py-2 account-link hover:text-white">EcoQuest</a>
                     <a href="logout.php" class="block px-4 py-2 account-link hover:text-white">Sign Out</a>
                 </div>
             </div>
@@ -186,24 +180,7 @@
             <main class="w-full flex-grow p-6">
                 <h1 class="text-3xl text-black pb-6">Dashboard</h1>
 
-                <div class="flex flex-wrap mt-6">
-                    <div class="w-full lg:w-1/2 pr-0 lg:pr-2">
-                        <p class="text-xl pb-3 flex items-center">
-                            <i class="fas fa-plus mr-3"></i> Monthly Reports
-                        </p>
-                        <div class="p-6 bg-white">
-                            <canvas id="chartOne" width="400" height="200"></canvas>
-                        </div>
-                    </div>
-                    <div class="w-full lg:w-1/2 pl-0 lg:pl-2 mt-12 lg:mt-0">
-                        <p class="text-xl pb-3 flex items-center">
-                            <i class="fas fa-check mr-3"></i> Resolved Reports
-                        </p>
-                        <div class="p-6 bg-white">
-                            <canvas id="chartTwo" width="400" height="200"></canvas>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="w-full mt-12">
                     <p class="text-xl pb-3 flex items-center">
                         <i class="fas fa-list mr-3"></i>Staff
@@ -218,7 +195,7 @@
                                     </th>
                                     <th
                                         class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Rol
+                                        Role
                                     </th>
                                     
                                 </tr>
@@ -299,6 +276,7 @@
                                     <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Email</th>
                                     <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Adresse</th>
                                     <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Tel</th>
+                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="text-gray-700">
@@ -314,11 +292,13 @@
                                     <td class="text-left py-3 px-4"><a class="hover:text-blue-500"
                                             >'.$users['adresse'].'</a></td>
                                     <td class="w-1/3 text-left py-3 px-4 ">'.$users['tel'].'</td>
+                                    <td class="w-1/3 text-left py-3 px-4 "><a href="deleteUser.php?userid='.$users['ID'].'">
+                                            <i class="fas fa-trash-alt text-xl text-red-600" aria-hidden="true"></i></a></td>
                                 </tr>');
                                 }
                                 ?>
                                 
-                                
+
                             </tbody>
                         </table>
                     </div>
@@ -423,6 +403,6 @@
 
 <?php
     }else {
-        header("Location: login.html");
+        header("Location: ../Main/login.php");
     }
 ?>

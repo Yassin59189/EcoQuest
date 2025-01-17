@@ -165,6 +165,9 @@
                                 
                                  </tbody>
                                  </table>
+                                 <!-- EVENT PHOTOS -->
+                                 <label for="eventName" class="block text-sm font-medium text-gray-700 mt-5">Event Photos</label>
+                                 <input type="file" name="gallery[]" id="" multiple="">
                             </div>
 
                             <!-- Event Image Upload -->
