@@ -1,80 +1,18 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="Main.css">
-    <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Main.css" />
+    <title>Contact Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
-    
-</body>
-</html>
+  </head>
 
-
-
-<?php
-    include "conn.php";
-    session_start();
-    if(isset($_POST["submit"])){
-        $userid=$_SESSION['id'];
-        $userInfoReq="select * from utilisateur where id='$userid'";
-        $userInfoRes=mysqli_query($conn, $userInfoReq);
-        if($userInfo=mysqli_fetch_assoc($userInfoRes)){
-            $Name=$userInfo['Nom'];
-            $tel=$userInfo['tel'];
-        }
-        $businessEmail = $_POST['businessEmail'];
-        $businessAdresse =  isset($_POST['businessAdresse']) ? $_POST['businessAdresse'] : '' ;
-        $businessName = $_POST['businessName'];
-        $message = isset($_POST['partnershipDetails']) ? $_POST['partnershipDetails'] : '' ;
-
-        $errors = array();
-
-        if(empty($businessEmail) OR empty($businessName) OR empty($businessAdresse) OR empty($message)){
-            array_push($errors, "All fields are required");
-        }
-
-        if(count($errors)>0) {
-            foreach($errors as $error) {
-                echo("<p>$error</p>");
-            }
-        }
-
-        else {
-            $req = "insert into partenaires (iduser, nom,  email, businessName, location, tel, message)
-            values ('$userid', '$Name', '$businessEmail', '$businessName', '$businessAdresse', '$tel', '$message')";
-            $res = mysqli_query($conn, $req);
-
-            if($res) {
-                echo("form submitted");
-            }
-        }
-    }
-
-    ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-       <!-- Header -->
+  <body class="bg-gray-100">
+    <!-- Header -->
  <?php
   session_start();
-  $ID=$_SESSION['id'];?>
+  $ID=$_SESSION['id']; ?>
      <nav
       class="bg-[#044952] dark:bg-[#044952] fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600"
     >
@@ -131,7 +69,7 @@
             class="flex flex-col p-4 md:p-0 mt-4 text-white font-medium border rounded-lg bg-[#044952] md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-[#044952] dark:border-gray-700"
           >
           <li>
-                <a
+              <a
                 href="home.php"
                 class="block py-2 px-3 text-gray-900 rounded transition duration-300 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >Acceuil</a
@@ -145,12 +83,11 @@
               >
             </li>
             <li>
-               <a
+              <a
                 href="becomePartner.php"
-                class="block py-2 px-3 text-white bg-[#FF9100] rounded transition duration-300 md:bg-transparent md:text-[#FF9100] md:p-0 md:dark:text-[#FF9100]"
-                >Demande de partenariat </a
+                class="block py-2 px-3 text-gray-900 rounded transition duration-300 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >Demande de partenariat</a
               >
-             
             </li>
             <li>
               <a
@@ -162,7 +99,7 @@
             <li>
               <a
                 href="contact.php"
-                class="block py-2 px-3 text-gray-900 rounded transition duration-300 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                class="block py-2 px-3 text-white bg-[#FF9100] rounded transition duration-300 md:bg-transparent md:text-[#FF9100] md:p-0 md:dark:text-[#FF9100]"
                 >Contact</a
               >
             </li>
@@ -181,45 +118,55 @@
       </div>
     </nav>
 
-
-    <main class="container mx-auto px-4 py-10 mt-20 ">
-        <form action="becomePartner.php" method="post" class="bg-white shadow-md rounded-lg p-6 md:p-8 max-w-lg mx-auto">
-            <h1 class="text-3xl font-semibold mb-6 text-[#044952] text-center">Devenez notre partenaire</h1>
-
-            
-
-            <div class="mb-4">
-                
-                <input type="email" id="business-email" name="businessEmail"
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Nom de l'entreprise">
+    <!-- Contact Form Section -->
+    <section class="container mx-auto px-4 py-12 my-28">
+      <div class="bg-white shadow-md rounded-md p-8 max-w-2xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6 text-[#044952] uppercase text-center">Contactez Nous</h2>
+        <form action="https://api.web3forms.com/submit" method="POST">
+          <div>
+            <input
+              type="hidden"
+              name="access_key"
+              value="eb4381c0-4067-40a4-b766-46307e502600"
+            />
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <input
+                type="text"
+                name="fullname"
+                placeholder="Nom"
+                class="border border-gray-300 p-2 rounded"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                class="border border-gray-300 p-2 rounded"
+              />
             </div>
             <div class="mb-4">
-                
-                <input type="text" id="business-name" name="businessName"
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Courriel professionnel">
+              <input
+                type="text"
+                name="topic"
+                placeholder="Topic"
+                class="border border-gray-300 p-2 rounded w-full"
+              />
             </div>
             <div class="mb-4">
-                
-                <input type="text" id="business-name" name="businessAdresse"
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Adresse de l'entreprise">
+              <textarea
+                placeholder="Votre message"
+                name="message"
+                class="border border-gray-300 p-2 rounded w-full h-24"
+              ></textarea>
             </div>
-            <div class="mb-4">
-                
-                <textarea id="partnership-details" name="partnershipDetails" rows="6"
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Pourquoi souhaitez-vous devenir notre partenaire ?"></textarea>
-            </div>
-
-            <input class="w-full bg-[#328E4E] text-white py-2 px-4 rounded-md hover:bg-green-800 duration-300 transition" type="submit" name="submit" value="Submit Partnership Request">
+            <button class="bg-[#328E4E] text-white px-4 py-2 rounded">
+             Envoyer
+            </button>
+          </div>
         </form>
-    </main>
+      </div>
+    </section>
 
     <!-- Footer -->
-    
-<!-- Footer -->
     <footer class="bg-[#044952] text-white py-6 " >
         <div
             class=" mx-auto px-4 space-y-4 md:space-y-0 md:flex md:justify-between sm:items-center sm:justify-center max-w-7xl  mx-auto">
@@ -253,7 +200,13 @@
             </div>
         </div>
     </footer>
-               
-    </body>
+    <script>
+      const menuToggle = document.getElementById("menu-toggle");
+      const navbarSticky = document.getElementById("navbar-sticky");
 
+      menuToggle.addEventListener("click", () => {
+        navbarSticky.classList.toggle("hidden");
+      });
+    </script>
+  </body>
 </html>

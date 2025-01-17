@@ -19,7 +19,8 @@
     <title>Home Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="Main.css">
-<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 
     <style>
       
@@ -59,7 +60,7 @@
         
         echo('
         <a href="profile.php">
-            <div class="w-12 h-12 rounded-full bg-cover bg-center" style="background-image: url('."../uploads/1733764460.jpg".'); cursor: pointer;"></div>
+            <div class="w-10 h-10 rounded-full bg-cover bg-center" style="background-image: url('."../uploads/1733764460.jpg".'); cursor: pointer;"></div>
         </a>');
     } else {
         
@@ -99,47 +100,48 @@
           >
           <li>
               <a
-                href="home.html"
-                class="block py-2 px-3 text-white bg-[#FF9100] rounded md:bg-transparent md:text-[#FF9100] md:p-0 md:dark:text-[#FF9100]"
-                >Home</a
+                href="home.php"
+                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >Acceuil</a
               >
             </li>
             <li>
               <a
                 href="SDG.php"
                 class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >The SDGs</a
+                >Les ODD</a
               >
             </li>
             <li>
               <a
                 href="becomePartner.php"
                 class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >Partnership Request</a
+                >Demande de partenariat</a
               >
             </li>
             <li>
               <a
                 href="Event.php"
                 class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >Campaigns</a
+                >Les Compagnes</a
               >
             </li>
             <li>
               <a
-                href="Contact.html"
+                href="contact.php"
                 class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >Contact</a
               >
             </li>
             <li>
               <a
-                href="Donation.html"
+                href="contact.php"
                 class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 aria-current="page"
                 >Donation</a
               >
             </li>
+            
            
           </ul>
         </div>
@@ -186,7 +188,7 @@
         <!-- Profile Picture Container -->
         <div class="relative">
             <div class="w-28 h-28 rounded-full bg-gray-100 border-4 border-white -mt-20 relative bg-cover bg-center bg-no-repeat" 
-                 style="background-image: url('../uploads/1733869358.jpg');">
+                 style="background-image: url('../uploads/1733764460.jpg');">
                 <!-- Profile Picture Upload Button -->
                 <label for="profile-upload" class="absolute bottom-0 right-0 bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-50">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -236,7 +238,7 @@
                 <ul id="contact-info" class="space-y-4 mt-2 text-gray-600">
                   <li class="flex items-center space-x-2">
                    <i class="fas fa-regular fa-envelope text-green-700"></i>
-                      <i class="fas fa-envelope fa-regular "></i>
+                      
                       <span><b>Email:</b> <?php echo($email); ?></span>
                   </li>
                   <li class="flex items-center space-x-2">

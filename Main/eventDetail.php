@@ -59,67 +59,117 @@
       </style>
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-white">
 
-    <!-- Header -->
-  <nav
-        class="bg-[#044952] dark:bg-[#044952] fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-
+       <!-- Header -->
+ <?php
+  session_start();
+  $ID=$_SESSION['id'];?>
+     <nav
+      class="bg-[#044952] dark:bg-[#044952] fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600"
+    >
+      <div
+        class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+      >
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="logo equoquest imen-06.png" class="h-12" alt="Logo">
-            </a>
+          <img src="logo equoquest imen-06.png" class="h-12" alt="Logo" />
+        </a>
 
-            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <button type="button"
-                    class="text-white bg-[#FF9100] hover:bg-green-800 duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-[#FF9100] dark:hover:bg-[#FFCE00] dark:focus:ring-[#1d3b24]">
-                    Donate
-                </button>
-                <button id="menu-toggle"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 1h15M1 7h15M1 13h15" />
-                    </svg>
-                </button>
-            </div>
+        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          
+        <?php 
+    if(isset($_SESSION["id"])) {
+        
+        echo('
+        <a href="profile.php">
+            <div class="w-10 h-10 rounded-full bg-cover bg-center" style="background-image: url('."../uploads/1733764460.jpg".'); cursor: pointer;"></div>
+        </a>');
+    } else {
+        
+        echo('<a href="logout.php" class="text-white"><button type="button" class="text-white bg-[#FF9100] hover:bg-green-800 duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-[#FF9100] dark:hover:bg-[#FFCE00] dark:focus:ring-[#1d3b24]" >Login</button></a>');
+    }
+?>
 
-            <div id="navbar-sticky" class="hidden items-center justify-between w-full md:flex md:w-auto md:order-1">
-                <ul
-                    class="flex flex-col p-4 md:p-0 mt-4 font-medium border  rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-[#044952] dark:border-gray-700">
-                    <li>
-                        <a href="home.php"
-                            class="block py-2 px-3 text-gray-900  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">The
-                            SDGs</a>
-                    </li>
-                    <li>
-                        <a href="becomePartner.php"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Partnership
-                            Request</a>
-                    </li>
-                    <li>
-                        <a href="Event.php"
-                            class="block py-2 px-3 text-white bg-[#FF9100] rounded md:bg-transparent md:text-[#FF9100] md:p-0 md:dark:text-[#FF9100]">Campaigns</a>
-                    </li>
-                    <li>
-                        <a href="Contact.html"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
-                    </li>
-                    <li>
-                        <a href="Donation.html"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                            aria-current="page">Donation</a>
-                    </li>
-
-                </ul>
-            </div>
+          </button>
+          <button
+            id="menu-toggle"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          >
+            <span class="sr-only">Open main menu</span>
+            <svg
+              class="w-5 h-5"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15"
+              />
+            </svg>
+          </button>
         </div>
+
+        <div
+          id="navbar-sticky"
+          class="hidden items-center justify-between w-full md:flex md:w-auto md:order-1"
+        >
+          <ul
+            class="flex flex-col p-4 md:p-0 mt-4 text-white font-medium border rounded-lg bg-[#044952] md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-[#044952] dark:border-gray-700"
+          >
+          <li>
+              <a
+                href="home.php"
+                class="block py-2 px-3 text-white bg-[#FF9100] rounded transition duration-300 md:bg-transparent md:text-[#FF9100] md:p-0 md:dark:text-[#FF9100]"
+                >Acceuil</a
+              >
+            </li>
+            <li>
+              <a
+                href="SDG.php"
+                class="block py-2 px-3 text-gray-900 rounded transition duration-300 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >Les ODD</a
+              >
+            </li>
+            <li>
+              <a
+                href="becomePartner.php"
+                class="block py-2 px-3 text-gray-900 rounded transition duration-300 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >Demande de partenariat</a
+              >
+            </li>
+            <li>
+              <a
+                href="Event.php"
+                class="block py-2 px-3 text-gray-900 rounded transition duration-300 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >Les Compagnes</a
+              >
+            </li>
+            <li>
+              <a
+                href="contact.php"
+                class="block py-2 px-3 text-gray-900 rounded transition duration-300 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >Contact</a
+              >
+            </li>
+            <li>
+              <a
+                href="donation.php"
+                class="block py-2 px-3 text-gray-900 rounded transition duration-300 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#FF9100] md:p-0 md:dark:hover:text-[#FF9100] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                aria-current="page"
+                >Donation</a
+              >
+            </li>
+          
+           
+          </ul>
+        </div>
+      </div>
     </nav>
+
 
 <?php
                 include "conn.php";
@@ -142,7 +192,7 @@
                 }
                 ?>
     <!-- Milieu -->
-    <main class=" container mx-auto w-100 px-4 mt-8 py-20" 
+    <main class="max-w-7xl  container mx-auto w-100 px-4 mt-8 py-20" 
             style="background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url('../uploads/<?php echo $image; ?>'); 
                 background-size: cover;
                 background-position: center;
@@ -195,7 +245,7 @@
     </main>
 <!-- Section Description et Lieu de la Campagne -->
  
-<section class="bg-white py-10">
+<section class="max-w-7xl mx-auto bg-white py-10">
     <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- Colonne gauche -->
         <div class="space-y-8">
@@ -207,15 +257,15 @@
             </div>
             
             <div class="time-section bg-[#dce3c7] p-4 rounded-lg border border-gray-200">
-    <h2 class="text-xl font-semibold text-[#044952] mb-4">Heure</h2>
+    <h2 class="text-xl font-semibold text-[#044952] uppercase mb-4">Heure</h2>
     <div class="space-y-3 text-gray-700">
         <div class="flex justify-between items-center">
-            <p class="font-medium">Heure de départ:</p>
-            <p class="text-green-600 font-bold"><?php echo($startTime); ?></p>
+            <p class="font-medium ">Heure de départ:</p>
+            <p class="text-slate-600 font-bold"><?php echo($startTime); ?></p>
         </div>
         <div class="flex justify-between items-center">
             <p class="font-medium">Heure de fin:</p>
-            <p class="text-[#FF9100] font-bold"><?php echo($endTime); ?></p>
+            <p class="text-slate-600 font-bold"><?php echo($endTime); ?></p>
         </div>
     </div>
 </div>
@@ -227,9 +277,9 @@
            
             <h2 class="text-2xl font-semibold mb-4 text-[#044952]">Lieu de la compagne</h2>
             <div class="bg-gray-100 h-96 w-full mb-4">
-                <div id="map" class="aspect-square w-2/3">
+                <div id="map" class="aspect-square w-full h-full">
                 
-             <iframe src=<?php echo($googlemaps); ?> width="750" height="386" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+             <iframe src=<?php echo($googlemaps); ?>  class="w-full " height="386" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
 
              </iframe>
                 </div>
@@ -239,38 +289,7 @@
     </div>
 </section>
 
-    <!-- Section Partenaires et Sponsors -->
-    <section class="bg-white py-10">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-8">Partenaires et Sponsors</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="bg-gray-300 h-28 flex items-center justify-center">
-                    <p class="text-gray-600 font-bold">Logo 1</p>
-                </div>
-                <div class="bg-gray-300 h-28 flex items-center justify-center">
-                    <p class="text-gray-600 font-bold">Logo 2</p>
-                </div>
-                <div class="bg-gray-300 h-28 flex items-center justify-center">
-                    <p class="text-gray-600 font-bold">Logo 3</p>
-                </div>
-                <div class="bg-gray-300 h-28 flex items-center justify-center">
-                    <p class="text-gray-600 font-bold">Logo 4</p>
-                </div>
-                <div class="bg-gray-300 h-28 flex items-center justify-center">
-                    <p class="text-gray-600 font-bold">Logo 5</p>
-                </div>
-                <div class="bg-gray-300 h-28 flex items-center justify-center">
-                    <p class="text-gray-600 font-bold">Logo 6</p>
-                </div>
-                <div class="bg-gray-300 h-28 flex items-center justify-center">
-                    <p class="text-gray-600 font-bold">Logo 7</p>
-                </div>
-                <div class="bg-gray-300 h-28 flex items-center justify-center">
-                    <p class="text-gray-600 font-bold">Logo 8</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
   
       <!-- Tableau corrigé -->
@@ -279,8 +298,8 @@
             
         
        ?>
-      <section class="bg-white py-10">
-        <div class="container mx-auto px-4">
+      <section class="py-10 ">
+        <div class="container mx-auto px-4 ">
           <h2 class="text-2xl font-bold mb-6 text-center">Tableau des équipes</h2>
           <div class="team-table">
             <!-- Colonne Équipe A -->
@@ -314,61 +333,88 @@
         
       ?>
       <!-- COLLECTED MATERIALS -->
-      <section>
-      <table class="min-w-full leading-normal">
-                            <thead>
-                                <tr>
-                                    <th
-                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Material
-                                    </th>
-                                    <th
-                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Quantity
-                                    </th>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $getMatReq="select * from eventmaterials where idevent='$eventID'";
-                                $getMatRes=mysqli_query($conn, $getMatReq);
+      <section class=" bg-gray-100 py-10  mx-auto">
+        <h1 class="text-2xl font-bold mb-6 max-w-7xl mx-auto uppercase text-[#044952] ">Quantité totale de déchets collectés</h1>
+  <table class="leading-normal w-full max-w-7xl mx-auto">
+    <thead>
+        <tr>
+            <th style="background-color: #dce3c7; color: #044952 ; width: 50%;" 
+                class="px-5 py-4 border border-[#044952] text-left text-xl font-bold uppercase tracking-wider">
+                Material
+            </th>
+            <th style="background-color: #dce3c7; color: #044952; width: 50%;" 
+                class="px-5 py-4 border border-[#044952] text-left text-xl font-bold uppercase tracking-wider">
+                Quantity
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $getMatReq="select * from eventmaterials where idevent='$eventID'";
+        $getMatRes=mysqli_query($conn, $getMatReq);
 
-                                while($mats=mysqli_fetch_assoc($getMatRes)) {
-                                    echo('<tr>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <div class="flex items-center">
-                                            
-                                            <div class="">
-                                                <p class="text-gray-900 whitespace-no-wrap">'
-                                                    .$mats["nommat"].'
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p class="text-gray-900 whitespace-no-wrap">'
-                                                    .$mats["qty"].'</p>
-                                    </td>
-                                    
-                                </tr>');
-                                }
-                                ?>
-                                
-                                
-                            </tbody>
-                        </table>
+        while($mats=mysqli_fetch_assoc($getMatRes)) {
+            echo('<tr>
+            <td style="background-color: #dce3c7; width: 50%;" class="px-5 py-5 border border-[#044952] text-sm">
+                <div class="flex items-center">
+                    <div class="">
+                        <p class="text-gray-900  font-medium whitespace-no-wrap">'
+                            .$mats["nommat"].'
+                        </p>
+                    </div>
+                </div>
+            </td>
+            <td style="background-color: #dce3c7; width: 50%;" class="px-5 py-5 border border-[#044952] text-sm">
+                <p class="text-gray-900 font-medium  whitespace-no-wrap">'
+                            .$mats["qty"].'</p>
+            </td>
+            </tr>');
+        }
+        ?>
+    </tbody>
+</table>
       </section>
     <?php
         }
     ?>
-    <!-- Footer -->
+    <!-- Section Partenaires et Sponsors -->
+    <section class="bg-white py-10 max-w-7xl mx-auto">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Partenaires et Sponsors</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-gray-300 h-28 flex items-center justify-center">
+                    <p class="text-gray-600 font-bold">Logo 1</p>
+                </div>
+                <div class="bg-gray-300 h-28 flex items-center justify-center">
+                    <p class="text-gray-600 font-bold">Logo 2</p>
+                </div>
+                <div class="bg-gray-300 h-28 flex items-center justify-center">
+                    <p class="text-gray-600 font-bold">Logo 3</p>
+                </div>
+                <div class="bg-gray-300 h-28 flex items-center justify-center">
+                    <p class="text-gray-600 font-bold">Logo 4</p>
+                </div>
+                <div class="bg-gray-300 h-28 flex items-center justify-center">
+                    <p class="text-gray-600 font-bold">Logo 5</p>
+                </div>
+                <div class="bg-gray-300 h-28 flex items-center justify-center">
+                    <p class="text-gray-600 font-bold">Logo 6</p>
+                </div>
+                <div class="bg-gray-300 h-28 flex items-center justify-center">
+                    <p class="text-gray-600 font-bold">Logo 7</p>
+                </div>
+                <div class="bg-gray-300 h-28 flex items-center justify-center">
+                    <p class="text-gray-600 font-bold">Logo 8</p>
+                </div>
+            </div>
+        </div>
+    </section>
       <!-- Footer -->
-    <footer class="bg-[#044952] text-white py-6">
+    <footer class="bg-[#044952] text-white py-6 " >
         <div
-            class="container mx-auto px-4 space-y-4 md:space-y-0 md:flex md:justify-between sm:items-center sm:justify-center">
+            class=" mx-auto px-4 space-y-4 md:space-y-0 md:flex md:justify-between sm:items-center sm:justify-center max-w-7xl  mx-auto">
             <div>
-            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <a href="home.php" class="flex items-center  rtl:space-x-reverse -ml-2">
                 <img src="logo equoquest imen-06.png" class="h-12" alt="Logo">
             </a>
 
@@ -377,14 +423,14 @@
                 <p>Phone: +216 56 650 772</p>
             </div>
             <nav class="space-y-2">
-                <a href="#" class="block text-gray-400 hover:text-white">Home</a>
-                <a href="#" class="block text-gray-400 hover:text-white">The SDGs</a>
-                <a href="#" class="block text-gray-400 hover:text-white">Partnership Request</a>
-                <a href="#" class="block text-gray-400 hover:text-white">Campaigns</a>
-                <a href="#" class="block text-gray-400 hover:text-white">Contact</a>
+                <a href="home.php" class="block text-gray-400 hover:text-white">Acceuil</a>
+                <a href="SDG.php" class="block text-gray-400 hover:text-white">Les ODD</a>
+                <a href="becomePartner.php" class="block text-gray-400 hover:text-white">Demande de partenariat</a>
+                <a href="Event.php" class="block text-gray-400 hover:text-white">Les Compagnes</a>
+                <a href="contact.php" class="block text-gray-400 hover:text-white">Contact</a>
             </nav>
             <div>
-                <label for="newsletter" class="block text-sm font-medium text-gray-400">Email Address</label>
+                <label for="newsletter" class="block text-sm font-medium text-gray-400">ABONNEZ-VOUS À NOTRE NEWSLETTER</label>
                 <div class="flex mt-1">
                     <input type="email" id="newsletter"
                         class="p-2 border border-gray-600 rounded-l-md focus:ring-blue-500 focus:border-blue-500"

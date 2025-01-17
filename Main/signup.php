@@ -164,6 +164,7 @@
     </header>
 
     <!-- Formulaire d'inscription -->
+     <div>
     <div class="signup-container mb-5 h-[100vh]">
         <h1  class="text-3xl font-semibold mb-6 text-[#044952] text-center" >Sign Up</h1>
         <form action="signup.php" method="post">
@@ -238,6 +239,7 @@
         </form>
         <p>Already registered? <a href="login.php">Log in</a></p>
     </div>
+    <div>
 
     <!-- Footer -->
     <footer>

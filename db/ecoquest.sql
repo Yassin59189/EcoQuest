@@ -75,17 +75,19 @@ CREATE TABLE `evenements` (
   `eventType` varchar(20) NOT NULL,
   `Status` varchar(20) NOT NULL,
   `eventImage` varchar(20) NOT NULL,
-  `trash` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `trash` float NOT NULL,
+  `Googlemaps` text NOT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `evenements`
 --
 
-INSERT INTO `evenements` (`IDevent`, `Nom`, `Description`, `Location`, `Date`, `startTime`, `endTime`, `eventType`, `Status`, `eventImage`, `trash`) VALUES
-(0, 'Game Jam 1', 'dsdssd', 'test', '2025-01-24', '23:28:00', '15:30:00', 'Teams', 'Done', '1737055173.png', 42.6),
-(1, 'Game Jam 2', 'test', 'test', '2024-12-11', '23:41:00', '16:38:00', 'Teams', 'Done', '1737055738.png', 42.6),
-(9, 'yassin', 'gfdgfd', 'gdffd', '2025-01-25', '07:31:00', '19:31:00', 'Teams', 'Upcoming', '1737053039.png', 30);
+INSERT INTO `evenements` (`IDevent`, `Nom`, `Description`, `Location`, `Date`, `startTime`, `endTime`, `eventType`, `Status`, `eventImage`, `trash`, `Googlemaps`) VALUES
+(0, 'Game Jam', 'dsdssd', 'test', '2025-01-24', '23:28:00', '15:30:00', 'Team', 'done', '1736887488.PNG', 42.6, ''),
+(1, 'Save Bougarnine ', 'Niché au cœur de sommets majestueux et de paysages verdoyants, le Mont Bogranin était autrefois un sanctuaire de beauté naturelle et un refuge pour une faune diversifiée. Cependant, l\'invasion de la pollution plastique a transformé cet écrin de sérénité en un territoire défiguré. Les ruisseaux scintillent sous le poids des bouteilles abandonnées, les prairies sont jonchées de déchets, et les animaux luttent pour survivre dans un environnement dégradé.<br/>\r\n\r\nCet événement réunit la communauté dans un effort commun pour redonner vie au Mont Bogranin. Ensemble, redonnez à cet écosystème fragile son éclat d\'antan, et découvrez la force de la nature lorsqu\'elle est soutenue par la volonté et l\'engagement humain.', 'Bougarnine gathering point', '2024-12-11', '23:41:00', '16:38:00', 'Team', 'done', '1737027946.jpg', 42.6, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.9812462993996!2d10.3407283432414!3d36.723011632553884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd492853767953%3A0xa8e8e6f1d414ac36!2sBougarnine%20gathering%20point!5e0!3m2!1sfr!2stn!4v1737054313038!5m2!1sfr!2stn'),
+(9, 'test 1', 'gfdgfd', 'gdffd', '2024-11-01', '07:31:00', '19:31:00', 'Teams', 'upcomming', '1733872309.jpg', 30, '');
+
 
 -- --------------------------------------------------------
 

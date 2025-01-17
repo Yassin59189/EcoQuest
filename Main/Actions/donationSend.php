@@ -9,5 +9,5 @@ $req = "INSERT INTO donation (nom, prenom, email, amount) VALUES ('$nom', '$pren
 echo"bruh" ;
 $res = mysqli_query($conn, $req);
 if($res){
-header("location:../donation.html");}
+header("location:../contact.php");}
 ?>
