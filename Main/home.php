@@ -8,6 +8,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="Main.css">
     <style>
+    
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            
+        }
+        .Quests{
+          font-family:Quests;
+        }
+  
   /* Animation for text to come from the top */
   @keyframes fade-down {
     from {
@@ -19,6 +31,10 @@
       transform: translateY(0);
     }
   }
+  @font-face {
+  font-family: Quests;
+  src: url('fonts/guardener.ttf');
+}
 
   .animate-fade-down {
     animation: fade-down 1s ease-out;
@@ -166,18 +182,19 @@
   <!-- Content -->
   <div class="relative animate-fade-down max-w-4xl md:pl-20 sm:pl-0 text-start ">
     <h1 class="md:text-5xl mb-6 font-extrabold text-white leading-leading tracking-wide sm:text-3xl">
-      ACT<br>
-      CONNECT<br>
-      TRANSFORM
+      AGIR<br>
+CONNECTER<br>
+TRANSFORMER
+      
     </h1>
     
     <p class="mb-8 text-white  text-lg leading-relaxed ">
-      Join EcoQuest and be part of a global movement to transform our planet. <br>
-      Together, we can make a lasting impact for future generations.
+      Rejoignez EcoQuest et participez à un mouvement mondial visant à transformer notre planète.
+Ensemble, nous pouvons avoir un impact durable pour les générations futures.
     </p>
     
-    <a href="event.php" class=" text-white bg-[#FF9100] hover:bg-green-800 duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-4 text-center dark:bg-[#FF9100] dark:hover:bg-[#FFCE00] dark:focus:ring-[#1d3b24]">
-      See Campaigns
+    <a href="Event.php" class=" text-white bg-[#FF9100] hover:bg-green-800 duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-4 text-center dark:bg-[#FF9100] dark:hover:bg-[#FFCE00] dark:focus:ring-[#1d3b24]">
+      Voir les campagnes
     </a>
   </div>
 </div>
@@ -290,10 +307,9 @@
         
         <!-- Text -->
         <div class="lg:pl-12 flex flex-col w-full lg:w-2/3 py-4 lg:py-0 self-center ">
-          <h3 class="font-bold text-xl uppercase mb-4 text-gray-800 text-center lg:text-start">Campagne du TITLE HERE</h3>
-          <p class="mb-4 text-gray-700 text-justify text-lg ">
-            '.$row['Description'].' - Join us to make our planet cleaner and healthier. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi nihil corporis soluta temporibus minus ea asperiores molestiae voluptate praesentium nesciunt voluptatibus, tempora veritatis autem repellendus sequi, maxime alias, numquam officia?
-          </p>
+          <h3 class="font-bold text-xl uppercase mb-4 text-gray-800 text-center lg:text-start">Campagne du Hammamet</h3>
+          <p class="mb-4 text-gray-700 text-justify text-sm ">
+            '.$row['Description'].'   </p>
           
           <!-- Button -->
           <div class="flex justify-center lg:justify-start mt-4">
@@ -412,6 +428,24 @@
         ?>
     </div>
 </div>
+ 
+<!-- Quests -->
+
+   
+    <section class="parallax h-[500px] relative" style="background-image: url('../uploads/bgQuests.jpg');">
+        <div class="absolute inset-0 bg-black/50"> <!-- Overlay for better text readability -->
+            <div class="container mx-auto px-4 h-full flex flex-col justify-center items-center text-white">
+                <h2 class="text-7xl font-bold mb-6 Quests">Quests</h2>
+                <p class="text-xl max-w-2xl text-center">Plongez dans une aventure amusante et engageante,
+tout en contribuant à une noble cause !</p>
+                <a href="eco/index.php"><button class="mt-8 px-8 py-3 bg-[#FF9100] hover:bg-orange-600 text-white rounded-md hover:bg-gray-100 transition-colors duration-300">
+                   Jouez maintenant !
+                </button></a>
+            </div>
+        </div>
+    </section>
+
+  
 
   <!-- Newsletter Section -->
 
@@ -439,8 +473,7 @@
     </div>
   </div>
 </div>
-     <!-- Footer -->
-     <!-- Footer -->
+    
     <footer class="bg-[#044952] text-white py-6 " >
         <div
             class=" mx-auto px-4 space-y-4 md:space-y-0 md:flex md:justify-between sm:items-center sm:justify-center max-w-7xl  mx-auto">

@@ -58,6 +58,7 @@
         $eventEndTime = $row['endTime'];
         $eventDescription = $row['Description'];
         $eventLocation = $row['Location'];
+        $eventCords=$row['Googlemaps'];
     }
     ?>
     <!-- Edit modal -->
@@ -111,6 +112,14 @@
                                     required><?php echo($eventDescription) ?></textarea>
                             </div>
 
+                            <!-- Event Place -->
+                            <div class="mb-4">
+                                <label for="eventPlace" class="block text-sm font-medium text-gray-700">Google maps 
+                                    </label>
+                                <input type="text" id="editEventPlace" name="cords" value="<?php echo($eventCords) ?>"
+                                    class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                    required>
+                            </div>
                             <!-- Event Place -->
                             <div class="mb-4">
                                 <label for="eventPlace" class="block text-sm font-medium text-gray-700">Event

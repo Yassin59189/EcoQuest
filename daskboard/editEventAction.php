@@ -17,6 +17,7 @@ if(isset($_POST['eventType'])) {
 }
 
 $qty=$_POST['quantities'];
+$cords=$_POST['cords'];
 $idmat=$_POST['idmat'];
 $tmp_name = $_FILES['eventImage']['tmp_name'];
 
@@ -51,7 +52,7 @@ if (isset($_FILES['gallery']) && !empty($_FILES['gallery']['name'])) {
 
 $req = "update evenements set Nom='$eventName', Description='$eventDescription', Location='$eventPlace',
 Date='$eventDate', startTime='$startTime' ,eventImage='$newFileName', endTime='$endTime', eventType='$eventType',
-Status='$eventStatue', gallery='$gallery_name' WHERE IDevent = $IDevent";
+Status='$eventStatue', gallery='$gallery_name', Googlemaps='$cords' WHERE IDevent = $IDevent";
 
 
 

@@ -256,7 +256,11 @@
                         Sign Out
                     </button>
                   </a>
-    
+                <?php if($_SESSION["role"]=="admin"){
+       echo('
+        
+        <a href="../daskboard/index.php">dashboard<a/>');
+    }?>
     
                   <a href="<!-- delete_account.php -->">
                       <button type="button" class="text-white  bg-red-600 hover:bg-red-700 focus:ring-4 duration-300 transition  focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-3 text-center">

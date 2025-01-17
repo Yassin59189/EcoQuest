@@ -90,7 +90,9 @@ if(isset($_SESSION['id'])){
         <a href="profile.php">
             <div class="w-10 h-10 rounded-full bg-cover bg-center" style="background-image: url('."../uploads/1733764460.jpg".'); cursor: pointer;"></div>
         </a>');
-    } else {
+    } 
+    
+    else {
         
         echo('<a href="logout.php" class="text-white"><button type="button" class="text-white bg-[#FF9100] hover:bg-green-800 duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-[#FF9100] dark:hover:bg-[#FFCE00] dark:focus:ring-[#1d3b24]" >Login</button></a>');
     }
@@ -295,41 +297,7 @@ if(isset($_SESSION['id'])){
     </div>
 </section>
 
-    <!-- Section Partenaires et Sponsors -->
-    <section class="bg-white py-10">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-8">Partenaires et Sponsors</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
-        <?php
-        $sponsorReq = "select * from sponsors";
-        $sponsorRes = mysqli_query($conn, $sponsorReq);
-        
-        while($row = mysqli_fetch_assoc($sponsorRes)) {
-            echo '
-            <div class="aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden w-full">
-                <img 
-                    src="../uploads/'.$row['imgsponsor'].'" 
-                    alt="Sponsor logo" 
-                    class="w-full h-full object-contain p-4"
-                />
-            </div>
-            ';
-        }
-        
-      
-        $count = mysqli_num_rows($sponsorRes);
-        for($i = $count; $i < 8; $i++) {
-            echo '
-            <div class="aspect-[4/3] bg-gray-100 rounded-lg">
-                <!-- Empty placeholder -->
-            </div>
-            ';
-        }
-      
-        ?>
-    </div>
-        </div>
-    </section>
+    
 
   
       <!-- Tableau corrigé -->
@@ -373,25 +341,25 @@ if(isset($_SESSION['id'])){
         
       ?>
       <!-- COLLECTED MATERIALS -->
-      <section class=" bg-gray-100 py-10  mx-auto">
-        <h1 class="text-2xl font-bold mb-6 max-w-7xl mx-auto uppercase text-[#044952] ">Quantité totale de déchets collectés</h1>
-  <table class="leading-normal w-full max-w-7xl mx-auto">
-    <thead>
-        <tr>
-            <th style="background-color: #dce3c7; color: #044952 ; width: 50%;" 
-                class="px-5 py-4 border border-[#044952] text-left text-xl font-bold uppercase tracking-wider">
-                Material
-            </th>
-            <th style="background-color: #dce3c7; color: #044952; width: 50%;" 
-                class="px-5 py-4 border border-[#044952] text-left text-xl font-bold uppercase tracking-wider">
-                Quantity
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        $getMatReq="select * from eventmaterials where idevent='$eventID'";
-        $getMatRes=mysqli_query($conn, $getMatReq);
+      <section class="py-10 max-w-7xl mx-auto">
+      <table class="min-w-full  leading-normal">
+                            <thead>
+                                <tr>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Material
+                                    </th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Quantity
+                                    </th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $getMatReq="select * from eventmaterials where idevent='$eventID'";
+                                $getMatRes=mysqli_query($conn, $getMatReq);
 
         while($mats=mysqli_fetch_assoc($getMatRes)) {
             echo('<tr>
@@ -414,54 +382,76 @@ if(isset($_SESSION['id'])){
     </tbody>
 </table>
       </section>
-      <section>
-        <h1>Gallery</h1>
-        
-        <?php
-        $galleryReq="select gallery from evenements where IDevent='$eventID'";
-        $gallerRes=mysqli_query($conn, $galleryReq);
-        while($gallery=mysqli_fetch_assoc($gallerRes)){
+     <section class="py-10 max-w-7xl  mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold mb-6">PHOTOS DE L'ÉVÉNEMENT</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-auto">
+        <?php 
+        $galleryReq = "select gallery from evenements where IDevent='$eventID'";
+        $gallerRes = mysqli_query($conn, $galleryReq);
+        while($gallery = mysqli_fetch_assoc($gallerRes)) {
             $photos = explode(",", $gallery['gallery']);
-            foreach($photos as $photo){
-                echo('<img src="../uploads/'.$photo.'" alt="">');
+            foreach($photos as $index => $photo) {
+                // Different column spans based on index to create masonry effect
+                $classes = match($index % 7) {
+                    0 => "col-span-1 row-span-1 md:col-span-1",
+                    1 => "col-span-1 row-span-2 md:col-span-1",
+                    2 => "col-span-1 row-span-1 md:col-span-1",
+                    3 => "col-span-1 row-span-1 md:col-span-1",
+                    4 => "col-span-1 row-span-1 md:col-span-1",
+                    5 => "col-span-1 row-span-1 md:col-span-1",
+                    6 => "col-span-1 row-span-1 md:col-span-1",
+                    default => "col-span-1"
+                };
+                echo '<div class="' . $classes . ' overflow-hidden rounded-lg">';
+                echo '<img 
+                    src="../uploads/' . $photo . '" 
+                    alt="Event photo" 
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                >';
+                echo '</div>';
             }
-            
         }
         ?>
-      </section>
+    </div>
+</section>
     <?php
         }
     ?>
-    <!-- Section Partenaires et Sponsors -->
-    <section class="bg-white py-10 max-w-7xl mx-auto">
-        <div class="container mx-auto px-4">
+   <!-- Section Partenaires et Sponsors -->
+    <section class="bg-white py-10">
+        <div class="container mx-auto px-4 py-10 max-w-7xl mx-auto">
             <h2 class="text-3xl font-bold text-center mb-8">Partenaires et Sponsors</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="bg-gray-300 h-28 flex items-center justify-center">
-                    <p class="text-gray-600 font-bold">Logo 1</p>
-                </div>
-                <div class="bg-gray-300 h-28 flex items-center justify-center">
-                    <p class="text-gray-600 font-bold">Logo 2</p>
-                </div>
-                <div class="bg-gray-300 h-28 flex items-center justify-center">
-                    <p class="text-gray-600 font-bold">Logo 3</p>
-                </div>
-                <div class="bg-gray-300 h-28 flex items-center justify-center">
-                    <p class="text-gray-600 font-bold">Logo 4</p>
-                </div>
-                <div class="bg-gray-300 h-28 flex items-center justify-center">
-                    <p class="text-gray-600 font-bold">Logo 5</p>
-                </div>
-                <div class="bg-gray-300 h-28 flex items-center justify-center">
-                    <p class="text-gray-600 font-bold">Logo 6</p>
-                </div>
-                <div class="bg-gray-300 h-28 flex items-center justify-center">
-                    <p class="text-gray-600 font-bold">Logo 7</p>
-                </div>
-                <div class="bg-gray-300 h-28 flex items-center justify-center">
-                    <p class="text-gray-600 font-bold">Logo 8</p>
-                </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+        <?php
+        $sponsorReq = "select * from sponsors";
+        $sponsorRes = mysqli_query($conn, $sponsorReq);
+        
+        while($row = mysqli_fetch_assoc($sponsorRes)) {
+            echo '
+            <div class="aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden w-full">
+                <img 
+                    src="../uploads/'.$row['imgsponsor'].'" 
+                    alt="Sponsor logo" 
+                    class="w-full h-full object-contain p-4"
+                />
             </div>
+            ';
+        }
+        
+      
+        $count = mysqli_num_rows($sponsorRes);
+        for($i = $count; $i < 8; $i++) {
+            echo '
+            <div class="aspect-[4/3] bg-gray-100 rounded-lg">
+                <!-- Empty placeholder -->
+            </div>
+            ';
+        }
+      
+        ?>
+    </div>
         </div>
     </section>
       <!-- Footer -->

@@ -230,6 +230,14 @@ if(isset($_SESSION["id"]) && $_SESSION["role"]==="admin"){
 
                             <!-- Event Place -->
                             <div class="mb-4">
+                                <label for="eventPlace" class="block text-sm font-medium text-gray-700">
+                                    Google Maps</label>
+                                <input type="text" id="eventPlace" name="cords"
+                                    class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                    required>
+                            </div>
+                            <!-- Event Place -->
+                            <div class="mb-4">
                                 <label for="eventPlace" class="block text-sm font-medium text-gray-700">Event
                                     Location</label>
                                 <input type="text" id="eventPlace" name="eventPlace"
