@@ -20,7 +20,7 @@ include "conn.php";
         }
 
         .bg-sidebar {
-            background: #3d68ff;
+            background: #044952;
         }
 
         .cta-btn {
@@ -64,10 +64,7 @@ include "conn.php";
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
         <div class="p-6">
             <a href="index.php" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
-            <button
-                class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                <i class="fas fa-plus mr-3"></i> New Report
-            </button>
+             
         </div>
         <nav class="text-white text-base font-semibold pt-3">
             <a href="index.php" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
@@ -81,10 +78,6 @@ include "conn.php";
             <a href="partners.php" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-table mr-3"></i>
                 Manage Partners
-            </a>
-            <a href="forms.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                <i class="fas fa-align-left mr-3"></i>
-                Forms
             </a>
             <a href="tabs.php" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
                 <i class="fas fa-tablet-alt mr-3"></i>
@@ -110,8 +103,7 @@ include "conn.php";
                 <button x-show="isOpen" @click="isOpen = false"
                     class="h-full w-full fixed inset-0 cursor-default"></button>
                 <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
-                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Account</a>
-                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Support</a>
+                     <a href="../Main/home.php" class="block px-4 py-2 account-link hover:text-white">EcoQuest</a>
                     <a href="logout.php" class="block px-4 py-2 account-link hover:text-white">Sign Out</a>
                 </div>
             </div>
@@ -202,14 +194,6 @@ include "conn.php";
                                 <a :class="openTab === 5 ? 'border-l border-t border-r rounded-t text-blue-700 font-semibold' : 'text-blue-500 hover:text-blue-800'"
                                     class="bg-white inline-block py-2 px-4 font-semibold" href="#">Recompances</a>
                             </li>
-                            <li class="mr-1" @click="openTab = 6">
-                                <a :class="openTab === 6? 'border-l border-t border-r rounded-t text-blue-700 font-semibold' : 'text-blue-500 hover:text-blue-800'"
-                                    class="bg-white inline-block py-2 px-4 font-semibold" href="#">Tab 4</a>
-                            </li>
-                            <li class="mr-1" @click="openTab = 7">
-                                <a :class="openTab === 7 ? 'border-l border-t border-r rounded-t text-blue-700 font-semibold' : 'text-blue-500 hover:text-blue-800'"
-                                    class="bg-white inline-block py-2 px-4 font-semibold" href="#">Tab 7</a>
-                            </li>
                         </ul>
                     </div>
                     <div class="bg-white p-6">
@@ -221,7 +205,9 @@ include "conn.php";
                                 <form method="post" enctype="multipart/form-data">
 
                                     <img src="<?php $row["banner"] ?>" alt="">
-                                    <button>Upload banner</button><br>
+                                    <h2>Hero image</h2>
+                                    <img src="../uploads/<?php echo($row["banner"]) ?>" alt="" class="w-[5%]">
+                                    <input type="file" name="heroImage" id="heroImage"><br>
                                     <div class="mb-4 mt-5">
                                         <label class="block text-gray-700 mb-2">
                                             About us description
@@ -270,7 +256,34 @@ include "conn.php";
                                            header("Location: " . $_SERVER['PHP_SELF']);
                                            exit();
                                        }
-                                   } else {
+                                   } if(isset($_FILES['heroImage']) && !empty($_FILES['heroImage']['name'])) {
+                                    $heroImage = $_FILES['heroImage']['name'];
+                                    $tmp_name1 = $_FILES['heroImage']['tmp_name'];
+                                    $timestamp = time();
+                                    $extension1 = pathinfo($heroImage, PATHINFO_EXTENSION);
+                                    $newFileName1 = $timestamp . '.' . $extension1;
+                            
+                                    $location1 = "../uploads/" . $newFileName1;
+                            
+                                    if (move_uploaded_file($tmp_name1, $location1)) {
+                                        // File uploaded successfully
+                                    } else {
+                                        echo "File not uploaded";
+                                    }
+                            
+                                    $homeEdit1 = "UPDATE home SET banner='$newFileName1'";
+                                    $homeEditRes1 = mysqli_query($conn, $homeEdit1);
+                            
+                                    if (!$homeEditRes1) {
+                                        // Debugging SQL errors
+                                        die("Database query failed: " . mysqli_error($conn));
+                                    } else {
+                                        echo "Edited successfully.";
+                                        header("Location: " . $_SERVER['PHP_SELF']);
+                                        exit();
+                                   }}
+                                   
+                                   else {
                                        // Handle case where only the text changes, no image upload
                                        $homeEdit = "UPDATE home SET about='$aboutContent'";
                                        $homeEditRes = mysqli_query($conn, $homeEdit);

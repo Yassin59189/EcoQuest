@@ -31,7 +31,7 @@ while($row = mysqli_fetch_assoc($res)) {
         }
 
         .bg-sidebar {
-            background: #3d68ff;
+            background: #044952;
         }
 
         .cta-btn {
@@ -69,10 +69,7 @@ while($row = mysqli_fetch_assoc($res)) {
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
         <div class="p-6">
             <a href="index.php" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
-            <button
-                class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                <i class="fas fa-plus mr-3"></i> New Report
-            </button>
+             
         </div>
         <nav class="text-white text-base font-semibold pt-3">
             <a href="index.php" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
@@ -83,14 +80,10 @@ while($row = mysqli_fetch_assoc($res)) {
                 <i class="fas fa-sticky-note mr-3"></i>
                 Manage Events
             </a>
-            <a href="partners.html"
+            <a href="partners.php"
                 class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-table mr-3"></i>
                 Manage Partners
-            </a>
-            <a href="forms.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                <i class="fas fa-align-left mr-3"></i>
-                Forms
             </a>
             <a href="tabs.php" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-tablet-alt mr-3"></i>
@@ -116,8 +109,7 @@ while($row = mysqli_fetch_assoc($res)) {
                 <button x-show="isOpen" @click="isOpen = false"
                     class="h-full w-full fixed inset-0 cursor-default"></button>
                 <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
-                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Account</a>
-                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Support</a>
+                     <a href="../Main/home.php" class="block px-4 py-2 account-link hover:text-white">EcoQuest</a>
                     <a href="logout.php" class="block px-4 py-2 account-link hover:text-white">Sign Out</a>
                 </div>
             </div>
@@ -178,10 +170,7 @@ while($row = mysqli_fetch_assoc($res)) {
                 </a>
 
             </nav>
-            <button
-                class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                <i class="fas fa-plus mr-3"></i> New Report
-            </button>
+             
         </header>
 
         <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">

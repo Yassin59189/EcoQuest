@@ -34,7 +34,27 @@ if (move_uploaded_file($tmp_name, $location)) {
     echo "File not uploaded";
 }
 
-$req = "update evenements set Nom='$eventName', Description='$eventDescription', Location='$eventPlace', Date='$eventDate', startTime='$startTime' ,eventImage='$newFileName', endTime='$endTime', eventType='$eventType', Status='$eventStatue' WHERE IDevent = $IDevent";
+if (isset($_FILES['gallery']) && !empty($_FILES['gallery']['name'])) {
+    $gallery=$_FILES['gallery'];
+    $file_name=$_FILES['gallery']['name'];
+    $location="../uploads/";
+    $gallery_name=implode(",", $file_name);
+    if(!empty($file_name)){
+        foreach($file_name as $key => $val){
+            $targetPath = $location .$val;
+            move_uploaded_file($_FILES['gallery']['tmp_name'][$key], $targetPath);
+        }
+    }
+ }
+
+
+
+$req = "update evenements set Nom='$eventName', Description='$eventDescription', Location='$eventPlace',
+Date='$eventDate', startTime='$startTime' ,eventImage='$newFileName', endTime='$endTime', eventType='$eventType',
+Status='$eventStatue', gallery='$gallery_name' WHERE IDevent = $IDevent";
+
+
+
 $res = mysqli_query($conn, $req);
 if($res){
     header("location: events.php");

@@ -1,3 +1,9 @@
+<?php
+include "conn.php";
+session_start();
+if(isset($_SESSION['id'])){
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +21,6 @@
 
 
 <?php
-    include "conn.php";
-    session_start();
     if(isset($_POST["submit"])){
         $userid=$_SESSION['id'];
         $userInfoReq="select * from utilisateur where id='$userid'";
@@ -55,37 +59,6 @@
 
     ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="Main.css">
-    <title>Become Our Partner</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="bg-gray-100">
-
-     Header -->
     <nav class="bg-[#044952] dark:bg-[#044952] fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -202,3 +175,8 @@
     </body>
 
 </html>
+<?php
+} else {
+    header("location: login.php");
+}
+?>

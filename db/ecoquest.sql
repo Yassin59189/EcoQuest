@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2025 at 09:08 PM
+-- Generation Time: Jan 17, 2025 at 03:54 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -75,17 +75,19 @@ CREATE TABLE `evenements` (
   `eventType` varchar(20) NOT NULL,
   `Status` varchar(20) NOT NULL,
   `eventImage` varchar(20) NOT NULL,
-  `trash` float NOT NULL
+  `trash` float NOT NULL,
+  `Googlemaps` text NOT NULL,
+  `gallery` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `evenements`
 --
 
-INSERT INTO `evenements` (`IDevent`, `Nom`, `Description`, `Location`, `Date`, `startTime`, `endTime`, `eventType`, `Status`, `eventImage`, `trash`) VALUES
-(0, 'Game Jam 1', 'dsdssd', 'test', '2025-01-24', '23:28:00', '15:30:00', 'Teams', 'Done', '1737055173.png', 42.6),
-(1, 'Game Jam 2', 'test', 'test', '2024-12-11', '23:41:00', '16:38:00', 'Teams', 'Done', '1737055738.png', 42.6),
-(9, 'yassin', 'gfdgfd', 'gdffd', '2025-01-25', '07:31:00', '19:31:00', 'Teams', 'Upcoming', '1737053039.png', 30);
+INSERT INTO `evenements` (`IDevent`, `Nom`, `Description`, `Location`, `Date`, `startTime`, `endTime`, `eventType`, `Status`, `eventImage`, `trash`, `Googlemaps`, `gallery`) VALUES
+(0, 'Game Jam', 'dsdssd', 'test', '2025-01-24', '23:28:00', '15:30:00', 'Solo', 'Done', '1737081070.', 42.6, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.9812462993996!2d10.3407283432414!3d36.723011632553884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd492853767953%3A0xa8e8e6f1d414ac36!2sBougarnine%20gathering%20point!5e0!3m2!1sfr!2stn!4v1737054313038!5m2!1sfr!2stn', '66vehr2um3z31.webp,279930142_520879369444820_7366526229942175800_n.jpg,download.png,images.png'),
+(1, 'Save Bougarnine ', 'test', 'Bougarnine gathering point', '2025-02-02', '23:41:00', '16:38:00', 'Solo', 'Upcoming', '1737065674.png', 42.6, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.9812462993996!2d10.3407283432414!3d36.723011632553884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd492853767953%3A0xa8e8e6f1d414ac36!2sBougarnine%20gathering%20point!5e0!3m2!1sfr!2stn!4v1737054313038!5m2!1sfr!2stn', ''),
+(9, 'test 1', 'gfdgfd', 'gdffd', '2025-02-01', '07:31:00', '19:31:00', 'Solo', 'Upcoming', '1737065700.png', 30, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.9812462993996!2d10.3407283432414!3d36.723011632553884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd492853767953%3A0xa8e8e6f1d414ac36!2sBougarnine%20gathering%20point!5e0!3m2!1sfr!2stn!4v1737054313038!5m2!1sfr!2stn', '');
 
 -- --------------------------------------------------------
 
@@ -155,7 +157,7 @@ CREATE TABLE `home` (
 --
 
 INSERT INTO `home` (`id`, `banner`, `about`, `aboutimg`) VALUES
-(1, '', ' - Join us to make our planet cleaner and healthier. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi nihil corporis soluta temporibus minus ea asperiores molestiae voluptate praesentium nesciunt voluptatibus, tempora veritatis autem repellendus sequi, maxime alias, numquam officia?', '1737030849.png');
+(1, '1737077718.png', 'Chez EcoQuest, nous croyons au pouvoir des actions durables pour transformer le monde. À travers nos initiatives, nous promouvons une gestion responsable des déchets, les transformant en ressources précieuses pour préserver nos écosystèmes, tout en sensibilisant et en autonomisant les communautés pour proposer des solutions innovantes vers un avenir harmonieux entre nature et hu Chez EcoQuest, nous croyons au pouvoir des actions durables pour transformer le monde. À travers nos initiatives, nous promouvons une gestion responsable des déchets, les transformant en ressources précieuses pour préserver nos écosystèmes, tout en sensibilisant et en autonomisant les communautés pour proposer des solutions innovantes vers un avenir harmonieux entre nature et hu', '1737075822.png');
 
 -- --------------------------------------------------------
 
@@ -233,9 +235,8 @@ CREATE TABLE `participants` (
 --
 
 INSERT INTO `participants` (`idparticipant`, `idevent`, `idutilsateur`, `dateparticipation`, `team`) VALUES
-(1, 9, 1, '2024-11-26 18:32:09', 'A'),
-(2, 9, 1, '2024-11-26 22:10:47', 'A'),
-(3, 9, 2, '2024-11-26 22:14:16', 'A');
+(8, 9, 1, '2025-01-16 22:17:24', 'B'),
+(9, 1, 6, '2025-01-17 01:35:45', 'B');
 
 -- --------------------------------------------------------
 
@@ -262,7 +263,8 @@ INSERT INTO `recompance` (`reco_ID`, `reco_title`, `reco_partnerID`, `reco_quant
 (10, 'bracelet', 0, 30, 'lether organic material', 'ismailturki', '1733850354.png'),
 (11, 'glasses', 0, 12, 'Organic glasses are polymers w', 'ismailturki', '1733850472.png'),
 (12, 'Snacker Gift Box', 0, 10, 'For the loved ones we care for', 'ismailturki', '1733850646.png'),
-(13, 'Snacker Gift Box', 0, 10, 'For the loved ones we care for and the health frea', 'ismailturki', '1733850646.png');
+(13, 'Snacker Gift Box', 0, 10, 'For the loved ones we care for and the health frea', 'ismailturki', '1733850646.png'),
+(14, 'Prod 1', 1, 3, 'Product description', 'yassin', '1737064617.png');
 
 -- --------------------------------------------------------
 
@@ -288,7 +290,8 @@ INSERT INTO `requestrecompance` (`idReqReco`, `title`, `quantity`, `description`
 (1, 'vr', 30, 'vrvr', '1733765110.jpg', 0, 'accepted'),
 (2, 'bracelet', 30, 'lether organic material', '1733850354.png', 0, 'accepted'),
 (3, 'glasses', 12, 'Organic glasses are polymers with an irregular seq', '1733850472.png', 0, 'accepted'),
-(4, 'Snacker Gift Box', 10, 'For the loved ones we care for and the health frea', '1733850646.png', 0, 'accepted');
+(4, 'Snacker Gift Box', 10, 'For the loved ones we care for and the health frea', '1733850646.png', 0, 'accepted'),
+(5, 'Prod 1', 3, 'Product description', '1737064617.png', 1, 'accepted');
 
 -- --------------------------------------------------------
 
@@ -307,7 +310,6 @@ CREATE TABLE `sponsors` (
 --
 
 INSERT INTO `sponsors` (`idsponsor`, `nomsponsor`, `imgsponsor`) VALUES
-(28, 'yassin', '1736971769.png'),
 (29, 'ISAMM', '1736972135.png');
 
 -- --------------------------------------------------------
@@ -324,19 +326,18 @@ CREATE TABLE `utilisateur` (
   `Email` varchar(100) NOT NULL,
   `password` varchar(250) NOT NULL,
   `adresse` varchar(50) NOT NULL,
-  `tel` varchar(8) NOT NULL
+  `tel` varchar(8) NOT NULL,
+  `pfp` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`ID`, `role`, `Nom`, `username`, `Email`, `password`, `adresse`, `tel`) VALUES
-(1, 'admin', 'yassin', 'yassin59189', 'yassin.59189@gmail.com', '59189', 'tunis', '56650772'),
-(2, 'citoyen', 'isamil', 'ismail59189', 'yassine.msbs@gmail.com', '59189', 'ariena', '56650772'),
-(4, 'citoyen', 'yassin ben mosbeh', 'yassin59189', 'msbs59189@gmail.com', '$2y$10$MLB/fw6dWs3a/hC9YfYBhefYitu0v4unGUswSwgNllLob7H/CNseC', 'tunis', '56650772'),
-(5, 'citoyen', 'ismailturki', 'ismail', 'turkiismail08@gmail.com', '$2y$10$QMFbNIbl7vr/r.M3eZ2KZu2bRxn0JZzAZYDj3VlGIZto2iicnJHsq', 'ariana', '93199900'),
-(6, 'partner', 'Yassin Ben Mosbeh', 'Yassin59189', 'Yassin@gmail.com', '$2y$10$wcnjRzuRjZc93KXY47gii.b9UOFJyII2bGTVEOJbsEYYpnOmOhbiS', 'tunis', '56650772');
+INSERT INTO `utilisateur` (`ID`, `role`, `Nom`, `username`, `Email`, `password`, `adresse`, `tel`, `pfp`) VALUES
+(1, 'admin', 'yassin', 'yassin59189', 'yassin.59189@gmail.com', '59189', 'tunis', '56650772', ''),
+(4, 'citoyen', 'yassin ben mosbeh', 'yassin59189', 'msbs59189@gmail.com', '$2y$10$MLB/fw6dWs3a/hC9YfYBhefYitu0v4unGUswSwgNllLob7H/CNseC', 'tunis', '56650772', ''),
+(6, 'partner', 'Yassin Ben Mosbeh', 'Yassin59189', 'Yassin@gmail.com', '$2y$10$wcnjRzuRjZc93KXY47gii.b9UOFJyII2bGTVEOJbsEYYpnOmOhbiS', 'tunis', '56650772', '');
 
 --
 -- Indexes for dumped tables
@@ -395,7 +396,9 @@ ALTER TABLE `partenaires`
 -- Indexes for table `participants`
 --
 ALTER TABLE `participants`
-  ADD PRIMARY KEY (`idparticipant`);
+  ADD PRIMARY KEY (`idparticipant`),
+  ADD KEY `idutilsateur` (`idutilsateur`),
+  ADD KEY `idevent` (`idevent`);
 
 --
 -- Indexes for table `recompance`
@@ -465,19 +468,19 @@ ALTER TABLE `partenaires`
 -- AUTO_INCREMENT for table `participants`
 --
 ALTER TABLE `participants`
-  MODIFY `idparticipant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idparticipant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `recompance`
 --
 ALTER TABLE `recompance`
-  MODIFY `reco_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `reco_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `requestrecompance`
 --
 ALTER TABLE `requestrecompance`
-  MODIFY `idReqReco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idReqReco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sponsors`
@@ -500,6 +503,13 @@ ALTER TABLE `utilisateur`
 --
 ALTER TABLE `partenaires`
   ADD CONSTRAINT `partenaires_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `utilisateur` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `participants`
+--
+ALTER TABLE `participants`
+  ADD CONSTRAINT `participants_ibfk_1` FOREIGN KEY (`idutilsateur`) REFERENCES `utilisateur` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `participants_ibfk_2` FOREIGN KEY (`idevent`) REFERENCES `evenements` (`IDevent`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

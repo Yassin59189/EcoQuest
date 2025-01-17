@@ -98,7 +98,7 @@
               <a
                 href="SDG.php"
                 class="block py-2 px-3 text-white bg-[#FF9100] rounded md:bg-transparent md:text-[#FF9100] md:p-0 md:dark:text-[#FF9100]"
-                >SDG</a
+                >The SDGs</a
               >
             </li>
       
