@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2025 at 03:54 AM
+-- Generation Time: Jan 17, 2025 at 08:53 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -85,9 +85,9 @@ CREATE TABLE `evenements` (
 --
 
 INSERT INTO `evenements` (`IDevent`, `Nom`, `Description`, `Location`, `Date`, `startTime`, `endTime`, `eventType`, `Status`, `eventImage`, `trash`, `Googlemaps`, `gallery`) VALUES
-(0, 'Game Jam', 'dsdssd', 'test', '2025-01-24', '23:28:00', '15:30:00', 'Solo', 'Done', '1737081070.', 42.6, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.9812462993996!2d10.3407283432414!3d36.723011632553884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd492853767953%3A0xa8e8e6f1d414ac36!2sBougarnine%20gathering%20point!5e0!3m2!1sfr!2stn!4v1737054313038!5m2!1sfr!2stn', '66vehr2um3z31.webp,279930142_520879369444820_7366526229942175800_n.jpg,download.png,images.png'),
-(1, 'Save Bougarnine ', 'test', 'Bougarnine gathering point', '2025-02-02', '23:41:00', '16:38:00', 'Solo', 'Upcoming', '1737065674.png', 42.6, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.9812462993996!2d10.3407283432414!3d36.723011632553884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd492853767953%3A0xa8e8e6f1d414ac36!2sBougarnine%20gathering%20point!5e0!3m2!1sfr!2stn!4v1737054313038!5m2!1sfr!2stn', ''),
-(9, 'test 1', 'gfdgfd', 'gdffd', '2025-02-01', '07:31:00', '19:31:00', 'Solo', 'Upcoming', '1737065700.png', 30, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.9812462993996!2d10.3407283432414!3d36.723011632553884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd492853767953%3A0xa8e8e6f1d414ac36!2sBougarnine%20gathering%20point!5e0!3m2!1sfr!2stn!4v1737054313038!5m2!1sfr!2stn', '');
+(0, 'bizerte Quest', 'Participez à une campagne de nettoyage visant à restaurer la propreté et la beauté de nos espaces communs. Cet événement est une occasion unique de se rassembler pour une cause importante : la préservation de notre environnement. Ensemble, ramassons les déchets, embellissons nos rues et montrons que chaque geste compte. C’est en agissant collectivement que nous pourrons créer un impact durable pour notre communauté et la nature. Venez nombreux pour contribuer à cette belle initiative !', 'bizerte', '2025-01-24', '23:28:00', '15:30:00', 'Teams', 'Upcoming', '1737100084.png', 42.6, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29674.173855152192!2d9.485683460866944!3d37.223313242168345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e31e4db2105f13%3A0xf44361a00609c69e!2sBizerte!5e1!3m2!1sen!2stn!4v1737100058298!5m2!1sen!2stn', ''),
+(1, 'Hammamet Cleanup', 'Prenez part à une campagne de nettoyage organisée pour améliorer la propreté de nos espaces communs et sensibiliser à l’importance de protéger notre environnement. Cet événement convivial est une opportunité de contribuer à un changement positif tout en partageant un moment avec d’autres participants engagés. Votre implication est essentielle pour réussir cette belle initiative. Ensemble, rendons nos espaces plus propres, accueillants et respectueux de la nature. Nous comptons sur vous pour faire la différence !', 'hammamet ', '2025-02-02', '23:41:00', '16:38:00', 'Teams', 'Upcoming', '1737100193.jpg', 42.6, 'https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d25691.496946428142!2d10.610319582572366!3d36.39861818805292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1shamamet%20plage!5e0!3m2!1sen!2stn!4v1737099654523!5m2!1sen!2stn', ''),
+(9, 'MansouraQuest', 'Participez à notre campagne de nettoyage, une action collective pour rendre nos rues, parcs et espaces publics plus propres et agréables. Cette initiative a pour but de sensibiliser chacun à l’importance de réduire les déchets et de prendre soin de notre environnement. Que vous soyez motivé par l’envie d’aider ou de passer un moment convivial, votre participation sera précieuse. Ensemble, faisons preuve de solidarité pour améliorer la qualité de vie de notre communauté et préserver notre planète.', 'mansoura plage ', '2025-02-01', '07:31:00', '19:31:00', 'Teams', 'Upcoming', '1737100342.jpg', 30, 'https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d6384.986566182308!2d11.121560945339615!3d36.85460992733339!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sMansoura%20tunisia%20plage!5e0!3m2!1sen!2stn!4v1737099172068!5m2!1sen!2stn', '');
 
 -- --------------------------------------------------------
 
@@ -157,7 +157,7 @@ CREATE TABLE `home` (
 --
 
 INSERT INTO `home` (`id`, `banner`, `about`, `aboutimg`) VALUES
-(1, '1737077718.png', 'Chez EcoQuest, nous croyons au pouvoir des actions durables pour transformer le monde. À travers nos initiatives, nous promouvons une gestion responsable des déchets, les transformant en ressources précieuses pour préserver nos écosystèmes, tout en sensibilisant et en autonomisant les communautés pour proposer des solutions innovantes vers un avenir harmonieux entre nature et hu Chez EcoQuest, nous croyons au pouvoir des actions durables pour transformer le monde. À travers nos initiatives, nous promouvons une gestion responsable des déchets, les transformant en ressources précieuses pour préserver nos écosystèmes, tout en sensibilisant et en autonomisant les communautés pour proposer des solutions innovantes vers un avenir harmonieux entre nature et hu', '1737075822.png');
+(1, '1737077718.png', 'Chez EcoQuest, chaque action compte pour bâtir un monde plus propre et plus vert. Nous nous engageons à transformer les déchets en ressources précieuses, réduisant ainsi la pression sur les écosystèmes tout en sensibilisant et en autonomisant les communautés. Grâce à des initiatives durables et des solutions innovantes, nous œuvrons pour un avenir où la nature et l’humanité prospèrent en harmonie, laissant un impact durable pour les générations futures.', '1737075822.png');
 
 -- --------------------------------------------------------
 
@@ -310,7 +310,13 @@ CREATE TABLE `sponsors` (
 --
 
 INSERT INTO `sponsors` (`idsponsor`, `nomsponsor`, `imgsponsor`) VALUES
-(29, 'ISAMM', '1736972135.png');
+(29, 'ISAMM', '1736972135.png'),
+(31, 'litalia', '1737098874.png'),
+(32, 'axon', '1737098904.png'),
+(33, 'jetstar', '1737098915.png'),
+(34, 'expedia', '1737098940.png'),
+(35, 'envato', '1737099016.png'),
+(36, 'Safia', '1737099040.png');
 
 -- --------------------------------------------------------
 
@@ -486,7 +492,7 @@ ALTER TABLE `requestrecompance`
 -- AUTO_INCREMENT for table `sponsors`
 --
 ALTER TABLE `sponsors`
-  MODIFY `idsponsor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `idsponsor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `utilisateur`
