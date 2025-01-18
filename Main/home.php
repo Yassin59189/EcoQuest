@@ -48,7 +48,10 @@
  <?php
  include "conn.php";
   session_start();
-  $ID=$_SESSION['id'];?>
+  if(isset($_SESSION['id'])){
+    $ID=$_SESSION['id'];
+  }
+  ?>
      <nav
       class="bg-[#044952] dark:bg-[#044952] fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600"
     >
@@ -70,7 +73,7 @@
         </a>');
     } else {
         
-        echo('<a href="logout.php" class="text-white"><button type="button" class="text-white bg-[#FF9100] hover:bg-green-800 duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-[#FF9100] dark:hover:bg-[#FFCE00] dark:focus:ring-[#1d3b24]" >Login</button></a>');
+        echo('<a href="login.php" class="text-white"><button type="button" class="text-white bg-[#FF9100] hover:bg-green-800 duration-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-[#FF9100] dark:hover:bg-[#FFCE00] dark:focus:ring-[#1d3b24]" >Login</button></a>');
     }
 ?>
 
@@ -455,7 +458,7 @@ tout en contribuant à une noble cause !</p>
       <!-- Left side - Image -->
       <div class="aspect-[4/3] bg-gray-100 rounded-lg shadow-lg overflow-hidden">
         <img 
-          src="../uploads/1733764363.png ?>" 
+          src="../uploads/mmkhize_-Good-Gren-Deeds-launch_158.jpg ?>" 
           alt="Newsletter image" 
           class="w-full h-full object-cover"
         />

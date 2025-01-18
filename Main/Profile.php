@@ -258,8 +258,11 @@
                   </a>
                 <?php if($_SESSION["role"]=="admin"){
        echo('
-        
-        <a href="../daskboard/index.php">dashboard<a/>');
+        <a href="../daskboard/index.php">
+        <button type="button" class="text-white  border-2 border-[#044952] bg-[#044952] hover:bg-[#044952] duration-300 transition hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-3 text-center ">
+                        dashboard
+                    </button>
+        <a/>');
     }?>
     
                   <a href="<!-- delete_account.php -->">
